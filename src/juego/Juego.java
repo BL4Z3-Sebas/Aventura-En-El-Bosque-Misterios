@@ -20,6 +20,6 @@ public class Juego {
         esc.dia.showLista();
 
         // Infinite loop (probably not needed unless for game engine)
-        while(true){}
+        while(true){} 
     }
 }

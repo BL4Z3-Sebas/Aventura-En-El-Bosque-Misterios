@@ -1,20 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package arbol;
-
 
 import escena.Escena;
 
-
-/**
- *
- * @author andre
- */
 public class Nodo {
-    public Nodo izq;
-    public Nodo der;
-    public Escena esc;
-    
+
+    private Nodo izq;
+    private Nodo der;
+    private Escena esc;
+
+    public Nodo(Escena escena) {
+        this.esc = escena;
+        this.izq = null;
+        this.der = null;
+    }
+
+    public Nodo getIzq() {
+        return izq;
+    }
+
+    public void setIzq(Nodo izq) {
+        this.izq = izq;
+    }
+
+    public Nodo getDer() {
+        return der;
+    }
+
+    public void setDer(Nodo der) {
+        this.der = der;
+    }
 }
