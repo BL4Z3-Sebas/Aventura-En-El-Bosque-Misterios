@@ -23,7 +23,14 @@ public class Juego {
 
         Escena esc = new Escena();
         // Añadir diálogo a la lista
-        esc.dia.añadir("¡Bienvenido al bosque misterioso!");
+        esc.dia.añadir("Año 4202");
+        esc.dia.añadir("La humanidad vivía su mejor momento");
+        esc.dia.añadir("Dominaban todo el sistema solar");
+        esc.dia.añadir("La necesidad de energía y recursos no era un problema");
+        esc.dia.añadir("Pero...");
+        esc.dia.añadir("Aún con una vida que para otras especies seria perfecta");
+        esc.dia.añadir("Su curiosidad y deseo por llevar las leyes naturales al extremo tendría consecuencias");
+        
         // Cargar el sonido desde los recursos
         InputStream audioStream = getClass().getResourceAsStream("/musica/Escape.wav");
         if (audioStream != null) {
@@ -39,15 +46,16 @@ public class Juego {
     private void ejecutarRecursivo(Nodo nodo) {
         if (nodo != null) {
             nodo.esc.ejecutar();
-            Scanner sc = new Scanner(System.in);
-            int i;
-            i = sc.nextInt();
-            if (i == 1) {
-                ejecutarRecursivo(nodo.izq);
-            } else {
-                ejecutarRecursivo(nodo.der);
+            if (nodo.izq != null && nodo.der != null) {
+                Scanner sc = new Scanner(System.in);
+                int i;
+                i = sc.nextInt();
+                if (i == 1) {
+                    ejecutarRecursivo(nodo.izq);
+                } else {
+                    ejecutarRecursivo(nodo.der);
+                }
             }
         }
     }
-
 }
