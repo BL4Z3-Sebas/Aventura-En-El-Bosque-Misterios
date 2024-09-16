@@ -1,5 +1,7 @@
 package Main;
 
+import java.io.IOException;
+import juego.Juego;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
@@ -8,7 +10,7 @@ import niveles.Nivel;
 
 public class Main {
 
-    public static void main(String[] args) throws UnsupportedEncodingException {
+    public static void main(String[] args) throws UnsupportedEncodingException, IOException {
 
         System.setOut(new PrintStream(System.out, true, "utf-8"));
 
@@ -37,6 +39,8 @@ public class Main {
         System.out.println("Opciones: " + Arrays.toString(nivel.getRespuetas()));
         System.out.println("");
         System.out.println("Solucion: " + nivel.getSolucion());
+        
+        Juego juego = new Juego();      
+        juego.ejecutar();
     }
-
 }

@@ -29,4 +29,12 @@ public class Nodo {
     public void setDer(Nodo der) {
         this.der = der;
     }
+
+    public Escena getEsc() {
+        return esc;
+    }
+
+    public void setEsc(Escena esc) {
+        this.esc = esc;
+    }
 }

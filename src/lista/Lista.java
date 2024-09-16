@@ -1,5 +1,8 @@
 package lista;
 
+import java.io.IOException;
+
+
 public class Lista {
 
     public Nodo cabeza;
@@ -20,15 +23,17 @@ public class Lista {
         }
     }
 
-    public void showLista() {
+    public void showLista() throws IOException {
         showListaRecursivo(this.cabeza);
     }
 
-    private void showListaRecursivo(Nodo nodo) {
+    private void showListaRecursivo(Nodo nodo) throws IOException {
         if (nodo != null) {
-            System.out.println(nodo.dia);
+            System.out.println(nodo.dia);          
+            while (System.in.read() != '\n') {
+                // No hacer nada, solo esperar a que el usuario presione Enter
+            }
             showListaRecursivo(nodo.next);
         }
     }
 }
-
