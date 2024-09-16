@@ -27,7 +27,8 @@ public class Lista {
     private void showListaRecursivo(Nodo nodo) {
         if (nodo != null) {
             System.out.println(nodo.dia);
-            showListaRecursivo(nodo.next);
+            
+            //showListaRecursivo(nodo.next);
         }
     }
 }

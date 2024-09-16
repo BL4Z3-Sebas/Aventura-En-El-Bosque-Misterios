@@ -1,22 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package Main;
 
-/**
- *
- * @author cotes
- */
+import juego.Juego;
+
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
+        Juego juego = new Juego();
         System.out.println("Hola mundo");
         System.out.println("Hola mundo again");
-        System.out.println("Holaaaaaaaaaaaaaaaaa");
+        juego.ejecutar();
     }
     
 }
