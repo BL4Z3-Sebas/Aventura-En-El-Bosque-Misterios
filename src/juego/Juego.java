@@ -3,8 +3,11 @@ package juego;
 import arbol.Arbol;
 import arbol.Nodo;
 import escena.Escena;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -39,21 +42,25 @@ public class Juego {
             System.err.println("No se encontró el archivo de sonido");
         }
         // Asignar la escena al nodo raíz
-        arbol.raiz.esc = esc;
-        ejecutarRecursivo(arbol.raiz);
+        arbol.getRaiz().setEsc(esc);
+        ejecutarRecursivo(arbol.getRaiz());
     }
 
     private void ejecutarRecursivo(Nodo nodo) {
         if (nodo != null) {
-            nodo.esc.ejecutar();
-            if (nodo.izq != null && nodo.der != null) {
+            try {
+                nodo.getEsc().ejecutar();
+            } catch (IOException ex) {
+                Logger.getLogger(Juego.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (nodo.getIzq() != null && nodo.getDer() != null) {
                 Scanner sc = new Scanner(System.in);
                 int i;
                 i = sc.nextInt();
                 if (i == 1) {
-                    ejecutarRecursivo(nodo.izq);
+                    ejecutarRecursivo(nodo.getIzq());
                 } else {
-                    ejecutarRecursivo(nodo.der);
+                    ejecutarRecursivo(nodo.getDer());
                 }
             }
         }
