@@ -9,20 +9,15 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author andre
- */
 public class Juego {
 
-    Arbol arbol;
+    Arbol arbol = new Arbol();
 
     public Juego() {
         // Inicializa el árbol
-        arbol = new Arbol();
     }
 
-    public void ejecutar() {
+    public void ejecutar() throws IOException {
 
         Escena esc = new Escena();
         // Añadir diálogo a la lista
@@ -33,7 +28,7 @@ public class Juego {
         esc.dia.añadir("Pero...");
         esc.dia.añadir("Aún con una vida que para otras especies seria perfecta");
         esc.dia.añadir("Su curiosidad y deseo por llevar las leyes naturales al extremo tendría consecuencias");
-        
+
         // Cargar el sonido desde los recursos
         InputStream audioStream = getClass().getResourceAsStream("/musica/Escape.wav");
         if (audioStream != null) {

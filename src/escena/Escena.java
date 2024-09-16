@@ -7,7 +7,6 @@ import niveles.Nivel;
 
 public class Escena {
 
-    public Nivel nivel;
     public Lista dia;
     public Audio audio;
 
@@ -19,9 +18,33 @@ public class Escena {
     public void ejecutar() throws IOException {
         this.dia.showLista();
         this.audio.playSound();
+
     }
-    
-    public void escribirHistoria(){
-        String h_caacteres = nivel.getHistoria();
+
+    public static void escribirDialogo(String dialogo) {
+        String[] palabras = dialogo.split("\\s+");
+        int longitud = 0;
+        for (String palabra : palabras) {
+            System.out.print(palabra + " ");
+            longitud += palabra.length() + 1;
+            if (longitud >= 45) {
+                System.out.println("");
+                longitud = 0;
+            }
+
+            try {
+                if (palabra.endsWith(".") 
+                        && palabra.charAt(0) != palabra.toUpperCase().charAt(0)) {
+                    Thread.sleep(800);
+                    System.out.println("");
+                    longitud = 0;
+                } else {
+                    Thread.sleep(250);
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        System.out.println("");
     }
 }
