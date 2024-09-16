@@ -3,6 +3,7 @@ package juego;
 import arbol.Arbol;
 import arbol.Nodo;
 import escena.Escena;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -19,7 +20,7 @@ public class Juego {
         arbol = new Arbol();
     }
 
-    public void ejecutar() {
+    public void ejecutar() throws IOException {
 
         Escena esc = new Escena();
         // Añadir diálogo a la lista
@@ -43,7 +44,7 @@ public class Juego {
         ejecutarRecursivo(arbol.raiz);
     }
 
-    private void ejecutarRecursivo(Nodo nodo) {
+    private void ejecutarRecursivo(Nodo nodo) throws IOException {
         if (nodo != null) {
             nodo.esc.ejecutar();
             if (nodo.izq != null && nodo.der != null) {

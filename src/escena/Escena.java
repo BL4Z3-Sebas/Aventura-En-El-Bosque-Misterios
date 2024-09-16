@@ -1,5 +1,6 @@
 package escena;
 
+import java.io.IOException;
 import lista.Lista;
 import musica.Audio;
 
@@ -15,7 +16,7 @@ public class Escena {
        this.dia = new Lista();  // Inicializa 'dia'
        this.audio = new Audio();  // Inicializa 'audio'
    }
-   public void ejecutar(){
+   public void ejecutar() throws IOException{
        this.dia.showLista();
        this.audio.playSound();
    
