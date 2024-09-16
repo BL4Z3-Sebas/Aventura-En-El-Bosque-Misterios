@@ -7,17 +7,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
 
-/**
- *
- * @author andre
- */
 public class Juego {
 
-    Arbol arbol;
+    Arbol arbol = new Arbol();
 
     public Juego() {
         // Inicializa el árbol
-        arbol = new Arbol();
     }
 
     public void ejecutar() throws IOException {
@@ -45,11 +40,7 @@ public class Juego {
     }
 
     // Infinite loop (probably not needed unless for game engine)
-    
-    
-
     //while(true){} 
-
     private void ejecutarRecursivo(Nodo nodo) throws IOException {
         if (nodo != null) {
             nodo.getEsc().ejecutar();
