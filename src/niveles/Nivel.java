@@ -1,5 +1,8 @@
 package niveles;
 
+import java.io.InputStream;
+import musica.Audio;
+
 public class Nivel {
 
     private int num_nivel;
@@ -9,6 +12,7 @@ public class Nivel {
     private String acertijo;
     private String[] respuetas;
     private String solucion;
+    private Audio audio;
 
     public Nivel() {
     }
@@ -68,4 +72,15 @@ public class Nivel {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+
+    public void setAudio(String cad) {
+        InputStream audioStream = getClass().getResourceAsStream(cad);
+        if (audioStream != null) {
+            this.audio.setSound(audioStream);
+        } else {
+            System.err.println("No se encontró el archivo de sonido");
+        }
+        this.audio = audio;
+    }
+    
 }
