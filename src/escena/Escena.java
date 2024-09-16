@@ -4,10 +4,6 @@ import java.io.IOException;
 import lista.Lista;
 import musica.Audio;
 
-/**
- *
- * @author andre
- */
 public class Escena {
    public Lista dia;
    public Audio audio;
