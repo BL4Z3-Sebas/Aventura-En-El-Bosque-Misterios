@@ -19,7 +19,7 @@ public class Imagen {
 
         // Redimensionar la imagen (ajustar el tamaño)
         Image image = icon.getImage(); // Obtener el objeto Image del icono
-        Image scaledImage = image.getScaledInstance(300, 200, Image.SCALE_SMOOTH); // Redimensionar a 300x200 (puedes ajustar)
+        Image scaledImage = image.getScaledInstance(1280, 720, Image.SCALE_SMOOTH); // Redimensionar a 300x200 (puedes ajustar)
         icon = new ImageIcon(scaledImage); // Crear un nuevo ImageIcon con la imagen redimensionada
 
         // Crear el JFrame
