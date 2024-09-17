@@ -1,6 +1,7 @@
 package Main;
 
 import escena.Escena;
+import imagen.Imagen;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
@@ -14,12 +15,13 @@ import niveles.Nivel;
 public class Main {
 
     public static void main(String[] args) {
-
+        Imagen.ejecutarImagen("/imagen/lab.png");  // Asegúrate de que la ruta es correcta
         try {
             System.setOut(new PrintStream(System.out, true, "utf-8"));
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         Nivel nivel = GeneradorNiveles.crearNivel("nivel_1");
         System.out.println(nivel.getTitulo());
         System.out.println("");
@@ -40,7 +42,7 @@ public class Main {
         System.out.println("");
 
         System.out.println("Solucion: " + nivel.getSolucion());
-        
+
         //Juego juego = new Juego();      
         //juego.ejecutar();
     }
