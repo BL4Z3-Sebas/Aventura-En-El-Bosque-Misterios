@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws UnsupportedEncodingException {
 
-        System.setOut(new PrintStream(System.out, true, "utf-8"));
+      //  System.setOut(new PrintStream(System.out, true, "utf-8"));
 
         Nivel nivel = new Nivel();
         nivel = GeneradorNiveles.crearNivel("nivel_1");
