@@ -3,6 +3,9 @@ package Main;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.stream.Collectors;
+import juego.Juego;
 import niveles.GeneradorNiveles;
 import niveles.Nivel;
 
@@ -10,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) throws UnsupportedEncodingException {
 
-      //  System.setOut(new PrintStream(System.out, true, "utf-8"));
+        System.setOut(new PrintStream(System.out, true, "utf-8"));
 
         Nivel nivel = new Nivel();
         nivel = GeneradorNiveles.crearNivel("nivel_1");
@@ -34,9 +37,14 @@ public class Main {
         System.out.println("");
         System.out.println(nivel.getAcertijo().replace("\t", "\n"));
         System.out.println("");
+        
+        Collections.shuffle(Arrays.asList(nivel.getRespuetas()));
         System.out.println("Opciones: " + Arrays.toString(nivel.getRespuetas()));
         System.out.println("");
         System.out.println("Solucion: " + nivel.getSolucion());
+
+//        Juego juego = new Juego();
+//        juego.ejecutar();
     }
 
 }

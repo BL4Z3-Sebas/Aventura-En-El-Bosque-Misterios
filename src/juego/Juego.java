@@ -22,10 +22,10 @@ public class Juego {
         arbol = new Arbol();
     }
 
-    public void ejecutar() throws IOException {
+    public void ejecutar() {
 
         Escena esc = new Escena();
-       // Añadir diálogo a la lista
+        // Añadir diálogo a la lista
         esc.dia.añadir("Año 4202");
         esc.dia.añadir("La humanidad vivía su mejor momento");
         esc.dia.añadir("Dominaban todo el sistema solar");
@@ -33,7 +33,7 @@ public class Juego {
         esc.dia.añadir("Pero...");
         esc.dia.añadir("Aún con una vida que para otras especies seria perfecta");
         esc.dia.añadir("Su curiosidad y deseo por llevar las leyes naturales al extremo tendría consecuencias");
-       
+        
         // Cargar el sonido desde los recursos
         InputStream audioStream = getClass().getResourceAsStream("/musica/Escape.wav");
         if (audioStream != null) {
@@ -46,7 +46,7 @@ public class Juego {
         ejecutarRecursivo(arbol.getRaiz());
     }
 
-    private void ejecutarRecursivo(Nodo nodo) throws IOException {
+    private void ejecutarRecursivo(Nodo nodo) {
         if (nodo != null) {
             try {
                 nodo.getEsc().ejecutar();

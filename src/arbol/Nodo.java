@@ -8,6 +8,10 @@ public class Nodo {
     private Nodo der;
     private Escena esc;
 
+    public Nodo() {
+    }
+    
+
     public Nodo(Escena escena) {
         this.esc = escena;
         this.izq = null;
@@ -29,4 +33,13 @@ public class Nodo {
     public void setDer(Nodo der) {
         this.der = der;
     }
+
+    public Escena getEsc() {
+        return esc;
+    }
+
+    public void setEsc(Escena esc) {
+        this.esc = esc;
+    }
+    
 }
