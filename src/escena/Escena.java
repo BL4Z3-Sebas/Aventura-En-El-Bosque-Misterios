@@ -2,6 +2,7 @@ package escena;
 
 import java.io.IOException;
 import java.io.InputStream;
+import javax.crypto.AEADBadTagException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -45,6 +46,8 @@ public class Escena {
         int longitud = 0;
         for (String palabra : palabras) {
             System.out.print(palabra + " ");
+            Escenario escenario=new Escenario();
+            
             longitud += palabra.length() + 1;
             if (longitud >= 45) {
                 System.out.println("");
