@@ -1,34 +1,37 @@
 package Main;
 
 import escena.Escena;
+import imagen.Imagen;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import musica.AudioRunnable;
 import niveles.GeneradorNiveles;
 import niveles.Nivel;
 
 public class Main {
 
-    public static void main(String[] args) throws UnsupportedEncodingException {
-        System.setOut(new PrintStream(System.out, true, "utf-8"));
+    public static void main(String[] args) {    
+        Imagen.ejecutarImagen("/imagen/lab.png");  // Asegúrate de que la ruta es correcta
+        try {
+            System.setOut(new PrintStream(System.out, true, "utf-8"));
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-//        String cadena = "Hola, mundo!";
-//        for (int i = 0; i < cadena.length(); i++) {
-//            char letra = cadena.charAt(i);
-//            System.out.print(letra);
-//            System.out.flush(); // fuerza la salida de la consola
-//            try {
-//                Thread.sleep(500); // pausa de 500 milisegundos (0,5 segundos)
-//            } catch (InterruptedException e) {
-//                Thread.currentThread().interrupt();
-//            }
-//        }
         Nivel nivel = GeneradorNiveles.crearNivel("nivel_1");
         System.out.println(nivel.getTitulo());
         System.out.println("");
+        Escena escena = new Escena();
 
+        // Ejecutar el audio en un hilo separado
+        Thread audioThread = new Thread(new AudioRunnable(escena, "Escape.wav"));
+        audioThread.start();
         Escena.escribirDialogo(nivel.getHistoria());
+
         System.out.println("");
 
         Escena.escribirAcertijo(nivel.getAcertijo());

@@ -1,24 +1,43 @@
 package escena;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-import lista.Lista;
+import java.io.InputStream;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import musica.Audio;
 
 public class Escena {
 
-    public Lista dia;
     public Audio audio;
 
     public Escena() {
-        this.dia = new Lista();  // Inicializa 'dia'
         this.audio = new Audio();  // Inicializa 'audio'
     }
 
     public void ejecutar() throws IOException {
-        this.dia.showLista();
         this.audio.playSound();
+    }
 
+    public void ejecutarAudio(String archivoAudio) {
+        if (archivoAudio == null || archivoAudio.isEmpty()) {
+            System.err.println("El nombre del archivo de sonido es nulo o vacío.");
+            return;
+        }
+
+        try {
+            InputStream audioStream = getClass().getResourceAsStream("/musica/" + archivoAudio);
+            if (audioStream != null) {
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(audioStream);
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioInputStream);
+                clip.start();
+            } else {
+                System.err.println("No se encontró el archivo de sonido: " + archivoAudio);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void escribirDialogo(String dialogo) {

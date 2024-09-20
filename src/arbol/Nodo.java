@@ -8,6 +8,10 @@ public class Nodo {
     private Nodo der;
     private Escena esc;
 
+    public Nodo() {
+    }
+    
+
     public Nodo(Escena escena) {
         this.esc = escena;
         this.izq = null;
