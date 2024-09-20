@@ -1,7 +1,6 @@
 package Main;
 
 import escena.Escena;
-import juego.Juego;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
@@ -32,7 +31,8 @@ public class Main {
         Escena.escribirDialogo(nivel.getHistoria());
         System.out.println("");
 
-        System.out.println(nivel.getAcertijo().replace("\t", "\n"));
+        Escena.escribirAcertijo(nivel.getAcertijo());
+        //System.out.println(nivel.getAcertijo().replace("\t", "\n"));
         System.out.println("");
 
         Collections.shuffle(Arrays.asList(nivel.getRespuetas()));

@@ -33,7 +33,7 @@ public class Escena {
             }
 
             try {
-                if (palabra.endsWith(".") 
+                if (palabra.endsWith(".")
                         && palabra.charAt(0) != palabra.toUpperCase().charAt(0)) {
                     Thread.sleep(800);
                     System.out.println("");
@@ -46,5 +46,18 @@ public class Escena {
             }
         }
         System.out.println("");
+    }
+
+    public static void escribirAcertijo(String acertijo) {
+        String lineas[] = acertijo.split("\t");
+        for (String linea : lineas) {
+            System.out.println(linea);
+
+            try {
+                Thread.sleep(800);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
     }
 }
