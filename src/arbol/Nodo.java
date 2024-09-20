@@ -41,5 +41,4 @@ public class Nodo {
     public void setEsc(Escena esc) {
         this.esc = esc;
     }
-    
 }

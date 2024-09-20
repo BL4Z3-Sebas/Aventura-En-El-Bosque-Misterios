@@ -5,21 +5,22 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class Audio {
+
     private Clip clip;
 
+    
     public void setSound(InputStream inputStream) {
-    try {
-        // Cargamos el archivo de sonido como un objeto AudioInputStream
-        AudioInputStream audioStream = AudioSystem.getAudioInputStream(inputStream);
+        try {
+            // Cargamos el archivo de sonido como un objeto AudioInputStream
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(inputStream);
 
-        // Creamos un Clip que es lo que usamos para controlar el audio
-        clip = AudioSystem.getClip();
-        clip.open(audioStream);
-    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-        e.printStackTrace(); // Imprime cualquier error que ocurra
+            // Creamos un Clip que es lo que usamos para controlar el audio
+            clip = AudioSystem.getClip();
+            clip.open(audioStream);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace(); // Imprime cualquier error que ocurra
+        }
     }
-}
-
 
     public void playSound() {
         if (clip != null) {

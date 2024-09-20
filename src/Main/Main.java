@@ -1,50 +1,49 @@
 package Main;
 
+import escena.Escena;
+import imagen.Imagen;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.stream.Collectors;
-import juego.Juego;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import musica.AudioRunnable;
 import niveles.GeneradorNiveles;
 import niveles.Nivel;
 
 public class Main {
 
-    public static void main(String[] args) throws UnsupportedEncodingException {
-
-        System.setOut(new PrintStream(System.out, true, "utf-8"));
-
-        Nivel nivel = new Nivel();
-        nivel = GeneradorNiveles.crearNivel("nivel_1");
-        System.out.println(nivel.getTitulo());
-        System.out.println("");
-
-        int longitudMaxima = 50;
-        int indice = 0;
-
-        while (indice < nivel.getHistoria().length()) {
-            int espacio = nivel.getHistoria().indexOf(" ", indice + longitudMaxima);
-            if (espacio == -1) {
-                espacio = nivel.getHistoria().length();
-            }
-            String linea = nivel.getHistoria().substring(indice, espacio);
-            System.out.println(linea);
-            indice = espacio + 1;
+    public static void main(String[] args) {    
+        Imagen.ejecutarImagen("/imagen/lab.png");  // Asegúrate de que la ruta es correcta
+        try {
+            System.setOut(new PrintStream(System.out, true, "utf-8"));
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        //System.out.println(nivel.getHistoria());
+        Nivel nivel = GeneradorNiveles.crearNivel("nivel_1");
+        System.out.println(nivel.getTitulo());
         System.out.println("");
+        Escena escena = new Escena();
+
+        // Ejecutar el audio en un hilo separado
+        Thread audioThread = new Thread(new AudioRunnable(escena, "Escape.wav"));
+        audioThread.start();
+        Escena.escribirDialogo(nivel.getHistoria());
+
+        System.out.println("");
+
         System.out.println(nivel.getAcertijo().replace("\t", "\n"));
         System.out.println("");
-        
+
         Collections.shuffle(Arrays.asList(nivel.getRespuetas()));
         System.out.println("Opciones: " + Arrays.toString(nivel.getRespuetas()));
         System.out.println("");
+
         System.out.println("Solucion: " + nivel.getSolucion());
 
-//        Juego juego = new Juego();
-//        juego.ejecutar();
+        //Juego juego = new Juego();      
+        //juego.ejecutar();
     }
-
 }
