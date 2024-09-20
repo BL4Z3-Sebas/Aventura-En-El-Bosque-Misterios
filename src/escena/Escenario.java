@@ -10,6 +10,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingWorker;
+import musica.AudioRunnable;
 import niveles.GeneradorNiveles;
 import niveles.Nivel;
 
@@ -23,7 +25,8 @@ public class Escenario extends javax.swing.JFrame {
      * Creates new form Escenario
      */
     public static String Nivel;
-     public static boolean continuarAcertijo=true;
+    public static boolean continuarAcertijo = true;
+
     public Escenario() {
         initComponents();
     }
@@ -88,7 +91,7 @@ public class Escenario extends javax.swing.JFrame {
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         try {
-           Nivel="nivel_1";
+            Nivel = "nivel_1";
             mostrarHistoria(Nivel);
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(Escenario.class.getName()).log(Level.SEVERE, null, ex);
@@ -131,16 +134,51 @@ public class Escenario extends javax.swing.JFrame {
     }
 
     public void mostrarHistoria(String level) throws UnsupportedEncodingException {
-        System.setOut(new PrintStream(System.out, true, "utf-8"));
-        TextArea1.setText("");
-        Nivel nivel = new Nivel();
-        nivel = GeneradorNiveles.crearNivel(level);
-        
-        TextArea1.append("                                               "+nivel.getTitulo());
-        TextArea1.append("\n");
-        int longitudMaxima = 75;
-        int indice = 0;
+        try {
+            System.setOut(new PrintStream(System.out, true, "utf-8"));
+            TextArea1.setText("");
+            Nivel nivel = new Nivel();
+            nivel = GeneradorNiveles.crearNivel(level);
 
+            TextArea1.append("                                               " + nivel.getTitulo());
+            TextArea1.append("\n");
+            int longitudMaxima = 75;
+            int indice = 0;
+
+            Escena escena = new Escena();
+
+            // Ejecutar el audio en un hilo separado
+            Thread audioThread = new Thread(new AudioRunnable(escena, "Escape.wav"));
+            audioThread.start();
+            
+            
+            
+            String[] palabras = nivel.getHistoria().split("\\s+");
+        int longitud = 0;
+        for (String palabra : palabras) {
+            TextArea1.append(palabra + " ");
+            longitud += palabra.length() + 1;
+            if (longitud >= 45) {
+                //   TextArea1.append("");
+                longitud = 0;
+            }
+
+            try {
+                if (palabra.endsWith(".")
+                        && palabra.charAt(0) != palabra.toUpperCase().charAt(0)) {
+                    Thread.sleep(800);
+                      TextArea1.append("\n");
+                    longitud = 0;
+                } else {
+                    Thread.sleep(250);
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+            //escribirDialogo(nivel.getHistoria());
+
+            /*
         while (indice < nivel.getHistoria().length()) {
             int espacio = nivel.getHistoria().indexOf(" ", indice + longitudMaxima);
             if (espacio == -1) {
@@ -149,17 +187,65 @@ public class Escenario extends javax.swing.JFrame {
             String linea = nivel.getHistoria().substring(indice, espacio);
             TextArea1.append("\n"+linea);
             indice = espacio + 1;
+        }*/
+            continuarAcertijo = !continuarAcertijo;
+            if (continuarAcertijo) {
+                AcertijoFrame x = new AcertijoFrame();
+                x.setVisible(true);
+                x.mostrarAcertijo(nivel);
+
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
-        continuarAcertijo=!continuarAcertijo;
-        if (continuarAcertijo) {
-            AcertijoFrame x=new AcertijoFrame();
-            x.setVisible(true);
-            x.mostrarAcertijo(nivel);
-            
+
+    }
+
+  public void escribirDialogo(String dialogo) {
+    // Usar un SwingWorker para manejar la ejecución en segundo plano
+    SwingWorker<Void, String> worker = new SwingWorker<>() {
+        @Override
+        protected Void doInBackground() {
+            String[] palabras = dialogo.split("\\s+");
+            int longitud = 0;
+
+            for (String palabra : palabras) {
+                publish(palabra);  // Publicar la palabra para que se muestre en el JTextArea
+                longitud += palabra.length() + 1;
+
+                if (longitud >= 45) {
+                    publish("\n");  // Agregar un salto de línea si se excede la longitud de la línea
+                    longitud = 0;
+                }
+
+                try {
+                    if (palabra.endsWith(".")) {
+                        Thread.sleep(800);  // Pausa más larga después de un punto
+                        publish("\n");  // Saltar línea después de un punto
+                        longitud = 0;
+                    } else {
+                        Thread.sleep(250);  // Pausa corta entre palabras
+                    }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+
+            return null;
         }
-        
-    }   
-   
+
+        @Override
+        protected void process(java.util.List<String> chunks) {
+            for (String palabra : chunks) {
+                TextArea1.append(palabra + " ");  // Mostrar la palabra en el JTextArea
+            }
+        }
+    };
+
+    worker.execute();  // Iniciar el SwingWorker
+}
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea TextArea1;
