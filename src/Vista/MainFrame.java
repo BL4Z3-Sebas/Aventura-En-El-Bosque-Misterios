@@ -61,6 +61,7 @@ public class MainFrame extends javax.swing.JFrame {
         lblSalir.setForeground(new java.awt.Color(204, 204, 204));
         lblSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSalir.setText("Salir");
+        lblSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblSalirMouseClicked(evt);
@@ -81,6 +82,7 @@ public class MainFrame extends javax.swing.JFrame {
         lblJugar.setForeground(new java.awt.Color(204, 204, 204));
         lblJugar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblJugar.setText("Jugar");
+        lblJugar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblJugar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblJugarMouseClicked(evt);
@@ -101,6 +103,7 @@ public class MainFrame extends javax.swing.JFrame {
         lblAcercaDe.setForeground(new java.awt.Color(204, 204, 204));
         lblAcercaDe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAcercaDe.setText("Acerca de");
+        lblAcercaDe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblAcercaDe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblAcercaDeMouseClicked(evt);
@@ -117,8 +120,8 @@ public class MainFrame extends javax.swing.JFrame {
         });
         pnlMenu.add(lblAcercaDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 630, 300, 80));
 
-        getContentPane().add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 1080));
-        getContentPane().add(pnlArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 1280, 1080));
+        getContentPane().add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -100, 620, 1000));
+        getContentPane().add(pnlArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 0, 660, 720));
 
         pack();
         setLocationRelativeTo(null);

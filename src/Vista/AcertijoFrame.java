@@ -1,4 +1,4 @@
-package escena;
+package Vista;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -126,7 +126,7 @@ public class AcertijoFrame extends javax.swing.JFrame {
 
     private void Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button1ActionPerformed
         Nivel nivel = new Nivel();
-        nivel = GeneradorNiveles.crearNivel(Escenario.Nivel);
+        nivel = GeneradorNiveles.crearNivel(DialogoFrame.Nivel);
 
         if (nivel.getSolucion().equals(Button1.getText())) {
             RespuestaLabel.setText("Correcto");
@@ -137,7 +137,7 @@ public class AcertijoFrame extends javax.swing.JFrame {
 
     private void Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button2ActionPerformed
         Nivel nivel = new Nivel();
-        nivel = GeneradorNiveles.crearNivel(Escenario.Nivel);
+        nivel = GeneradorNiveles.crearNivel(DialogoFrame.Nivel);
 
         if (nivel.getSolucion() == Button2.getText()) {
             RespuestaLabel.setText("Correcto");
@@ -148,7 +148,7 @@ public class AcertijoFrame extends javax.swing.JFrame {
 
     private void Button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button3ActionPerformed
         Nivel nivel = new Nivel();
-        nivel = GeneradorNiveles.crearNivel(Escenario.Nivel);
+        nivel = GeneradorNiveles.crearNivel(DialogoFrame.Nivel);
 
         if (nivel.getSolucion().equals(Button3.getText())) {
             RespuestaLabel.setText("Correcto");
@@ -159,7 +159,7 @@ public class AcertijoFrame extends javax.swing.JFrame {
 
     private void Button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button4ActionPerformed
         Nivel nivel = new Nivel();
-        nivel = GeneradorNiveles.crearNivel(Escenario.Nivel);
+        nivel = GeneradorNiveles.crearNivel(DialogoFrame.Nivel);
 
         if (nivel.getSolucion().equals(Button4.getText())) {
             RespuestaLabel.setText("Correcto");

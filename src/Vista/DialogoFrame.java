@@ -1,5 +1,7 @@
-package escena;
+package Vista;
 
+import Vista.AcertijoFrame;
+import escena.Escena;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
@@ -13,7 +15,7 @@ import niveles.Nivel;
  *
  * @author cotes
  */
-public class Escenario extends javax.swing.JFrame {
+public class DialogoFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form Escenario
@@ -22,7 +24,7 @@ public class Escenario extends javax.swing.JFrame {
     public static Nivel nivel_static;
     public static boolean continuarAcertijo = false;
 
-    public Escenario() {
+    public DialogoFrame() {
         initComponents();
     }
 
@@ -41,7 +43,6 @@ public class Escenario extends javax.swing.JFrame {
         Button1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(720, 500));
 
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -104,7 +105,7 @@ public class Escenario extends javax.swing.JFrame {
             Nivel = "nivel_1";
             mostrarHistoria(Nivel);
         } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(Escenario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DialogoFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanel1MouseClicked
 
@@ -134,20 +135,21 @@ public class Escenario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Escenario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Escenario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Escenario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Escenario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DialogoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Escenario().setVisible(true);
+                new DialogoFrame().setVisible(true);
             }
         });
     }

@@ -1,5 +1,6 @@
 package escena;
 
+import Vista.DialogoFrame;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.sound.sampled.AudioInputStream;
@@ -46,7 +47,7 @@ public class Escena {
         for (String palabra : palabras) {
             System.out.print(palabra + " ");
 
-            Escenario escenario = new Escenario();
+            DialogoFrame escenario = new DialogoFrame();
 
             longitud += palabra.length() + 1;
             if (longitud >= 45) {
