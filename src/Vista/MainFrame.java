@@ -30,12 +30,14 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlJuego = new javax.swing.JPanel();
         pnlMenu = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
-        lblSalir = new javax.swing.JLabel();
         lblJugar = new javax.swing.JLabel();
         lblAcercaDe = new javax.swing.JLabel();
+        lblSalir = new javax.swing.JLabel();
         pnlArbol = new javax.swing.JPanel();
+        pnlBackground = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -45,6 +47,21 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlJuego.setOpaque(false);
+
+        javax.swing.GroupLayout pnlJuegoLayout = new javax.swing.GroupLayout(pnlJuego);
+        pnlJuego.setLayout(pnlJuegoLayout);
+        pnlJuegoLayout.setHorizontalGroup(
+            pnlJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1980, Short.MAX_VALUE)
+        );
+        pnlJuegoLayout.setVerticalGroup(
+            pnlJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1080, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(pnlJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1980, 1080));
 
         pnlMenu.setBackground(new java.awt.Color(0, 0, 0));
         pnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -57,26 +74,6 @@ public class MainFrame extends javax.swing.JFrame {
         lblTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblTitulo.setIconTextGap(0);
         pnlMenu.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 550, -1));
-
-        lblSalir.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
-        lblSalir.setForeground(new java.awt.Color(150, 150, 150));
-        lblSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblSalir.setText("Salir");
-        lblSalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblSalirMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                lblSalirMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                lblSalirMouseExited(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                lblSalirMouseReleased(evt);
-            }
-        });
-        pnlMenu.add(lblSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 730, 300, 80));
 
         lblJugar.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
         lblJugar.setForeground(new java.awt.Color(150, 150, 150));
@@ -118,8 +115,41 @@ public class MainFrame extends javax.swing.JFrame {
         });
         pnlMenu.add(lblAcercaDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 630, 300, 80));
 
+        lblSalir.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
+        lblSalir.setForeground(new java.awt.Color(150, 150, 150));
+        lblSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSalir.setText("Salir");
+        lblSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblSalirMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblSalirMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblSalirMouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lblSalirMouseReleased(evt);
+            }
+        });
+        pnlMenu.add(lblSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 730, 300, 80));
+
         getContentPane().add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 1080));
         getContentPane().add(pnlArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 1280, 1080));
+
+        javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
+        pnlBackground.setLayout(pnlBackgroundLayout);
+        pnlBackgroundLayout.setHorizontalGroup(
+            pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlBackgroundLayout.setVerticalGroup(
+            pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(pnlBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1980, 1080));
 
         pack();
         setLocationRelativeTo(null);
@@ -208,6 +238,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void lblJugarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJugarMouseReleased
         // TODO add your handling code here:
+        pnlMenu.setVisible(false);
+        pnlArbol.setVisible(false);
+        MenuPanel menu = new MenuPanel();
+        menu.setLocation(0, 0);
+        menu.setSize(1980, 1080);
+        pnlJuego.add(menu);
+        pnlJuego.revalidate();
+        pnlJuego.repaint();
     }//GEN-LAST:event_lblJugarMouseReleased
 
     /**
@@ -251,6 +289,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblSalir;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlArbol;
+    private javax.swing.JPanel pnlBackground;
+    private javax.swing.JPanel pnlJuego;
     private javax.swing.JPanel pnlMenu;
     // End of variables declaration//GEN-END:variables
 
