@@ -79,6 +79,7 @@ public class MainFrame extends javax.swing.JFrame {
         lblJugar.setForeground(new java.awt.Color(150, 150, 150));
         lblJugar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblJugar.setText("Jugar");
+        lblJugar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblJugar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblJugarMouseClicked(evt);
@@ -99,6 +100,7 @@ public class MainFrame extends javax.swing.JFrame {
         lblAcercaDe.setForeground(new java.awt.Color(150, 150, 150));
         lblAcercaDe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAcercaDe.setText("Acerca de");
+        lblAcercaDe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblAcercaDe.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblAcercaDeMouseClicked(evt);
@@ -142,11 +144,11 @@ public class MainFrame extends javax.swing.JFrame {
         pnlBackground.setLayout(pnlBackgroundLayout);
         pnlBackgroundLayout.setHorizontalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1980, Short.MAX_VALUE)
         );
         pnlBackgroundLayout.setVerticalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1080, Short.MAX_VALUE)
         );
 
         getContentPane().add(pnlBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1980, 1080));
