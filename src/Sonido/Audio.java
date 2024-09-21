@@ -51,7 +51,7 @@ public class Audio {
                     if (volumenActual > 6.0f) {
                         break;
                     }
-                    this.volumenControl.setValue(volumenActual + 5f);
+                    this.volumenControl.setValue(volumenActual + 1f);
                     Thread.sleep(100);
                 }
             } catch (InterruptedException e) {

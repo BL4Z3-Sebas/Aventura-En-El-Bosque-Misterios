@@ -81,23 +81,4 @@ public class RecursiveTree extends javax.swing.JPanel {
             g2d.setTransform(old);
         }
     }
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Recursive Tree");
-
-        RecursiveTree panel = new RecursiveTree();
-        frame.add(panel);
-        frame.setUndecorated(true); // Oculta bordes de la ventana
-
-        // Obtener el dispositivo de pantalla para pantalla completa
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-
-        if (gd.isFullScreenSupported()) {
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            gd.setFullScreenWindow(frame); // Activa pantalla completa
-        } else {
-            frame.setSize(1980, 1080);
-            frame.setVisible(true);
-        }
-    }
 }
