@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import juego.Juego;
 import niveles.GeneradorNiveles;
 import niveles.Nivel;
 
@@ -228,7 +227,7 @@ public class AcertijoFrame extends javax.swing.JFrame {
             try {
                 nodo.getEsc().ejecutar();
             } catch (IOException ex) {
-                Logger.getLogger(Juego.class.getName()).log(Level.SEVERE, null, ex);
+               
             }
             if (nodo.getIzq() != null && nodo.getDer() != null) {
                 Scanner sc = new Scanner(System.in);

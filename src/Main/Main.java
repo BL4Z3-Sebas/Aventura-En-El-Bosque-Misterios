@@ -85,11 +85,11 @@ public class Main {
         Audio bgAudio = new Audio("src/musica/Escape.wav", 5);
         bgAudio.loopSound();
 
-        Escena.escribirDialogo(nivel.getHistoria());
-
-        System.out.println("");
-
-        Escena.escribirAcertijo(nivel.getAcertijo());
+//        Escena.escribirDialogo(nivel.getHistoria());
+//
+//        System.out.println("");
+//
+//        Escena.escribirAcertijo(nivel.getAcertijo());
         //System.out.println(nivel.getAcertijo().replace("\t", "\n"));
         System.out.println("");
 

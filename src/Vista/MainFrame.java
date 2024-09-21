@@ -58,16 +58,15 @@ public class MainFrame extends javax.swing.JFrame {
         pnlJuego.setLayout(pnlJuegoLayout);
         pnlJuegoLayout.setHorizontalGroup(
             pnlJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1980, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         pnlJuegoLayout.setVerticalGroup(
             pnlJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        getContentPane().add(pnlJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1980, 1080));
-
         pnlMenu.setBackground(new java.awt.Color(0, 0, 0));
+        pnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Blackadder ITC", 0, 150)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(150, 150, 150));
@@ -76,6 +75,7 @@ public class MainFrame extends javax.swing.JFrame {
         lblTitulo.setAlignmentY(0.0F);
         lblTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblTitulo.setIconTextGap(0);
+        pnlMenu.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 550, -1));
 
         lblJugar.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
         lblJugar.setForeground(new java.awt.Color(150, 150, 150));
@@ -96,6 +96,7 @@ public class MainFrame extends javax.swing.JFrame {
                 lblJugarMouseReleased(evt);
             }
         });
+        pnlMenu.add(lblJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 530, 300, 80));
 
         lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
         lblAcercaDe.setForeground(new java.awt.Color(150, 150, 150));
@@ -116,6 +117,7 @@ public class MainFrame extends javax.swing.JFrame {
                 lblAcercaDeMouseReleased(evt);
             }
         });
+        pnlMenu.add(lblAcercaDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 630, 300, 80));
 
         lblSalir.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
         lblSalir.setForeground(new java.awt.Color(150, 150, 150));
@@ -137,21 +139,44 @@ public class MainFrame extends javax.swing.JFrame {
         });
         pnlMenu.add(lblSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 730, 300, 80));
 
-        getContentPane().add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 1080));
-        getContentPane().add(pnlArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 1280, 1080));
+        javax.swing.GroupLayout pnlArbolLayout = new javax.swing.GroupLayout(pnlArbol);
+        pnlArbol.setLayout(pnlArbolLayout);
+        pnlArbolLayout.setHorizontalGroup(
+            pnlArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 660, Short.MAX_VALUE)
+        );
+        pnlArbolLayout.setVerticalGroup(
+            pnlArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 720, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
         pnlBackgroundLayout.setHorizontalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1980, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         pnlBackgroundLayout.setVerticalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        getContentPane().add(pnlBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1980, 1080));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(620, 620, 620)
+                .addComponent(pnlArbol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(pnlArbol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         pack();
         setLocationRelativeTo(null);
@@ -251,20 +276,18 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_lblJugarMouseReleased
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-ajustarComponentes();
+        ajustarComponentes();
     }//GEN-LAST:event_formComponentResized
     public void ajustarComponentes() {
         int width = getWidth();
         int height = getHeight();
 
         // Ajusta el tamaño y posición de los componentes según el tamaño de la ventana
+        lblTitulo.setBounds(width / 2 - 275, height / 4, 550, 150);
+        lblJugar.setBounds(width / 2 - 150, height / 2, 300, 80);
+        lblAcercaDe.setBounds(width / 2 - 150, height / 2 + 100, 300, 80);
+        lblSalir.setBounds(width / 2 - 150, height / 2 + 200, 300, 80);
         
-
-    lblTitulo.setBounds(width / 2 - 275, height / 4, 550, 150);
-    lblJugar.setBounds(width / 2 - 150, height / 2, 300, 80);
-    lblAcercaDe.setBounds(width / 2 - 150, height / 2 + 100, 300, 80);
-    lblSalir.setBounds(width / 2 - 150, height / 2 + 200, 300, 80);
-        pack();
     }
 
     /**

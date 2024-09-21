@@ -39,23 +39,26 @@ public class Audio {
             volumen = 0;
         }
         this.volumenControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        this.volumenControl.setValue(volumen * 86.0f / 100 - 80.0f);
+        float min = volumenControl.getMinimum();
+        float max = volumenControl.getMaximum();
+        float nuevoVolumen = min + (volumen / 100.0f) * (max - min);
+        this.volumenControl.setValue(nuevoVolumen);
     }
 
     private void setReproductor() {
         this.reproductor = new Thread(() -> {
             try {
                 this.clip.loop(Clip.LOOP_CONTINUOUSLY);
-                while (true) {
+                while (!Thread.currentThread().isInterrupted()) {
                     float volumenActual = this.volumenControl.getValue();
-                    if (volumenActual > 6.0f) {
+                    if (volumenActual >= 6.0f) {
                         break;
                     }
                     this.volumenControl.setValue(volumenActual + 5f);
                     Thread.sleep(100);
                 }
             } catch (InterruptedException e) {
-                System.out.println(e);
+                Thread.currentThread().interrupt();  // Asegurarse de que el hilo se interrumpa correctamente
             }
         });
     }
@@ -72,7 +75,8 @@ public class Audio {
         if (this.clip == null) {
             return;
         }
-        this.reproductor.interrupt();// Detener el sonido si está sonando
+        this.reproductor.interrupt(); // Detener el hilo
+        this.clip.stop();  // Detener el clip
     }
 
     public void closeClip() {
