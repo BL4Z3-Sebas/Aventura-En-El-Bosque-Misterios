@@ -3,12 +3,8 @@ package Vista;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-import java.awt.font.TextAttribute;
-import java.text.AttributedString;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import javax.swing.OverlayLayout;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -22,7 +18,6 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         cargarFondo();
-
     }
 
     /**
@@ -255,28 +250,4 @@ public class MainFrame extends javax.swing.JFrame {
         pnlArbol.revalidate();
         pnlArbol.repaint();
     }
-
-    private void cargarTexto() {
-        int tiempo = 10; // tiempo en segundos
-        long inicio = System.currentTimeMillis();
-        while (System.currentTimeMillis() - inicio < tiempo * 1000) {
-            TextoPanel txt = new TextoPanel();
-            pnlArbol.setLayout(new BorderLayout());
-            pnlArbol.add(txt, BorderLayout.CENTER);
-            pnlArbol.revalidate();
-            pnlArbol.repaint();
-        }
-    }
-
-    Thread cargarText = new Thread(() -> {
-        int tiempo = 10; // tiempo en segundos
-        long inicio = System.currentTimeMillis();
-        while (System.currentTimeMillis() - inicio < tiempo * 1000) {
-            TextoPanel txt = new TextoPanel();
-            pnlArbol.setLayout(new BorderLayout());
-            pnlArbol.add(txt, BorderLayout.CENTER);
-            pnlArbol.revalidate();
-            pnlArbol.repaint();
-        }
-    });
 }

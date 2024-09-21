@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package escena;
 
 import java.util.Arrays;
@@ -15,13 +11,6 @@ import niveles.Nivel;
  */
 public class AcertijoFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AcertijoFrame
-     */
-<<<<<<< HEAD
-=======
-    
->>>>>>> cdb4cac9a21295c41bf788f0edc8ec4dac30f6d8
     public AcertijoFrame() {
         initComponents();
     }
@@ -136,81 +125,45 @@ public class AcertijoFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button1ActionPerformed
-<<<<<<< HEAD
         Nivel nivel = new Nivel();
         nivel = GeneradorNiveles.crearNivel(Escenario.Nivel);
 
         if (nivel.getSolucion().equals(Button1.getText())) {
             RespuestaLabel.setText("Correcto");
         } else {
-=======
-        Nivel nivel=new Nivel();        
-        nivel = GeneradorNiveles.crearNivel(Escenario.Nivel);        
-       
-        if (nivel.getSolucion().equals(Button1.getText())) {
-          RespuestaLabel.setText("Correcto");
-        }else{
->>>>>>> cdb4cac9a21295c41bf788f0edc8ec4dac30f6d8
             RespuestaLabel.setText("Incorrecto");
         }
     }//GEN-LAST:event_Button1ActionPerformed
 
     private void Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button2ActionPerformed
-<<<<<<< HEAD
         Nivel nivel = new Nivel();
         nivel = GeneradorNiveles.crearNivel(Escenario.Nivel);
 
         if (nivel.getSolucion() == Button2.getText()) {
             RespuestaLabel.setText("Correcto");
         } else {
-=======
-       Nivel nivel=new Nivel();       
-        nivel = GeneradorNiveles.crearNivel(Escenario.Nivel);        
-       
-        if (nivel.getSolucion()==Button2.getText()) {
-            RespuestaLabel.setText("Correcto");
-        }else{
->>>>>>> cdb4cac9a21295c41bf788f0edc8ec4dac30f6d8
             RespuestaLabel.setText("Incorrecto");
         }
     }//GEN-LAST:event_Button2ActionPerformed
 
     private void Button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button3ActionPerformed
-<<<<<<< HEAD
         Nivel nivel = new Nivel();
         nivel = GeneradorNiveles.crearNivel(Escenario.Nivel);
 
         if (nivel.getSolucion().equals(Button3.getText())) {
             RespuestaLabel.setText("Correcto");
         } else {
-=======
-        Nivel nivel=new Nivel();       
-        nivel = GeneradorNiveles.crearNivel(Escenario.Nivel);        
-       
-        if (nivel.getSolucion().equals(Button3.getText())) {
-            RespuestaLabel.setText("Correcto");
-        }else{
->>>>>>> cdb4cac9a21295c41bf788f0edc8ec4dac30f6d8
             RespuestaLabel.setText("Incorrecto");
         }
     }//GEN-LAST:event_Button3ActionPerformed
 
     private void Button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button4ActionPerformed
-<<<<<<< HEAD
         Nivel nivel = new Nivel();
         nivel = GeneradorNiveles.crearNivel(Escenario.Nivel);
 
         if (nivel.getSolucion().equals(Button4.getText())) {
             RespuestaLabel.setText("Correcto");
         } else {
-=======
-        Nivel nivel=new Nivel();      
-        nivel = GeneradorNiveles.crearNivel(Escenario.Nivel);        
-       
-        if (nivel.getSolucion().equals(Button4.getText())) {
-            RespuestaLabel.setText("Correcto");
-        }else{
->>>>>>> cdb4cac9a21295c41bf788f0edc8ec4dac30f6d8
             RespuestaLabel.setText("Incorrecto");
         }
     }//GEN-LAST:event_Button4ActionPerformed
@@ -252,12 +205,8 @@ public class AcertijoFrame extends javax.swing.JFrame {
 
     public void mostrarAcertijo(Nivel nivel) {
         TextArea1.append("\n==================ACERTIJO=================" + "\n");
-<<<<<<< HEAD
+
         TextArea1.append("\t" + nivel.getAcertijo().replace("\t", "\n\t"));
-=======
-        TextArea1.append("\t"+nivel.getAcertijo().replace("\t", "\n\t"));
-       
->>>>>>> cdb4cac9a21295c41bf788f0edc8ec4dac30f6d8
 
         Collections.shuffle(Arrays.asList(nivel.getRespuetas()));
         String Respuesta[] = nivel.getRespuetas();
@@ -266,13 +215,7 @@ public class AcertijoFrame extends javax.swing.JFrame {
         Button3.setText(Respuesta[2]);
         Button4.setText(Respuesta[3]);
 
-<<<<<<< HEAD
         //  TextArea1.append("Solucion: " + nivel.getSolucion());
-=======
-
-      //  TextArea1.append("Solucion: " + nivel.getSolucion());
-
->>>>>>> cdb4cac9a21295c41bf788f0edc8ec4dac30f6d8
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button1;

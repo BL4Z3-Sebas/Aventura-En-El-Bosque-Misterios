@@ -25,7 +25,7 @@ public class RecursiveTree extends javax.swing.JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        
+
         // Calcular el color actual basado en el progreso de r
         // r varia de 0 a 30, así que usamos un rango de 0 a 255 para el color
         int colorValue = (int) (125 + r / 17 * 130);  // Interpolación lineal de 0 (oscuro) a 255 (blanco)
@@ -39,7 +39,6 @@ public class RecursiveTree extends javax.swing.JPanel {
 //            if (a > 17) {
 //                a = 17;
 //            }
-
             // Incrementar la velocidad actual con aceleración, pero no exceder la velocidad máxima
             if (velocidadActual < velocidadMaxima) {
                 velocidadActual += aceleracion;
