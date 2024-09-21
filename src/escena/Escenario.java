@@ -1,7 +1,19 @@
+<<<<<<< HEAD
+=======
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+>>>>>>> cdb4cac9a21295c41bf788f0edc8ec4dac30f6d8
 package escena;
 
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
+<<<<<<< HEAD
+=======
+import java.util.Arrays;
+import java.util.Collections;
+>>>>>>> cdb4cac9a21295c41bf788f0edc8ec4dac30f6d8
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingWorker;
@@ -144,6 +156,7 @@ public class Escenario extends javax.swing.JFrame {
             // Ejecutar el audio en un hilo separado
             Thread audioThread = new Thread(new AudioRunnable(escena, "Escape.wav"));
             audioThread.start();
+<<<<<<< HEAD
 
             String[] palabras = nivel.getHistoria().split("\\s+");
             int longitud = 0;
@@ -168,6 +181,34 @@ public class Escenario extends javax.swing.JFrame {
                     Thread.currentThread().interrupt();
                 }
             }
+=======
+            
+            
+            
+            String[] palabras = nivel.getHistoria().split("\\s+");
+        int longitud = 0;
+        for (String palabra : palabras) {
+            TextArea1.append(palabra + " ");
+            longitud += palabra.length() + 1;
+            if (longitud >= 45) {
+                //   TextArea1.append("");
+                longitud = 0;
+            }
+
+            try {
+                if (palabra.endsWith(".")
+                        && palabra.charAt(0) != palabra.toUpperCase().charAt(0)) {
+                    Thread.sleep(800);
+                      TextArea1.append("\n");
+                    longitud = 0;
+                } else {
+                    Thread.sleep(250);
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
+>>>>>>> cdb4cac9a21295c41bf788f0edc8ec4dac30f6d8
             //escribirDialogo(nivel.getHistoria());
 
             /*
@@ -193,6 +234,7 @@ public class Escenario extends javax.swing.JFrame {
 
     }
 
+<<<<<<< HEAD
     public void escribirDialogo(String dialogo) {
         // Usar un SwingWorker para manejar la ejecución en segundo plano
         SwingWorker<Void, String> worker = new SwingWorker<>() {
@@ -236,6 +278,53 @@ public class Escenario extends javax.swing.JFrame {
 
         worker.execute();  // Iniciar el SwingWorker
     }
+=======
+  public void escribirDialogo(String dialogo) {
+    // Usar un SwingWorker para manejar la ejecución en segundo plano
+    SwingWorker<Void, String> worker = new SwingWorker<>() {
+        @Override
+        protected Void doInBackground() {
+            String[] palabras = dialogo.split("\\s+");
+            int longitud = 0;
+
+            for (String palabra : palabras) {
+                publish(palabra);  // Publicar la palabra para que se muestre en el JTextArea
+                longitud += palabra.length() + 1;
+
+                if (longitud >= 45) {
+                    publish("\n");  // Agregar un salto de línea si se excede la longitud de la línea
+                    longitud = 0;
+                }
+
+                try {
+                    if (palabra.endsWith(".")) {
+                        Thread.sleep(800);  // Pausa más larga después de un punto
+                        publish("\n");  // Saltar línea después de un punto
+                        longitud = 0;
+                    } else {
+                        Thread.sleep(250);  // Pausa corta entre palabras
+                    }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void process(java.util.List<String> chunks) {
+            for (String palabra : chunks) {
+                TextArea1.append(palabra + " ");  // Mostrar la palabra en el JTextArea
+            }
+        }
+    };
+
+    worker.execute();  // Iniciar el SwingWorker
+}
+
+
+>>>>>>> cdb4cac9a21295c41bf788f0edc8ec4dac30f6d8
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea TextArea1;

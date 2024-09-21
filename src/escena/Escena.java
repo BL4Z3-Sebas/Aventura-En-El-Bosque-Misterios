@@ -46,8 +46,13 @@ public class Escena {
         int longitud = 0;
         for (String palabra : palabras) {
             System.out.print(palabra + " ");
+<<<<<<< HEAD
             Escenario escenario = new Escenario();
 
+=======
+            Escenario escenario=new Escenario();
+            
+>>>>>>> cdb4cac9a21295c41bf788f0edc8ec4dac30f6d8
             longitud += palabra.length() + 1;
             if (longitud >= 45) {
                 System.out.println("");
