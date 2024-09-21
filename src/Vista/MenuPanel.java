@@ -22,18 +22,65 @@ public class MenuPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlMenu = new javax.swing.JPanel();
+        lblTitulo = new javax.swing.JLabel();
+        lblJugar = new javax.swing.JLabel();
+        lblAcercaDe = new javax.swing.JLabel();
+        lblSalir = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(0, 0, 255));
+
+        pnlMenu.setBackground(new java.awt.Color(102, 102, 102));
+        pnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblTitulo.setFont(new java.awt.Font("Blackadder ITC", 0, 150)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(150, 150, 150));
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setText("Fractalum");
+        lblTitulo.setAlignmentY(0.0F);
+        lblTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setIconTextGap(0);
+        pnlMenu.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 550, -1));
+
+        lblJugar.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
+        lblJugar.setForeground(new java.awt.Color(150, 150, 150));
+        lblJugar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJugar.setText("Jugar");
+        pnlMenu.add(lblJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 530, 300, 80));
+
+        lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
+        lblAcercaDe.setForeground(new java.awt.Color(150, 150, 150));
+        lblAcercaDe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAcercaDe.setText("Acerca de");
+        pnlMenu.add(lblAcercaDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 630, 300, 80));
+
+        lblSalir.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
+        lblSalir.setForeground(new java.awt.Color(150, 150, 150));
+        lblSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSalir.setText("Salir");
+        pnlMenu.add(lblSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 730, 300, 80));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1280, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 1080, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblAcercaDe;
+    private javax.swing.JLabel lblJugar;
+    private javax.swing.JLabel lblSalir;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JPanel pnlMenu;
     // End of variables declaration//GEN-END:variables
 }

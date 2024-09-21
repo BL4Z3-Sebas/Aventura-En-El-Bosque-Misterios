@@ -1,60 +1,92 @@
 package Sonido;
 
 import java.io.File;
+import javax.sound.sampled.*;
 import java.io.IOException;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.FloatControl;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
-/**
- *
- * @author Alfonso
- */
 public class Audio {
 
     private Clip clip;
     private FloatControl volumenControl;
+    private Thread reproductor;
 
-    public Audio(String rutaArchivo) {
-        // Cargar el archivo de audio
-        AudioInputStream audioInputStream;
-        try {
-            audioInputStream = AudioSystem.getAudioInputStream(new File(rutaArchivo));
-            clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
-            System.out.println(ex);
-        }
-
-        // Obtener el control de volumen
-        volumenControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-
-        // Establecer el volumen inicial en 0 (silencio)
-        volumenControl.setValue(-80.0f); // El rango es de -80.0f a 6.0f
+    public Audio(String rutaArchivo, int volumenInicio) {
+        this.setClip(rutaArchivo);
+        this.setVolumenInicio(volumenInicio);
+        this.setReproductor();
     }
 
-    public void reproducirLoop() {
-        // Reproducir la música en bucle
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
+    private void setClip(String rutaArchivo) {
+        AudioInputStream audioStream;
+        try {
+            // Cargamos el archivo de sonido como un objeto AudioInputStream
+            audioStream = AudioSystem.getAudioInputStream(new File(rutaArchivo));
 
-        // Aumentar el volumen gradualmente
-        Thread hiloVolumen = new Thread(() -> {
+            // Creamos un Clip que es lo que usamos para controlar el audio
+            this.clip = AudioSystem.getClip();
+            this.clip.open(audioStream);
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            // Imprime cualquier error que ocurra
+            System.out.println(e);
+        }
+    }
+
+    private void setVolumenInicio(int volumen) {
+        if (volumen > 100) {
+            volumen = 100;
+        }
+        if (volumen < 0) {
+            volumen = 0;
+        }
+        this.volumenControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        this.volumenControl.setValue(volumen * 86.0f / 100 - 80.0f);
+    }
+
+    private void setReproductor() {
+        this.reproductor = new Thread(() -> {
             try {
+                this.clip.loop(Clip.LOOP_CONTINUOUSLY);
                 while (true) {
-                    float volumenActual = volumenControl.getValue();
-                    if (volumenActual < 6.0f) {
-                        volumenControl.setValue(volumenActual + 0.1f); // Aumentar el volumen en 0.1f cada vez
+                    float volumenActual = this.volumenControl.getValue();
+                    if (volumenActual > 6.0f) {
+                        break;
                     }
-                    Thread.sleep(100); // Esperar 100ms antes de aumentar el volumen de nuevo
+                    this.volumenControl.setValue(volumenActual + 5f);
+                    Thread.sleep(100);
                 }
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+                System.out.println(e);
             }
         });
-        hiloVolumen.start();
     }
 
+    public void playSound() {
+        if (this.clip == null) {
+            return;
+        }
+        this.clip.setFramePosition(0);  // Reiniciar el audio desde el principio
+        this.clip.start();  // Reproducir el sonido
+    }
+
+    public void stopSound() {
+        if (this.clip == null) {
+            return;
+        }
+        this.reproductor.interrupt();// Detener el sonido si está sonando
+    }
+
+    public void closeClip() {
+        if (this.clip == null) {
+            return;
+        }
+        this.clip.close();  // Cerrar el clip para liberar recursos
+    }
+
+    // Método para hacer que el sonido se repita continuamente
+    public void loopSound() {
+        if (this.clip == null) {
+            return;
+        }
+        this.reproductor.start();
+    }
 }
