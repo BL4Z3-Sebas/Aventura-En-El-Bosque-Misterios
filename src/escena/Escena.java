@@ -12,14 +12,15 @@ public class Escena {
     public Audio audio;
 
     public Escena() {
-        this.audio = new Audio();  // Inicializa 'audio'
+//        this.audio = new Audio();  // Inicializa 'audio'
     }
 
+    //no se usa
     public void ejecutar() throws IOException {
         this.audio.playSound();
     }
 
-    public void ejecutarAudio(String archivoAudio) {
+    public void ejecutardAudio(String archivoAudio) {
         if (archivoAudio == null || archivoAudio.isEmpty()) {
             System.err.println("El nombre del archivo de sonido es nulo o vacío.");
             return;
@@ -45,6 +46,9 @@ public class Escena {
         int longitud = 0;
         for (String palabra : palabras) {
             System.out.print(palabra + " ");
+
+            Escenario escenario = new Escenario();
+
             longitud += palabra.length() + 1;
             if (longitud >= 45) {
                 System.out.println("");
@@ -52,7 +56,7 @@ public class Escena {
             }
 
             try {
-                if (palabra.endsWith(".") 
+                if (palabra.endsWith(".")
                         && palabra.charAt(0) != palabra.toUpperCase().charAt(0)) {
                     Thread.sleep(800);
                     System.out.println("");
@@ -65,5 +69,18 @@ public class Escena {
             }
         }
         System.out.println("");
+    }
+
+    public static void escribirAcertijo(String acertijo) {
+        String lineas[] = acertijo.split("\t");
+        for (String linea : lineas) {
+            System.out.println(linea);
+
+            try {
+                Thread.sleep(800);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
     }
 }

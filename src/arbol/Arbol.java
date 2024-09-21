@@ -17,6 +17,5 @@ public class Arbol {
     public void setRaiz(Nodo raiz) {
         this.raiz = raiz;
     }
-    
-    
+
 }
