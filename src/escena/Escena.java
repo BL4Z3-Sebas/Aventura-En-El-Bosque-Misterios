@@ -12,14 +12,15 @@ public class Escena {
     public Audio audio;
 
     public Escena() {
-        this.audio = new Audio();  // Inicializa 'audio'
+//        this.audio = new Audio();  // Inicializa 'audio'
     }
 
+    //no se usa
     public void ejecutar() throws IOException {
         this.audio.playSound();
     }
 
-    public void ejecutarAudio(String archivoAudio) {
+    public void ejecutardAudio(String archivoAudio) {
         if (archivoAudio == null || archivoAudio.isEmpty()) {
             System.err.println("El nombre del archivo de sonido es nulo o vacío.");
             return;

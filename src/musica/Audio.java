@@ -1,52 +1,92 @@
 package musica;
 
+import java.io.File;
 import javax.sound.sampled.*;
 import java.io.IOException;
-import java.io.InputStream;
 
 public class Audio {
 
     private Clip clip;
+    private FloatControl volumenControl;
+    private Thread reproductor;
 
-    public void setSound(InputStream inputStream) {
+    public Audio(String rutaArchivo, int volumenInicio) {
+        this.setClip(rutaArchivo);
+        this.setVolumenInicio(volumenInicio);
+        this.setReproductor();
+    }
+
+    private void setClip(String rutaArchivo) {
+        AudioInputStream audioStream;
         try {
             // Cargamos el archivo de sonido como un objeto AudioInputStream
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(inputStream);
+            audioStream = AudioSystem.getAudioInputStream(new File(rutaArchivo));
 
             // Creamos un Clip que es lo que usamos para controlar el audio
-            clip = AudioSystem.getClip();
-            clip.open(audioStream);
+            this.clip = AudioSystem.getClip();
+            this.clip.open(audioStream);
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace(); // Imprime cualquier error que ocurra
+            // Imprime cualquier error que ocurra
+            System.out.println(e);
         }
+    }
+
+    private void setVolumenInicio(int volumen) {
+        if (volumen > 100) {
+            volumen = 100;
+        }
+        if (volumen < 0) {
+            volumen = 0;
+        }
+        this.volumenControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        this.volumenControl.setValue(volumen * 86.0f / 100 - 80.0f);
+    }
+
+    private void setReproductor() {
+        this.reproductor = new Thread(() -> {
+            try {
+                this.clip.loop(Clip.LOOP_CONTINUOUSLY);
+                while (true) {
+                    float volumenActual = this.volumenControl.getValue();
+                    if (volumenActual > 6.0f) {
+                        break;
+                    }
+                    this.volumenControl.setValue(volumenActual + 5f);
+                    Thread.sleep(100);
+                }
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+        });
     }
 
     public void playSound() {
-        if (clip != null) {
-            if (clip.isRunning()) {
-                clip.stop();  // Detener el clip si ya está sonando
-            }
-            clip.setFramePosition(0);  // Reiniciar el audio desde el principio
-            clip.start();  // Reproducir el sonido
+        if (this.clip == null) {
+            return;
         }
+        this.clip.setFramePosition(0);  // Reiniciar el audio desde el principio
+        this.clip.start();  // Reproducir el sonido
     }
 
     public void stopSound() {
-        if (clip != null && clip.isRunning()) {
-            clip.stop();   // Detener el sonido si está sonando
+        if (this.clip == null) {
+            return;
         }
+        this.reproductor.interrupt();// Detener el sonido si está sonando
     }
 
     public void closeClip() {
-        if (clip != null) {
-            clip.close();  // Cerrar el clip para liberar recursos
+        if (this.clip == null) {
+            return;
         }
+        this.clip.close();  // Cerrar el clip para liberar recursos
     }
 
     // Método para hacer que el sonido se repita continuamente
     public void loopSound() {
-        if (clip != null) {
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        if (this.clip == null) {
+            return;
         }
+        this.reproductor.start();
     }
 }

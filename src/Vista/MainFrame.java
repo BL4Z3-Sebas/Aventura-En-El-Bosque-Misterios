@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
+import musica.Audio;
 
 /**
  *
@@ -12,10 +13,10 @@ import javax.swing.JOptionPane;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainFrame
-     */
+    Audio bgAudio = new Audio("src/musica/Escape.wav", 10);
+
     public MainFrame() {
+        bgAudio.loopSound();
         initComponents();
         cargarFondo();
     }
@@ -49,7 +50,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTitulo.setFont(new java.awt.Font("Blackadder ITC", 0, 150)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(204, 204, 204));
+        lblTitulo.setForeground(new java.awt.Color(150, 150, 150));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Fractalum");
         lblTitulo.setAlignmentY(0.0F);
@@ -58,7 +59,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlMenu.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 550, -1));
 
         lblSalir.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
-        lblSalir.setForeground(new java.awt.Color(204, 204, 204));
+        lblSalir.setForeground(new java.awt.Color(150, 150, 150));
         lblSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSalir.setText("Salir");
         lblSalir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -78,7 +79,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlMenu.add(lblSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 730, 300, 80));
 
         lblJugar.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
-        lblJugar.setForeground(new java.awt.Color(204, 204, 204));
+        lblJugar.setForeground(new java.awt.Color(150, 150, 150));
         lblJugar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblJugar.setText("Jugar");
         lblJugar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -98,7 +99,7 @@ public class MainFrame extends javax.swing.JFrame {
         pnlMenu.add(lblJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 530, 300, 80));
 
         lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
-        lblAcercaDe.setForeground(new java.awt.Color(204, 204, 204));
+        lblAcercaDe.setForeground(new java.awt.Color(150, 150, 150));
         lblAcercaDe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAcercaDe.setText("Acerca de");
         lblAcercaDe.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -140,36 +141,49 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void lblJugarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJugarMouseEntered
         // TODO add your handling code here:
-        lblJugar.setBorder(BorderFactory.createLineBorder(new Color(204, 204, 204), 2));
+        lblJugar.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+        lblJugar.setForeground(Color.white);
+        lblJugar.setFont(new java.awt.Font("Blackadder ITC", 1, 54));
     }//GEN-LAST:event_lblJugarMouseEntered
 
     private void lblJugarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJugarMouseExited
         // TODO add your handling code here:
         lblJugar.setBorder(null);
+        lblJugar.setForeground(Paleta.GRIS_OSCURO.getColor());
+        lblJugar.setFont(new java.awt.Font("Blackadder ITC", 0, 48));
     }//GEN-LAST:event_lblJugarMouseExited
 
     private void lblAcercaDeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAcercaDeMouseEntered
         // TODO add your handling code here:
-        lblAcercaDe.setBorder(BorderFactory.createLineBorder(new Color(204, 204, 204), 2));
+        lblAcercaDe.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+        lblAcercaDe.setForeground(Color.white);
+        lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 1, 54));
     }//GEN-LAST:event_lblAcercaDeMouseEntered
 
     private void lblAcercaDeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAcercaDeMouseExited
         // TODO add your handling code here:
         lblAcercaDe.setBorder(null);
+        lblAcercaDe.setForeground(Paleta.GRIS_OSCURO.getColor());
+        lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 0, 48));
     }//GEN-LAST:event_lblAcercaDeMouseExited
 
     private void lblSalirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseEntered
         // TODO add your handling code here:
-        lblSalir.setBorder(BorderFactory.createLineBorder(new Color(204, 204, 204), 2));
+        lblSalir.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+        lblSalir.setForeground(Color.white);
+        lblSalir.setFont(new java.awt.Font("Blackadder ITC", 1, 54));
     }//GEN-LAST:event_lblSalirMouseEntered
 
     private void lblSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseExited
         // TODO add your handling code here:
         lblSalir.setBorder(null);
+        lblSalir.setForeground(Paleta.GRIS_OSCURO.getColor());
+        lblSalir.setFont(new java.awt.Font("Blackadder ITC", 0, 48));
     }//GEN-LAST:event_lblSalirMouseExited
 
     private void lblSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseClicked
         // TODO add your handling code here:
+        bgAudio.stopSound();
         System.exit(0);
     }//GEN-LAST:event_lblSalirMouseClicked
 

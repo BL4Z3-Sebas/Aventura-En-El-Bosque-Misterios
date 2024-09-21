@@ -14,6 +14,6 @@ public class AudioRunnable implements Runnable {
 
     @Override
     public void run() {
-        escena.ejecutarAudio(archivoAudio);
+//        escena.ejecutarAudio(archivoAudio);
     }
 }

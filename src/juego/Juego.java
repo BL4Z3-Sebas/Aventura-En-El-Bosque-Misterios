@@ -30,12 +30,13 @@ public class Juego {
         esc.dia.añadir("Su curiosidad y deseo por llevar las leyes naturales al extremo tendría consecuencias");
          */
         // Cargar el sonido desde los recursos
-        InputStream audioStream = getClass().getResourceAsStream("/musica/Escape.wav");
-        if (audioStream != null) {
-            esc.audio.setSound(audioStream);
-        } else {
-            System.err.println("No se encontró el archivo de sonido");
-        }
+//        InputStream audioStream = getClass().getResourceAsStream("/musica/Escape.wav");
+//        if (audioStream != null) {
+//            esc.audio.setSound(audioStream);
+//        } else {
+//            System.err.println("No se encontró el archivo de sonido");
+//        }
+    
         // Asignar la escena al nodo raíz
         arbol.getRaiz().setEsc(esc);
         ejecutarRecursivo(arbol.getRaiz());
