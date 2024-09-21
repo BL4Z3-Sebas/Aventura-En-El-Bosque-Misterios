@@ -1,4 +1,3 @@
-
 package escena;
 
 import java.io.PrintStream;
@@ -145,32 +144,30 @@ public class Escenario extends javax.swing.JFrame {
             // Ejecutar el audio en un hilo separado
             Thread audioThread = new Thread(new AudioRunnable(escena, "Escape.wav"));
             audioThread.start();
-            
-            
-            
-            String[] palabras = nivel.getHistoria().split("\\s+");
-        int longitud = 0;
-        for (String palabra : palabras) {
-            TextArea1.append(palabra + " ");
-            longitud += palabra.length() + 1;
-            if (longitud >= 45) {
-                //   TextArea1.append("");
-                longitud = 0;
-            }
 
-            try {
-                if (palabra.endsWith(".")
-                        && palabra.charAt(0) != palabra.toUpperCase().charAt(0)) {
-                    Thread.sleep(800);
-                      TextArea1.append("\n");
+            String[] palabras = nivel.getHistoria().split("\\s+");
+            int longitud = 0;
+            for (String palabra : palabras) {
+                TextArea1.append(palabra + " ");
+                longitud += palabra.length() + 1;
+                if (longitud >= 45) {
+                    //   TextArea1.append("");
                     longitud = 0;
-                } else {
-                    Thread.sleep(250);
                 }
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+
+                try {
+                    if (palabra.endsWith(".")
+                            && palabra.charAt(0) != palabra.toUpperCase().charAt(0)) {
+                        Thread.sleep(800);
+                        TextArea1.append("\n");
+                        longitud = 0;
+                    } else {
+                        Thread.sleep(250);
+                    }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
             }
-        }
             //escribirDialogo(nivel.getHistoria());
 
             /*
@@ -196,51 +193,49 @@ public class Escenario extends javax.swing.JFrame {
 
     }
 
-  public void escribirDialogo(String dialogo) {
-    // Usar un SwingWorker para manejar la ejecución en segundo plano
-    SwingWorker<Void, String> worker = new SwingWorker<>() {
-        @Override
-        protected Void doInBackground() {
-            String[] palabras = dialogo.split("\\s+");
-            int longitud = 0;
+    public void escribirDialogo(String dialogo) {
+        // Usar un SwingWorker para manejar la ejecución en segundo plano
+        SwingWorker<Void, String> worker = new SwingWorker<>() {
+            @Override
+            protected Void doInBackground() {
+                String[] palabras = dialogo.split("\\s+");
+                int longitud = 0;
 
-            for (String palabra : palabras) {
-                publish(palabra);  // Publicar la palabra para que se muestre en el JTextArea
-                longitud += palabra.length() + 1;
+                for (String palabra : palabras) {
+                    publish(palabra);  // Publicar la palabra para que se muestre en el JTextArea
+                    longitud += palabra.length() + 1;
 
-                if (longitud >= 45) {
-                    publish("\n");  // Agregar un salto de línea si se excede la longitud de la línea
-                    longitud = 0;
-                }
-
-                try {
-                    if (palabra.endsWith(".")) {
-                        Thread.sleep(800);  // Pausa más larga después de un punto
-                        publish("\n");  // Saltar línea después de un punto
+                    if (longitud >= 45) {
+                        publish("\n");  // Agregar un salto de línea si se excede la longitud de la línea
                         longitud = 0;
-                    } else {
-                        Thread.sleep(250);  // Pausa corta entre palabras
                     }
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
+
+                    try {
+                        if (palabra.endsWith(".")) {
+                            Thread.sleep(800);  // Pausa más larga después de un punto
+                            publish("\n");  // Saltar línea después de un punto
+                            longitud = 0;
+                        } else {
+                            Thread.sleep(250);  // Pausa corta entre palabras
+                        }
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
+
+                return null;
+            }
+
+            @Override
+            protected void process(java.util.List<String> chunks) {
+                for (String palabra : chunks) {
+                    TextArea1.append(palabra + " ");  // Mostrar la palabra en el JTextArea
                 }
             }
+        };
 
-            return null;
-        }
-
-        @Override
-        protected void process(java.util.List<String> chunks) {
-            for (String palabra : chunks) {
-                TextArea1.append(palabra + " ");  // Mostrar la palabra en el JTextArea
-            }
-        }
-    };
-
-    worker.execute();  // Iniciar el SwingWorker
-}
-
-
+        worker.execute();  // Iniciar el SwingWorker
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea TextArea1;

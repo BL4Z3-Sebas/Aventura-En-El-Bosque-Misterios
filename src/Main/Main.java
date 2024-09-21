@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) throws UnsupportedEncodingException {
         Imagen.ejecutarImagen("/imagen/lab.png");  // Asegúrate de que la ruta es correcta
-        
+
         System.setOut(new PrintStream(System.out, true, "utf-8"));
 
         Nivel nivel = GeneradorNiveles.crearNivel("nivel_1");

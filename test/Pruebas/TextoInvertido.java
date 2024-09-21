@@ -1,4 +1,5 @@
 package Pruebas;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -74,4 +75,3 @@ public class TextoInvertido extends JPanel {
         frame.setVisible(true);
     }
 }
-

@@ -10,7 +10,6 @@ public class Nodo {
 
     public Nodo() {
     }
-    
 
     public Nodo(Escena escena) {
         this.esc = escena;

@@ -2,7 +2,6 @@ package lista;
 
 import java.io.IOException;
 
-
 public class Lista {
 
     public Nodo cabeza;
@@ -29,7 +28,7 @@ public class Lista {
 
     private void showListaRecursivo(Nodo nodo) throws IOException {
         if (nodo != null) {
-            System.out.println(nodo.dia);          
+            System.out.println(nodo.dia);
             while (System.in.read() != '\n') {
                 // No hacer nada, solo esperar a que el usuario presione Enter
             }

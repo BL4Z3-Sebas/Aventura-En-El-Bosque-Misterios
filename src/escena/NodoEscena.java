@@ -1,6 +1,7 @@
 package escena;
 
 public class NodoEscena {
+
     public NodoEscena next;
     public NodoEscena back;
     public Escena esc;
@@ -10,5 +11,5 @@ public class NodoEscena {
         this.back = null;
         this.esc = null;
     }
-    
+
 }

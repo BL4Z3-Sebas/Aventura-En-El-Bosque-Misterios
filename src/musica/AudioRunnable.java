@@ -3,6 +3,7 @@ package musica;
 import escena.Escena;
 
 public class AudioRunnable implements Runnable {
+
     private final Escena escena;
     private final String archivoAudio;
 
@@ -16,4 +17,3 @@ public class AudioRunnable implements Runnable {
         escena.ejecutarAudio(archivoAudio);
     }
 }
-
