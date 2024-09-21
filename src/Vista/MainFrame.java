@@ -51,6 +51,7 @@ public class MainFrame extends javax.swing.JFrame {
                 formKeyPressed(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlJuego.setOpaque(false);
 
@@ -65,6 +66,8 @@ public class MainFrame extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        getContentPane().add(pnlJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         pnlMenu.setBackground(new java.awt.Color(0, 0, 0));
         pnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -75,7 +78,7 @@ public class MainFrame extends javax.swing.JFrame {
         lblTitulo.setAlignmentY(0.0F);
         lblTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblTitulo.setIconTextGap(0);
-        pnlMenu.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 550, -1));
+        pnlMenu.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 550, -1));
 
         lblJugar.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
         lblJugar.setForeground(new java.awt.Color(150, 150, 150));
@@ -96,7 +99,7 @@ public class MainFrame extends javax.swing.JFrame {
                 lblJugarMouseReleased(evt);
             }
         });
-        pnlMenu.add(lblJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 530, 300, 80));
+        pnlMenu.add(lblJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 300, 80));
 
         lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
         lblAcercaDe.setForeground(new java.awt.Color(150, 150, 150));
@@ -117,7 +120,7 @@ public class MainFrame extends javax.swing.JFrame {
                 lblAcercaDeMouseReleased(evt);
             }
         });
-        pnlMenu.add(lblAcercaDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 630, 300, 80));
+        pnlMenu.add(lblAcercaDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 500, 300, 80));
 
         lblSalir.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
         lblSalir.setForeground(new java.awt.Color(150, 150, 150));
@@ -137,18 +140,22 @@ public class MainFrame extends javax.swing.JFrame {
                 lblSalirMouseReleased(evt);
             }
         });
-        pnlMenu.add(lblSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 730, 300, 80));
+        pnlMenu.add(lblSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 600, 300, 80));
+
+        getContentPane().add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 768));
 
         javax.swing.GroupLayout pnlArbolLayout = new javax.swing.GroupLayout(pnlArbol);
         pnlArbol.setLayout(pnlArbolLayout);
         pnlArbolLayout.setHorizontalGroup(
             pnlArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 660, Short.MAX_VALUE)
+            .addGap(0, 766, Short.MAX_VALUE)
         );
         pnlArbolLayout.setVerticalGroup(
             pnlArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGap(0, 768, Short.MAX_VALUE)
         );
+
+        getContentPane().add(pnlArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 766, 768));
 
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
@@ -161,22 +168,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(620, 620, 620)
-                .addComponent(pnlArbol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(pnlArbol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        getContentPane().add(pnlBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -287,7 +279,7 @@ public class MainFrame extends javax.swing.JFrame {
         lblJugar.setBounds(width / 2 - 150, height / 2, 300, 80);
         lblAcercaDe.setBounds(width / 2 - 150, height / 2 + 100, 300, 80);
         lblSalir.setBounds(width / 2 - 150, height / 2 + 200, 300, 80);
-        
+        pack();
     }
 
     /**
@@ -339,10 +331,11 @@ public class MainFrame extends javax.swing.JFrame {
     private void cargarFondo() {
         RecursiveTree treePanel = new RecursiveTree();
 
-//        treePanel.setLocation(0, 0);
-        pnlArbol.setLayout(new BorderLayout());
+        treePanel.setLocation(0, 0);
+        //866
+        treePanel.setSize(766, 768);
+        //pnlArbol.setLayout(new BorderLayout());
         pnlArbol.add(treePanel);
-
         pnlArbol.revalidate();
         pnlArbol.repaint();
     }
