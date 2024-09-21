@@ -1,6 +1,7 @@
 package lista;
 
 public class Nodo {
+
     public String dia;
     public Nodo next;
 
@@ -9,4 +10,3 @@ public class Nodo {
         this.next = null;
     }
 }
-

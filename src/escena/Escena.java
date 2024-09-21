@@ -2,7 +2,6 @@ package escena;
 
 import java.io.IOException;
 import java.io.InputStream;
-import javax.crypto.AEADBadTagException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -46,8 +45,9 @@ public class Escena {
         int longitud = 0;
         for (String palabra : palabras) {
             System.out.print(palabra + " ");
-            Escenario escenario=new Escenario();
-            
+
+            Escenario escenario = new Escenario();
+
             longitud += palabra.length() + 1;
             if (longitud >= 45) {
                 System.out.println("");
@@ -55,7 +55,7 @@ public class Escena {
             }
 
             try {
-                if (palabra.endsWith(".") 
+                if (palabra.endsWith(".")
                         && palabra.charAt(0) != palabra.toUpperCase().charAt(0)) {
                     Thread.sleep(800);
                     System.out.println("");
@@ -68,5 +68,18 @@ public class Escena {
             }
         }
         System.out.println("");
+    }
+
+    public static void escribirAcertijo(String acertijo) {
+        String lineas[] = acertijo.split("\t");
+        for (String linea : lineas) {
+            System.out.println(linea);
+
+            try {
+                Thread.sleep(800);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }
     }
 }

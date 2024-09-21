@@ -8,7 +8,6 @@ public class Audio {
 
     private Clip clip;
 
-    
     public void setSound(InputStream inputStream) {
         try {
             // Cargamos el archivo de sonido como un objeto AudioInputStream
