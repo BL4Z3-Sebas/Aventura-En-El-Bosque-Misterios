@@ -6,21 +6,16 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import musica.AudioRunnable;
 import niveles.GeneradorNiveles;
 import niveles.Nivel;
 
 public class Main {
 
-    public static void main(String[] args) {    
+    public static void main(String[] args) throws UnsupportedEncodingException {
         Imagen.ejecutarImagen("/imagen/lab.png");  // Asegúrate de que la ruta es correcta
-        try {
-            System.setOut(new PrintStream(System.out, true, "utf-8"));
-        } catch (UnsupportedEncodingException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        System.setOut(new PrintStream(System.out, true, "utf-8"));
 
         Nivel nivel = GeneradorNiveles.crearNivel("nivel_1");
         System.out.println(nivel.getTitulo());
