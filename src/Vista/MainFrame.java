@@ -39,6 +39,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -118,7 +123,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         pnlMenu.add(lblAcercaDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 630, 300, 80));
 
-        getContentPane().add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 1080));
+        getContentPane().add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -110, 700, 1080));
         getContentPane().add(pnlArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 1280, 1080));
 
         pack();
@@ -209,6 +214,23 @@ public class MainFrame extends javax.swing.JFrame {
     private void lblJugarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJugarMouseReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_lblJugarMouseReleased
+
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
+ajustarComponentes();
+    }//GEN-LAST:event_formComponentResized
+    public void ajustarComponentes() {
+        int width = getWidth();
+        int height = getHeight();
+
+        // Ajusta el tamaño y posición de los componentes según el tamaño de la ventana
+        
+
+    lblTitulo.setBounds(width / 2 - 275, height / 4, 550, 150);
+    lblJugar.setBounds(width / 2 - 150, height / 2, 300, 80);
+    lblAcercaDe.setBounds(width / 2 - 150, height / 2 + 100, 300, 80);
+    lblSalir.setBounds(width / 2 - 150, height / 2 + 200, 300, 80);
+        pack();
+    }
 
     /**
      * @param args the command line arguments
