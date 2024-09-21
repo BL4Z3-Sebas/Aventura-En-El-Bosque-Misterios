@@ -6,7 +6,7 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collections;
-import musica.Audio;
+import Sonido.Audio;
 import niveles.GeneradorNiveles;
 import niveles.Nivel;
 
@@ -27,6 +27,7 @@ public class Main {
 //        audioThread.start();
         Audio bgAudio = new Audio("src/musica/Escape.wav", 5);
         bgAudio.loopSound();
+
         Escena.escribirDialogo(nivel.getHistoria());
 
         System.out.println("");

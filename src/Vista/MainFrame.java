@@ -5,7 +5,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
-import musica.Audio;
+import Sonido.Audio;
 
 /**
  *
