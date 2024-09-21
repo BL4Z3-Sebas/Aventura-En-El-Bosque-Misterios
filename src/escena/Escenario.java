@@ -25,7 +25,8 @@ public class Escenario extends javax.swing.JFrame {
      * Creates new form Escenario
      */
     public static String Nivel;
-    public static boolean continuarAcertijo = true;
+    public static Nivel nivel_static;
+    public static boolean continuarAcertijo = false;
 
     public Escenario() {
         initComponents();
@@ -43,6 +44,7 @@ public class Escenario extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TextArea1 = new javax.swing.JTextArea();
+        Button1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(720, 500));
@@ -60,16 +62,30 @@ public class Escenario extends javax.swing.JFrame {
         TextArea1.setRows(5);
         jScrollPane1.setViewportView(TextArea1);
 
+        Button1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        Button1.setText("Acertijo");
+        Button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Button1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Button1)
+                .addGap(46, 46, 46))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(328, Short.MAX_VALUE)
+                .addGap(14, 14, 14)
+                .addComponent(Button1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -97,6 +113,15 @@ public class Escenario extends javax.swing.JFrame {
             Logger.getLogger(Escenario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button1ActionPerformed
+        continuarAcertijo = !continuarAcertijo;
+            if (continuarAcertijo) {
+                AcertijoFrame x = new AcertijoFrame();
+                x.setVisible(true);
+                x.mostrarAcertijo(nivel_static);
+            }
+    }//GEN-LAST:event_Button1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,62 +164,20 @@ public class Escenario extends javax.swing.JFrame {
             TextArea1.setText("");
             Nivel nivel = new Nivel();
             nivel = GeneradorNiveles.crearNivel(level);
-
+            nivel_static=nivel;
             TextArea1.append("                                               " + nivel.getTitulo());
             TextArea1.append("\n");
-            int longitudMaxima = 75;
-            int indice = 0;
 
             Escena escena = new Escena();
 
             // Ejecutar el audio en un hilo separado
             Thread audioThread = new Thread(new AudioRunnable(escena, "Escape.wav"));
             audioThread.start();
-            
-            
-            
-            String[] palabras = nivel.getHistoria().split("\\s+");
-        int longitud = 0;
-        for (String palabra : palabras) {
-            TextArea1.append(palabra + " ");
-            longitud += palabra.length() + 1;
-            if (longitud >= 45) {
-                //   TextArea1.append("");
-                longitud = 0;
-            }
-
-            try {
-                if (palabra.endsWith(".")
-                        && palabra.charAt(0) != palabra.toUpperCase().charAt(0)) {
-                    Thread.sleep(800);
-                      TextArea1.append("\n");
-                    longitud = 0;
-                } else {
-                    Thread.sleep(250);
-                }
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        }
-            //escribirDialogo(nivel.getHistoria());
-
-            /*
-        while (indice < nivel.getHistoria().length()) {
-            int espacio = nivel.getHistoria().indexOf(" ", indice + longitudMaxima);
-            if (espacio == -1) {
-                espacio = nivel.getHistoria().length();
-            }
-            String linea = nivel.getHistoria().substring(indice, espacio);
-            TextArea1.append("\n"+linea);
-            indice = espacio + 1;
-        }*/
-            continuarAcertijo = !continuarAcertijo;
-            if (continuarAcertijo) {
-                AcertijoFrame x = new AcertijoFrame();
-                x.setVisible(true);
-                x.mostrarAcertijo(nivel);
-
-            }
+          
+            escribirDialogo(nivel.getHistoria());
+           
+          
+           
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -203,44 +186,50 @@ public class Escenario extends javax.swing.JFrame {
 
   public void escribirDialogo(String dialogo) {
     // Usar un SwingWorker para manejar la ejecución en segundo plano
-    SwingWorker<Void, String> worker = new SwingWorker<>() {
-        @Override
-        protected Void doInBackground() {
-            String[] palabras = dialogo.split("\\s+");
-            int longitud = 0;
-
-            for (String palabra : palabras) {
-                publish(palabra);  // Publicar la palabra para que se muestre en el JTextArea
-                longitud += palabra.length() + 1;
-
-                if (longitud >= 45) {
-                    publish("\n");  // Agregar un salto de línea si se excede la longitud de la línea
-                    longitud = 0;
-                }
-
-                try {
-                    if (palabra.endsWith(".")) {
-                        Thread.sleep(800);  // Pausa más larga después de un punto
-                        publish("\n");  // Saltar línea después de un punto
+    SwingWorker<Void, String> worker;
+        worker = new SwingWorker<>() {
+            @Override
+            protected Void doInBackground() {
+                String[] palabras = dialogo.split("\\s+");
+                int longitud = 0;
+                
+                for (String palabra : palabras) {
+                    publish(palabra);
+                    longitud += palabra.length() + 1;
+                    
+                    if (longitud >= 65) {
+                        publish("\n");
                         longitud = 0;
-                    } else {
-                        Thread.sleep(250);  // Pausa corta entre palabras
                     }
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
+                    
+                    try {
+                        if (palabra.endsWith("Dr.")) {
+                              Thread.sleep(250);  
+                        }else{
+                         if (palabra.endsWith(".")) {
+                            Thread.sleep(800);  // Pausa más larga después de un punto
+                            publish("\n");  // Saltar línea después de un punto
+                            longitud = 0;
+                        } else {
+                            Thread.sleep(250);  // Pausa corta entre palabras
+                        }   
+                        }
+                        
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
+                
+                return null;
+            }
+            
+            @Override
+            protected void process(java.util.List<String> chunks) {
+                for (String palabra : chunks) {
+                    TextArea1.append(palabra + " ");  // Mostrar la palabra en el JTextArea
                 }
             }
-
-            return null;
-        }
-
-        @Override
-        protected void process(java.util.List<String> chunks) {
-            for (String palabra : chunks) {
-                TextArea1.append(palabra + " ");  // Mostrar la palabra en el JTextArea
-            }
-        }
-    };
+        };
 
     worker.execute();  // Iniciar el SwingWorker
 }
@@ -248,6 +237,7 @@ public class Escenario extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Button1;
     private javax.swing.JTextArea TextArea1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

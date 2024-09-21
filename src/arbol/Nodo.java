@@ -7,7 +7,7 @@ public class Nodo {
     private Nodo izq;
     private Nodo der;
     private Escena esc;
-
+    
     public Nodo() {
     }
     
