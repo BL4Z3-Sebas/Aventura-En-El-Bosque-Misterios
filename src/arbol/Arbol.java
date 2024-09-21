@@ -1,13 +1,16 @@
 package arbol;
 
 import escena.Escena;
+import java.io.IOException;
+import java.util.Scanner;
+import niveles.Nivel;
 
 public class Arbol {
 
     private Nodo raiz;
 
     public Arbol() {
-        this.raiz = new Nodo(new Escena());
+        this.raiz = new Nodo(new Nivel());
     }
 
     public Nodo getRaiz() {
@@ -17,13 +20,13 @@ public class Arbol {
     public void setRaiz(Nodo raiz) {
         this.raiz = raiz;
     }
-
-//        private void ejecutarRecursivo(Nodo nodo) {
+    
+    public void ejecutarRecursivo(Nodo nodo) {
 //        if (nodo != null) {
 //            try {
-//                nodo.getEsc().ejecutar();
+//                nodo.getNivel().ejecutar();
 //            } catch (IOException ex) {
-//            
+//
 //            }
 //            if (nodo.getIzq() != null && nodo.getDer() != null) {
 //                Scanner sc = new Scanner(System.in);
@@ -36,5 +39,5 @@ public class Arbol {
 //                }
 //            }
 //        }
-//    }
+    }
 }

@@ -18,7 +18,7 @@ public class DialogoFrame extends javax.swing.JFrame {
     /**
      * Creates new form Escenario
      */
-    public static String Nivel;
+    public static String Nivel = "nivel_";
     public static Nivel nivel_static;
     public static boolean continuarAcertijo = false;
 
@@ -100,7 +100,7 @@ public class DialogoFrame extends javax.swing.JFrame {
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         try {
-            Nivel = "nivel_1";
+            Nivel = "nivel_2";
             mostrarHistoria(Nivel);
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(DialogoFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -155,7 +155,7 @@ public class DialogoFrame extends javax.swing.JFrame {
     public void mostrarHistoria(String level) throws UnsupportedEncodingException {
         try {
             System.setOut(new PrintStream(System.out, true, "utf-8"));
-            TextArea1.setText("");
+            TextArea1.setText("");          
             Nivel nivel = new Nivel();
             nivel = GeneradorNiveles.crearNivel(level);
             nivel_static = nivel;

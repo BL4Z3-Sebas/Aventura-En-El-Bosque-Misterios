@@ -1,6 +1,6 @@
 package niveles;
 
-import java.io.InputStream;
+
 import Sonido.Audio;
 
 public class Nivel {
@@ -12,7 +12,7 @@ public class Nivel {
     private String acertijo;
     private String[] respuetas;
     private String solucion;
-    private Audio audio;
+    
 
     public Nivel() {
     }
