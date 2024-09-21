@@ -1,7 +1,13 @@
 package Vista;
 
+import arbol.Nodo;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import juego.Juego;
 import niveles.GeneradorNiveles;
 import niveles.Nivel;
 
@@ -216,6 +222,25 @@ public class AcertijoFrame extends javax.swing.JFrame {
         Button4.setText(Respuesta[3]);
 
         //  TextArea1.append("Solucion: " + nivel.getSolucion());
+    }
+    public void ejecutarRecursivo(Nodo nodo) {
+        if (nodo != null) {
+            try {
+                nodo.getEsc().ejecutar();
+            } catch (IOException ex) {
+                Logger.getLogger(Juego.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (nodo.getIzq() != null && nodo.getDer() != null) {
+                Scanner sc = new Scanner(System.in);
+                int i;
+                i = sc.nextInt();
+                if (i == 1) {
+                    ejecutarRecursivo(nodo.getIzq());
+                } else {
+                    ejecutarRecursivo(nodo.getDer());
+                }
+            }
+        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button1;
