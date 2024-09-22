@@ -7,7 +7,7 @@ public class Arbol {
     private Nodo raiz;
 
     public Arbol() {
-        this.raiz = new Nodo(new Escena());
+        this.raiz = null;
     }
 
     public Nodo getRaiz() {
@@ -18,4 +18,14 @@ public class Arbol {
         this.raiz = raiz;
     }
 
+    public boolean buscarElemento(Nodo nodo, String tituloHis) {
+        if (nodo == null) {
+            return false;
+        }
+
+        if (tituloHis.equals(nodo.getNivel().getTitulo()) && nodo.getNivel().isVisitado()) {
+            return true;
+        }
+        return buscarElemento(nodo.getIzq(), tituloHis) || buscarElemento(nodo.getDer(), tituloHis);
+    }
 }

@@ -12,6 +12,7 @@ public class Nivel {
     private String acertijo;
     private String[] respuetas;
     private String solucion;
+    private boolean visitado;
     private Audio audio;
 
     public Nivel() {
@@ -19,6 +20,22 @@ public class Nivel {
 
     public String getSolucion() {
         return solucion;
+    }
+
+    public boolean isVisitado() {
+        return visitado;
+    }
+
+    public void setVisitado(boolean visitado) {
+        this.visitado = visitado;
+    }
+
+    public Audio getAudio() {
+        return audio;
+    }
+
+    public void setAudio(Audio audio) {
+        this.audio = audio;
     }
 
     public void setSolucion(String solucion) {

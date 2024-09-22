@@ -1,18 +1,19 @@
 package arbol;
 
 import escena.Escena;
+import niveles.Nivel;
 
 public class Nodo {
 
     private Nodo izq;
     private Nodo der;
-    private Escena esc;
+    private Nivel nivel;
     
     public Nodo() {
     }
 
-    public Nodo(Escena escena) {
-        this.esc = escena;
+    public Nodo(Nivel nivel) {
+        this.nivel=nivel;
         this.izq = null;
         this.der = null;
     }
@@ -33,11 +34,15 @@ public class Nodo {
         this.der = der;
     }
 
-    public Escena getEsc() {
-        return esc;
+    public Nivel getNivel() {
+        return nivel;
     }
 
-    public void setEsc(Escena esc) {
-        this.esc = esc;
+    public void setNivel(Nivel nivel) {
+        this.nivel = nivel;
     }
+
+   
+
+
 }

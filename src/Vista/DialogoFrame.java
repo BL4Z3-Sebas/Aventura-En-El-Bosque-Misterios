@@ -102,7 +102,7 @@ public class DialogoFrame extends javax.swing.JFrame {
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         try {
-            Nivel = "nivel_1";
+            Nivel = "nivel_2";
             mostrarHistoria(Nivel);
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(DialogoFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -143,6 +143,12 @@ public class DialogoFrame extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(DialogoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
