@@ -6,4 +6,3 @@ Para escapar del agujero de gusano,+decides usar alguno de los suministros exper
 Tienes una idea de que tipo de material+le puede ayudar,pero dudas si recomendarlo debido a+las visiones recientes que has tenido+¿Qué tipo de material le sugieres?;Sabia vida/Materia oscura/Luz de sombra/Fuego cristalino 
 “Soy un ciclo que nunca termina,+un camino sin inicio ni final.+Soy lo que fluye y a la vez se detiene,+en mí, el tiempo es un juego mortal.+¿Qué soy?”;El universo/Un sueño/ Un río/ El tiempo 
 “Soy lo que repites, pero nunca es igual,+en cada susurro, mi esencia hallarás.+Reflejo del pasado que nunca se va,+busca en mi sonido, la paz que traerá.+¿Qué soy?”;Un eco/calma/Un recuerdo/Una sombra 
-

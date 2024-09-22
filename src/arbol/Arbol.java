@@ -1,5 +1,8 @@
 package arbol;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import niveles.Nivel;
 
 public class Arbol {
@@ -55,6 +58,21 @@ public class Arbol {
 
     public Nodo buscarNodo(Nivel nivel) {
         return buscarNodoRecursivo(raiz, nivel);
+    }
+
+    public ArrayList<Nivel> obtenerNodosDeNivel(int nivel) {
+        ArrayList<Nivel> niveles = new ArrayList<>();
+        obtenerNodosDeNivelRecursivo(raiz, nivel, 1, niveles);
+        return niveles;
+    }
+
+    public void mostrarHistorias(Nodo nodo) {
+        if (nodo == null) {
+            return;
+        }
+        System.out.println(nodo.getNivel().getTitulo() + "\t");
+        mostrarHistorias(nodo.getLeft());
+        mostrarHistorias(nodo.getRight());
     }
 
 //========================================================================//
@@ -115,6 +133,19 @@ public class Arbol {
         }
 
         return nodo;
+    }
+
+    private void obtenerNodosDeNivelRecursivo(Nodo nodo, int nivel, int nivelActual, ArrayList<Nivel> niveles) {
+        if (nodo == null) {
+            return;
+        }
+
+        if (nivelActual == nivel) {
+            niveles.add(nodo.getNivel());
+        }
+
+        obtenerNodosDeNivelRecursivo(nodo.getLeft(), nivel, nivelActual + 1, niveles);
+        obtenerNodosDeNivelRecursivo(nodo.getRight(), nivel, nivelActual + 1, niveles);
     }
 
 }

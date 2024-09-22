@@ -33,7 +33,6 @@ public class Main {
         bgAudio.loopSound();
 
 //        Escena.escribirDialogo(apuntador.getUbicacion().getHistoria());
-
         System.out.println("");
 
 //        Escena.escribirAcertijo(apuntador.getUbicacion().getAcertijo());

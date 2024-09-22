@@ -39,7 +39,7 @@ public class Audio {
             volumen = 0;
         }
         this.volumenControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        this.volumenControl.setValue(volumen * 80.0f / 100 - 80.0f);
+        this.volumenControl.setValue(volumen * 86f / 100 - 80.0f);
     }
 
     private void setReproductor() {
@@ -48,7 +48,7 @@ public class Audio {
                 this.clip.loop(Clip.LOOP_CONTINUOUSLY);
                 while (true) {
                     float volumenActual = this.volumenControl.getValue();
-                    if (volumenActual > 0.0f) {
+                    if (volumenActual > 5f) {
                         break;
                     }
                     this.volumenControl.setValue(volumenActual + 1f);
@@ -58,6 +58,10 @@ public class Audio {
                 System.out.println(e);
             }
         });
+    }
+
+    public void ajustarVolumen(int volumen) {
+        this.volumenControl.setValue(volumen * 86f / 100 - 80.0f);
     }
 
     public void playSound() {

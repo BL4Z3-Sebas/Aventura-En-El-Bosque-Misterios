@@ -47,9 +47,7 @@ public class Apuntador {
     public void avanzar(String direccion) {
         if (direccion.equalsIgnoreCase("izquierda")) {
             this.nodo = nodo.getLeft();
-            return;
-        }
-        if (direccion.equalsIgnoreCase("derecha")) {
+        } else if (direccion.equalsIgnoreCase("derecha")) {
             this.nodo = nodo.getRight();
         }
         this.actualizarUbicacion();

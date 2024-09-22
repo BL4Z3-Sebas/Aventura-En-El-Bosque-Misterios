@@ -18,8 +18,8 @@ public class Nodo {
         this.left = null;
         this.right = null;
     }
-    
-    public Nodo(int id){
+
+    public Nodo(int id) {
         Nivel n = new Nivel();
         n.setId(id);
         this.nivel = n;

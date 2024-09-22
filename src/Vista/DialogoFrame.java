@@ -271,7 +271,6 @@ public class DialogoFrame extends javax.swing.JFrame {
 //
 //        worker.execute();  // Iniciar el SwingWorker
 //    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button1;
     private javax.swing.JTextArea TextArea1;

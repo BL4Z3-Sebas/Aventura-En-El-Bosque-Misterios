@@ -16,6 +16,7 @@ public class Nivel {
     private Audio audio;
 
     public Nivel() {
+        this.visitado = false;
 
     }
 
@@ -76,7 +77,7 @@ public class Nivel {
     }
 
     public String getAcertijo() {
-        return acertijo;
+        return acertijo.replace('+', '\n');
     }
 
     public void setAcertijo(String acertijo) {
