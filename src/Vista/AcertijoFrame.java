@@ -202,7 +202,7 @@ public class AcertijoFrame extends javax.swing.JFrame {
     public void mostrarAcertijo(Nivel nivel) {
         TextArea1.append("\n==================ACERTIJO=================" + "\n");
 
-        TextArea1.append("\t" + nivel.getAcertijo().replace("\t", "\n\t"));
+        TextArea1.append(nivel.getAcertijo().replace("+", "\n"));
 
         Collections.shuffle(Arrays.asList(nivel.getRespuetas()));
         String Respuesta[] = nivel.getRespuetas();

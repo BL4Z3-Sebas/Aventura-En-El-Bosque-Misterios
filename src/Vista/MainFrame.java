@@ -7,10 +7,6 @@ import javax.swing.JOptionPane;
 import Sonido.Audio;
 import arbol.Arbol;
 import javax.swing.SwingUtilities;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
 import niveles.Apuntador;
 import niveles.GeneradorNiveles;
 
@@ -342,6 +338,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void lblIzquierdaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIzquierdaMouseClicked
         // TODO add your handling code here:
+        apu.avanzar("izquierda");
+        escribirDialogo(apu.getUbicacion().getHistoria());
     }//GEN-LAST:event_lblIzquierdaMouseClicked
 
     private void lblDerechaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDerechaMouseEntered
@@ -358,6 +356,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void lblDerechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDerechaMouseClicked
         // TODO add your handling code here:
+        apu.avanzar("derecha");
+        escribirDialogo(apu.getUbicacion().getHistoria());
     }//GEN-LAST:event_lblDerechaMouseClicked
 
     /**

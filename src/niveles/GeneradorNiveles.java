@@ -28,7 +28,7 @@ public class GeneradorNiveles {
             String[] datos2 = linea2.split(";");
             lvl.setAcertijo(datos2[0]);
             String res = datos2[1];
-            lvl.setRespuetas(res.split("\t"));
+            lvl.setRespuetas(res.split("/"));
             lvl.setSolucion(lvl.getRespuetas()[0]);
 
         } catch (FileNotFoundException e) {

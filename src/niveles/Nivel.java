@@ -1,5 +1,7 @@
 package niveles;
 
+import Sonido.Audio;
+
 public class Nivel {
 
     private int id;
@@ -10,6 +12,8 @@ public class Nivel {
     private String acertijo;
     private String[] respuetas;
     private String solucion;
+    private boolean visitado;
+    private Audio audio;
 
     public Nivel() {
 
@@ -21,6 +25,22 @@ public class Nivel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isVisitado() {
+        return visitado;
+    }
+
+    public void setVisitado(boolean visitado) {
+        this.visitado = visitado;
+    }
+
+    public Audio getAudio() {
+        return audio;
+    }
+
+    public void setAudio(Audio audio) {
+        this.audio = audio;
     }
 
     public int getNum_nivel() {
