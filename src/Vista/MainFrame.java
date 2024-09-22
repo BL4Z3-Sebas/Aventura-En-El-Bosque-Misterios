@@ -50,25 +50,15 @@ public class MainFrame extends javax.swing.JFrame {
                 formKeyPressed(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         pnlJuego.setOpaque(false);
-
-        javax.swing.GroupLayout pnlJuegoLayout = new javax.swing.GroupLayout(pnlJuego);
-        pnlJuego.setLayout(pnlJuegoLayout);
-        pnlJuegoLayout.setHorizontalGroup(
-            pnlJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        pnlJuegoLayout.setVerticalGroup(
-            pnlJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(pnlJuego, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        pnlJuego.setLayout(null);
+        getContentPane().add(pnlJuego);
+        pnlJuego.setBounds(0, 0, 0, 0);
 
         pnlMenu.setBackground(new java.awt.Color(0, 0, 0));
-        pnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlMenu.setLayout(null);
 
         lblTitulo.setFont(new java.awt.Font("Blackadder ITC", 0, 150)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(150, 150, 150));
@@ -77,7 +67,8 @@ public class MainFrame extends javax.swing.JFrame {
         lblTitulo.setAlignmentY(0.0F);
         lblTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblTitulo.setIconTextGap(0);
-        pnlMenu.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 550, -1));
+        pnlMenu.add(lblTitulo);
+        lblTitulo.setBounds(30, 210, 550, 184);
 
         lblJugar.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
         lblJugar.setForeground(new java.awt.Color(150, 150, 150));
@@ -98,7 +89,8 @@ public class MainFrame extends javax.swing.JFrame {
                 lblJugarMouseReleased(evt);
             }
         });
-        pnlMenu.add(lblJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 300, 80));
+        pnlMenu.add(lblJugar);
+        lblJugar.setBounds(170, 390, 300, 80);
 
         lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
         lblAcercaDe.setForeground(new java.awt.Color(150, 150, 150));
@@ -119,7 +111,8 @@ public class MainFrame extends javax.swing.JFrame {
                 lblAcercaDeMouseReleased(evt);
             }
         });
-        pnlMenu.add(lblAcercaDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 500, 300, 80));
+        pnlMenu.add(lblAcercaDe);
+        lblAcercaDe.setBounds(170, 500, 300, 80);
 
         lblSalir.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
         lblSalir.setForeground(new java.awt.Color(150, 150, 150));
@@ -139,9 +132,11 @@ public class MainFrame extends javax.swing.JFrame {
                 lblSalirMouseReleased(evt);
             }
         });
-        pnlMenu.add(lblSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 600, 300, 80));
+        pnlMenu.add(lblSalir);
+        lblSalir.setBounds(160, 600, 300, 80);
 
-        getContentPane().add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 768));
+        getContentPane().add(pnlMenu);
+        pnlMenu.setBounds(0, 0, 600, 768);
 
         javax.swing.GroupLayout pnlArbolLayout = new javax.swing.GroupLayout(pnlArbol);
         pnlArbol.setLayout(pnlArbolLayout);
@@ -154,7 +149,8 @@ public class MainFrame extends javax.swing.JFrame {
             .addGap(0, 768, Short.MAX_VALUE)
         );
 
-        getContentPane().add(pnlArbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 766, 768));
+        getContentPane().add(pnlArbol);
+        pnlArbol.setBounds(600, 0, 766, 768);
 
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
@@ -167,7 +163,8 @@ public class MainFrame extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        getContentPane().add(pnlBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(pnlBackground);
+        pnlBackground.setBounds(0, 0, 0, 0);
 
         pack();
         setLocationRelativeTo(null);

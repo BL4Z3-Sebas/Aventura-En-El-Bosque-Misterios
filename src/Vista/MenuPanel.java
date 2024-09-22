@@ -29,7 +29,7 @@ public class MenuPanel extends javax.swing.JPanel {
         lblSalir = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 0, 255));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setLayout(null);
 
         pnlMenu.setBackground(new java.awt.Color(102, 102, 102));
         pnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -61,7 +61,8 @@ public class MenuPanel extends javax.swing.JPanel {
         lblSalir.setText("Salir");
         pnlMenu.add(lblSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 730, 300, 80));
 
-        add(pnlMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        add(pnlMenu);
+        pnlMenu.setBounds(0, 0, 620, 810);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
