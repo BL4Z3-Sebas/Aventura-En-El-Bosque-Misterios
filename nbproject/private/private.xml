@@ -2,6 +2,22 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/andre/Desktop/Aventura-En-El-Bosque-Misterios/src/niveles/GeneradorNiveles.java</file>
+            <file>file:/C:/Users/andre/Desktop/Aventura-En-El-Bosque-Misterios/src/Vista/MainFrame.java</file>
+            <file>file:/C:/Users/andre/Desktop/Aventura-En-El-Bosque-Misterios/src/Vista/MenuPanel.java</file>
+            <file>file:/C:/Users/andre/Desktop/Aventura-En-El-Bosque-Misterios/src/archivos/nivel_2/acertijos.txt</file>
+            <file>file:/C:/Users/andre/Desktop/Aventura-En-El-Bosque-Misterios/src/arbol/Arbol.java</file>
+            <file>file:/C:/Users/andre/Desktop/Aventura-En-El-Bosque-Misterios/src/archivos/nivel_1/historia.txt</file>
+            <file>file:/C:/Users/andre/Desktop/Aventura-En-El-Bosque-Misterios/src/archivos/nivel_2/historia.txt</file>
+            <file>file:/C:/Users/andre/Desktop/Aventura-En-El-Bosque-Misterios/src/archivos/nivel_1/acertijos.txt</file>
+            <file>file:/C:/Users/andre/Desktop/Aventura-En-El-Bosque-Misterios/src/Vista/AcertijoFrame.java</file>
+            <file>file:/C:/Users/andre/Desktop/Aventura-En-El-Bosque-Misterios/src/Sonido/Audio.java</file>
+            <file>file:/C:/Users/andre/Desktop/Aventura-En-El-Bosque-Misterios/src/arbol/Nodo.java</file>
+            <file>file:/C:/Users/andre/Desktop/Aventura-En-El-Bosque-Misterios/src/arbol/ArbolDeJuego.java</file>
+            <file>file:/C:/Users/andre/Desktop/Aventura-En-El-Bosque-Misterios/src/Vista/RecursiveTree.java</file>
+            <file>file:/C:/Users/andre/Desktop/Aventura-En-El-Bosque-Misterios/src/niveles/Nivel.java</file>
+            <file>file:/C:/Users/andre/Desktop/Aventura-En-El-Bosque-Misterios/src/Vista/DialogoFrame.java</file>
+        </group>
     </open-files>
 </project-private>
