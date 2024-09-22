@@ -1,13 +1,11 @@
 package Vista;
 
-import Vista.AcertijoFrame;
 import escena.Escena;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingWorker;
-import musica.AudioRunnable;
 import niveles.GeneradorNiveles;
 import niveles.Nivel;
 
@@ -111,11 +109,11 @@ public class DialogoFrame extends javax.swing.JFrame {
 
     private void Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button1ActionPerformed
         continuarAcertijo = !continuarAcertijo;
-            if (continuarAcertijo) {
-                AcertijoFrame x = new AcertijoFrame();
-                x.setVisible(true);
-                x.mostrarAcertijo(nivel_static);
-            }
+        if (continuarAcertijo) {
+            AcertijoFrame x = new AcertijoFrame();
+            x.setVisible(true);
+            x.mostrarAcertijo(nivel_static);
+        }
     }//GEN-LAST:event_Button1ActionPerformed
 
     /**
@@ -166,65 +164,60 @@ public class DialogoFrame extends javax.swing.JFrame {
             TextArea1.setText("");
             Nivel nivel = new Nivel();
             nivel = GeneradorNiveles.crearNivel(level);
-            nivel_static=nivel;
+            nivel_static = nivel;
             TextArea1.append("                                               " + nivel.getTitulo());
             TextArea1.append("\n");
 
             Escena escena = new Escena();
 
             // Ejecutar el audio en un hilo separado
-            Thread audioThread = new Thread(new AudioRunnable(escena, "Escape.wav"));
-            audioThread.start();
-          
             escribirDialogo(nivel.getHistoria());
-           
-          
-           
+
         } catch (Exception e) {
             System.out.println(e.toString());
         }
 
     }
 
-  public void escribirDialogo(String dialogo) {
-    // Usar un SwingWorker para manejar la ejecución en segundo plano
-    SwingWorker<Void, String> worker;
+    public void escribirDialogo(String dialogo) {
+        // Usar un SwingWorker para manejar la ejecución en segundo plano
+        SwingWorker<Void, String> worker;
         worker = new SwingWorker<>() {
             @Override
             protected Void doInBackground() {
                 String[] palabras = dialogo.split("\\s+");
                 int longitud = 0;
-                
+
                 for (String palabra : palabras) {
                     publish(palabra);
                     longitud += palabra.length() + 1;
-                    
+
                     if (longitud >= 65) {
                         publish("\n");
                         longitud = 0;
                     }
-                    
+
                     try {
                         if (palabra.endsWith("Dr.")) {
-                              Thread.sleep(250);  
-                        }else{
-                         if (palabra.endsWith(".")) {
-                            Thread.sleep(800);  // Pausa más larga después de un punto
-                            publish("\n");  // Saltar línea después de un punto
-                            longitud = 0;
+                            Thread.sleep(250);
                         } else {
-                            Thread.sleep(250);  // Pausa corta entre palabras
-                        }   
+                            if (palabra.endsWith(".")) {
+                                Thread.sleep(800);  // Pausa más larga después de un punto
+                                publish("\n");  // Saltar línea después de un punto
+                                longitud = 0;
+                            } else {
+                                Thread.sleep(250);  // Pausa corta entre palabras
+                            }
                         }
-                        
+
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                     }
                 }
-                
+
                 return null;
             }
-            
+
             @Override
             protected void process(java.util.List<String> chunks) {
                 for (String palabra : chunks) {
@@ -233,10 +226,8 @@ public class DialogoFrame extends javax.swing.JFrame {
             }
         };
 
-    worker.execute();  // Iniciar el SwingWorker
-}
-
-
+        worker.execute();  // Iniciar el SwingWorker
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button1;
