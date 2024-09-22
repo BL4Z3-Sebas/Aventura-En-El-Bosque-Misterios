@@ -6,6 +6,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import Sonido.Audio;
 import arbol.Arbol;
+import archivos.Intro;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
@@ -23,19 +24,23 @@ public final class MainFrame extends javax.swing.JFrame {
     Arbol arbol = Arbol.getInstancia();
     Apuntador apu = Apuntador.getInstancia();
     Escena escena = new Escena();
+    Escena e = new Escena();
+    boolean intro = false;
 
     ;
 
     public MainFrame() {
-        bgAudio.loopSound();
+
         initComponents();
+        bgAudio.loopSound();
         cargarArbol();
-        mostrarMenu();
+        mostarIntro();
+//        mostrarMenu();
         GeneradorNiveles.generarArbolNiveles();
         apu.setNodo(arbol.getRaiz());
         escena.agregarDialogo(apu.getUbicacion().getHistoria());
         escena.agregarDialogo(apu.getUbicacion().getAcertijo());
-        lblTitulo.setText(apu.getUbicacion().getTitulo());
+        lblNivel.setText(apu.getUbicacion().getTitulo());
     }
 
     /**
@@ -62,7 +67,13 @@ public final class MainFrame extends javax.swing.JFrame {
         lblEscena = new javax.swing.JLabel();
         spnDialogo = new javax.swing.JScrollPane();
         txtdialogo = new javax.swing.JTextArea();
+        pnlIntro = new javax.swing.JPanel();
+        lblContinuar = new javax.swing.JLabel();
+        lblIntro = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtIntro = new javax.swing.JTextArea();
         sldVolumen = new javax.swing.JSlider();
+        lblCerrar = new javax.swing.JLabel();
 
         pnlMenu.setBackground(new java.awt.Color(0, 0, 0));
         pnlMenu.setPreferredSize(new java.awt.Dimension(700, 1080));
@@ -207,7 +218,7 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblIzquierdaMouseExited(evt);
             }
         });
-        pnlJuego.add(lblIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 850));
+        pnlJuego.add(lblIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 25, 160, 800));
 
         lblDerecha.setBackground(new java.awt.Color(0, 0, 0));
         lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 0, 200)); // NOI18N
@@ -226,7 +237,7 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblDerechaMouseExited(evt);
             }
         });
-        pnlJuego.add(lblDerecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(1760, 0, 160, 850));
+        pnlJuego.add(lblDerecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(1760, 25, 160, 800));
 
         lblNivel.setFont(new java.awt.Font("Blackadder ITC", 0, 40)); // NOI18N
         lblNivel.setForeground(new java.awt.Color(255, 255, 255));
@@ -256,6 +267,53 @@ public final class MainFrame extends javax.swing.JFrame {
 
         pnlJuego.add(spnDialogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 900, 1720, 180));
 
+        pnlIntro.setBackground(new java.awt.Color(0, 0, 0));
+        pnlIntro.setLayout(null);
+
+        lblContinuar.setText("jLabel1");
+        lblContinuar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                lblContinuarMouseDragged(evt);
+            }
+        });
+        lblContinuar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblContinuarMouseClicked(evt);
+            }
+        });
+        pnlIntro.add(lblContinuar);
+        lblContinuar.setBounds(0, 0, 1920, 1080);
+
+        lblIntro.setBackground(new java.awt.Color(255, 255, 255));
+        lblIntro.setFont(new java.awt.Font("Blackadder ITC", 0, 150)); // NOI18N
+        lblIntro.setForeground(new java.awt.Color(255, 255, 255));
+        lblIntro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIntro.setText("FRACTALUM");
+        pnlIntro.add(lblIntro);
+        lblIntro.setBounds(360, 965, 1200, 190);
+
+        jScrollPane1.setBackground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setBorder(null);
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane1.setOpaque(false);
+
+        txtIntro.setEditable(false);
+        txtIntro.setBackground(new java.awt.Color(0, 0, 0));
+        txtIntro.setColumns(20);
+        txtIntro.setFont(new java.awt.Font("Blackadder ITC", 0, 36)); // NOI18N
+        txtIntro.setForeground(new java.awt.Color(255, 255, 255));
+        txtIntro.setLineWrap(true);
+        txtIntro.setRows(5);
+        txtIntro.setWrapStyleWord(true);
+        txtIntro.setBorder(null);
+        txtIntro.setFocusable(false);
+        txtIntro.setOpaque(false);
+        jScrollPane1.setViewportView(txtIntro);
+
+        pnlIntro.add(jScrollPane1);
+        jScrollPane1.setBounds(110, 265, 1700, 765);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -281,18 +339,44 @@ public final class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        lblCerrar.setBackground(new java.awt.Color(51, 0, 0));
+        lblCerrar.setFont(new java.awt.Font("Blackadder ITC", 0, 18)); // NOI18N
+        lblCerrar.setForeground(new java.awt.Color(255, 255, 255));
+        lblCerrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCerrar.setText("X");
+        lblCerrar.setOpaque(true);
+        lblCerrar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseDragged(evt);
+            }
+        });
+        lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(sldVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1760, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1725, Short.MAX_VALUE)
+                .addComponent(lblCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(sldVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sldVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 1060, Short.MAX_VALUE))
         );
 
@@ -302,18 +386,18 @@ public final class MainFrame extends javax.swing.JFrame {
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
-        if (evt.getKeyChar() == KeyEvent.VK_ESCAPE) {
-            int sw = JOptionPane.showConfirmDialog(null,
-                    "¿Deseas salir del juego?",
-                    "Aviso",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.WARNING_MESSAGE);
-            if (sw == 0) {
-                System.exit(0);
-            }
-            return;
-        }
-
+//        if (evt.getKeyChar() == KeyEvent.VK_ESCAPE) {
+//            int sw = JOptionPane.showConfirmDialog(null,
+//                    "¿Deseas salir del juego?",
+//                    "Aviso",
+//                    JOptionPane.YES_NO_OPTION,
+//                    JOptionPane.WARNING_MESSAGE);
+//            if (sw == 0) {
+//                System.exit(0);
+//            }
+//            return;
+//        }
+        System.exit(0);
         if (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE) {
             if (pnlJuego.isVisible()) {
                 pnlJuego.setVisible(false);
@@ -420,11 +504,7 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!escena.getEscritor().isAlive()) {
             apu.avanzar("izquierda");
-            escena.reset();
-            escena.agregarDialogo(apu.getUbicacion().getHistoria());
-            escena.agregarDialogo(apu.getUbicacion().getHistoria());
-            escena.mostrarParte(false);
-            lblTitulo.setText(apu.getUbicacion().getTitulo());
+            siguienteNivel();
         }
     }//GEN-LAST:event_lblIzquierdaMouseClicked
 
@@ -449,13 +529,8 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!escena.getEscritor().isAlive()) {
             apu.avanzar("derecha");
-            escena.reset();
-            escena.agregarDialogo(apu.getUbicacion().getHistoria());
-            escena.agregarDialogo(apu.getUbicacion().getHistoria());
-            escena.mostrarParte(false);
-            lblTitulo.setText(apu.getUbicacion().getTitulo());
+            siguienteNivel();
         }
-
     }//GEN-LAST:event_lblDerechaMouseClicked
 
     private void lblPostMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPostMouseEntered
@@ -517,6 +592,43 @@ public final class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_sldVolumenMouseClicked
 
+    private void lblContinuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblContinuarMouseClicked
+        // TODO add your handling code here:
+        if (e.getEscritor() != null) {
+            e.getEscritor().interrupt();
+        }
+        this.remove(pnlIntro);
+        lblIntro.setVisible(false);
+        mostrarMenu();
+    }//GEN-LAST:event_lblContinuarMouseClicked
+
+    private void lblContinuarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblContinuarMouseDragged
+        // TODO add your handling code here:
+        lblContinuarMouseClicked(evt);
+    }//GEN-LAST:event_lblContinuarMouseDragged
+
+    private void lblCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseEntered
+        // TODO add your handling code here:
+        lblCerrar.setBackground(new Color(102, 0, 0));
+    }//GEN-LAST:event_lblCerrarMouseEntered
+
+    private void lblCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseExited
+        // TODO add your handling code here:
+        lblCerrar.setBackground(new Color(21, 0, 0));
+    }//GEN-LAST:event_lblCerrarMouseExited
+
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void lblCerrarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseDragged
+        // TODO add your handling code here:
+        if (lblCerrar.contains(evt.getX(), evt.getY())) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_lblCerrarMouseDragged
+
     /**
      * @param args the command line arguments
      */
@@ -556,9 +668,13 @@ public final class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAcercaDe;
+    private javax.swing.JLabel lblCerrar;
+    private javax.swing.JLabel lblContinuar;
     private javax.swing.JLabel lblDerecha;
     private javax.swing.JLabel lblEscena;
+    private javax.swing.JLabel lblIntro;
     private javax.swing.JLabel lblIzquierda;
     private javax.swing.JLabel lblJugar;
     private javax.swing.JLabel lblNivel;
@@ -567,10 +683,12 @@ public final class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblSalir;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlArbol;
+    private javax.swing.JPanel pnlIntro;
     private javax.swing.JPanel pnlJuego;
     private javax.swing.JPanel pnlMenu;
     private javax.swing.JSlider sldVolumen;
     private javax.swing.JScrollPane spnDialogo;
+    private javax.swing.JTextArea txtIntro;
     private javax.swing.JTextArea txtdialogo;
     // End of variables declaration//GEN-END:variables
 
@@ -609,48 +727,75 @@ public final class MainFrame extends javax.swing.JFrame {
         this.add(pnlJuego);
     }
 
-//    public void escribirDialogo(String dialogo, Thread siguienteDialogo) {
-//        // Crear un hilo para manejar la ejecución en segundo plano
-//        Thread thread = new Thread(() -> {
-//            char[] caracteres = dialogo.toCharArray();  // Convertir el diálogo a un array de caracteres
-//
-//            for (char c : caracteres) {
-//                final char caracterActual = c;  // Necesario para acceder al carácter dentro de invokeLater
-//
-//                // Publicar el carácter en el JTextArea (esto debe hacerse en el Event Dispatch Thread)
-//                SwingUtilities.invokeLater(() -> txtdialogo.append(String.valueOf(caracterActual)));
-//
-//                try {
-//                    // Añadir pausas dependiendo del carácter
-//                    switch (caracterActual) {
-//                        case '.':
-//                            Thread.sleep(500);  // Pausa más larga después de un punto
-//                            break;
-//                        case ',':
-//                            Thread.sleep(200);  // Pausa corta entre palabras (después de un espacio)
-//                            break;
-//                        default:
-//                            Thread.sleep(50);  // Pausa corta entre caracteres
-//                            break;
-//                    }
-//                } catch (InterruptedException e) {
-//                    Thread.currentThread().interrupt();
-//                }
-//            }
-//            SwingUtilities.invokeLater(() -> txtdialogo.append("\n"));
-//        });
-//
-//        thread.start();  // Iniciar el hilo
-//
-//        new Thread(() -> {
-//            try {
-//                thread.join();  // Esperar a que el primer hilo termine
-//                if (siguienteDialogo != null) {
-//                    siguienteDialogo.start();  // Iniciar el siguiente hilo después
-//                }
-//            } catch (InterruptedException e) {
-//                Thread.currentThread().interrupt();
-//            }
-//        }).start();
-//    }
+    public void siguienteNivel() {
+        escena.reset();
+        escena.agregarDialogo(apu.getUbicacion().getHistoria());
+        escena.agregarDialogo(apu.getUbicacion().getAcertijo());
+        escena.mostrarParte(false);
+        lblNivel.setText(apu.getUbicacion().getTitulo());
+        pnlJuego.revalidate();
+        pnlJuego.repaint();
+    }
+
+    int yPosition = 200;
+    Color color = new Color(80, 80, 80);
+
+    public void mostarIntro() {
+        pnlIntro.setLocation(0, 0);
+        pnlIntro.setSize(1920, 1080);
+        pnlIntro.setVisible(true);
+        lblIntro.setForeground(new Color(80, 80, 80));
+
+        this.add(pnlIntro);
+
+        this.revalidate();
+        this.repaint();
+
+        Thread inthread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while (yPosition > 50 || !color.equals(Color.WHITE)) {
+                        if (yPosition > 50) {
+                            yPosition -= 2;
+                        }
+
+                        if (color.getRed() < 255) { // Cambiar color a blanco
+                            int red = Math.min(255, color.getRed() + 2);
+                            int green = Math.min(255, color.getGreen() + 2);
+                            int blue = Math.min(255, color.getBlue() + 2);
+                            color = new Color(red, green, blue);
+                        }
+
+                        // Actualizar la posición y el color en el EDT
+                        SwingUtilities.invokeLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                lblIntro.setBounds(360, yPosition, 1200, 190);
+                                lblIntro.setForeground(color);
+                            }
+                        });
+
+                        Thread.sleep(30); // Pausar brevemente entre cada actualización
+                    }
+
+                    // Después de la animación, escribir el texto carácter por carácter
+                    e = new Escena();
+                    e.escribirDialogo(Intro.HISTORIA.getText());
+                    e.setArea(txtIntro);
+
+                    if (!e.getEscritor().isAlive()) {
+                        mostrarMenu();
+                    }
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        inthread.start(); // Iniciar el hilo de la animación
+
+    }
+
 }

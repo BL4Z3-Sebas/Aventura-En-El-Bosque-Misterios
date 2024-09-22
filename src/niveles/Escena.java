@@ -13,37 +13,8 @@ public final class Escena {
     private JTextArea area;
 
     public Escena() {
-
-//        dividirDialogo(dialogo);
     }
 
-//    public static Escena getInstancia() {
-//        if (instancia == null) {
-//            instancia = new Escena();
-//        }
-//        return instancia;
-//    }
-//    private void dividirDialogo(String dialogo) {
-//        StringBuilder parteActual = new StringBuilder();
-//        java.util.List<String> listaPartes = new java.util.ArrayList<>();
-//        int longitudMaxima = 420;
-//
-//        for (String palabra : dialogo.split(" ")) {
-//            if (parteActual.length() + palabra.length() + 1 > longitudMaxima) {
-//                listaPartes.add(parteActual.toString().trim());
-//                parteActual = new StringBuilder();
-//            }
-//            parteActual.append(palabra).append(" ");
-//        }
-//
-//        // Añadir la última parte
-//        if (parteActual.length() > 0) {
-//            listaPartes.add(parteActual.toString().trim());
-//        }
-//
-//        partesDialogo = listaPartes.toArray(new String[0]);
-////        mostrarParte(false);
-//    }
     public void mostrarParte(boolean esRetroceso) {
         area.setText("");
 
@@ -52,8 +23,6 @@ public final class Escena {
         } else {
             escribirDialogo(dialogos.get(indiceParte));
         }
-
-//        actualizarBotones();
     }
 
     public void parteSiguiente() {
@@ -61,7 +30,6 @@ public final class Escena {
             indiceParte++;
             mostrarParte(false);
         }
-//            mostrarOpciones();
     }
 
     public void parteAnterior() throws InterruptedException {
@@ -72,7 +40,6 @@ public final class Escena {
     }
 
     public void escribirDialogo(String dialogo) {
-        // Crear un hilo para manejar la ejecución en segundo plano
         escritor = new Thread(() -> {
             char[] caracteres = dialogo.toCharArray();
             for (char c : caracteres) {
@@ -95,19 +62,7 @@ public final class Escena {
                 }
             }
         });
-
         escritor.start();
-//        new Thread(() -> {
-//            try {
-//                thread.join();  // Esperar a que el primer hilo termine
-//                if (siguienteDialogo != null) {
-//                    siguienteDialogo.start();  // Iniciar el siguiente hilo después
-//                }
-//            } catch (InterruptedException e) {
-//                Thread.currentThread().interrupt();
-//            }
-//        }).start();
-
     }
 
     public Thread getEscritor() {
