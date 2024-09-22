@@ -142,10 +142,12 @@ public class MainFrame extends javax.swing.JFrame {
         pnlJuego.setBackground(new java.awt.Color(0, 0, 0));
         pnlJuego.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblIzquierda.setBackground(new java.awt.Color(0, 0, 0));
         lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 0, 200)); // NOI18N
         lblIzquierda.setForeground(new java.awt.Color(150, 150, 150));
         lblIzquierda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIzquierda.setText("<");
+        lblIzquierda.setOpaque(true);
         lblIzquierda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblIzquierdaMouseClicked(evt);
@@ -159,10 +161,12 @@ public class MainFrame extends javax.swing.JFrame {
         });
         pnlJuego.add(lblIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 900));
 
+        lblDerecha.setBackground(new java.awt.Color(0, 0, 0));
         lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 0, 200)); // NOI18N
         lblDerecha.setForeground(new java.awt.Color(150, 150, 150));
         lblDerecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDerecha.setText(">");
+        lblDerecha.setOpaque(true);
         lblDerecha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblDerechaMouseClicked(evt);
@@ -328,12 +332,14 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         lblIzquierda.setForeground(Color.white);
         lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 1, 210));
+        lblIzquierda.setBackground(new Color(20, 20, 20));
     }//GEN-LAST:event_lblIzquierdaMouseEntered
 
     private void lblIzquierdaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIzquierdaMouseExited
         // TODO add your handling code here:
         lblIzquierda.setForeground(Paleta.GRIS_OSCURO.getColor());
         lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 0, 200));
+        lblIzquierda.setBackground(Color.black);
     }//GEN-LAST:event_lblIzquierdaMouseExited
 
     private void lblIzquierdaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIzquierdaMouseClicked
@@ -346,12 +352,14 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         lblDerecha.setForeground(Color.white);
         lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 1, 210));
+        lblDerecha.setBackground(new Color(20, 20, 20));
     }//GEN-LAST:event_lblDerechaMouseEntered
 
     private void lblDerechaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDerechaMouseExited
         // TODO add your handling code here:
         lblDerecha.setForeground(Paleta.GRIS_OSCURO.getColor());
         lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 0, 200));
+        lblDerecha.setBackground(Color.black);
     }//GEN-LAST:event_lblDerechaMouseExited
 
     private void lblDerechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDerechaMouseClicked
@@ -463,7 +471,7 @@ public class MainFrame extends javax.swing.JFrame {
 
                 longitud++;
 
-                if (longitud >= 130 && caracterActual == ' ') {
+                if (longitud >= 140 && caracterActual == ' ') {
                     SwingUtilities.invokeLater(() -> txtdialogo.append("\n"));
                     longitud = 0;
                 }
@@ -473,8 +481,8 @@ public class MainFrame extends javax.swing.JFrame {
                     switch (caracterActual) {
                         case '.':
                             Thread.sleep(500);  // Pausa más larga después de un punto
-                            SwingUtilities.invokeLater(() -> txtdialogo.append("\n"));  // Saltar línea después de un punto
-                            longitud = 0;
+//                            SwingUtilities.invokeLater(() -> txtdialogo.append("\n"));  // Saltar línea después de un punto
+//                            longitud = 0;
                             break;
                         case ',':
                             Thread.sleep(200);  // Pausa corta entre palabras (después de un espacio)
