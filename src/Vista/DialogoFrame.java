@@ -1,11 +1,12 @@
 package Vista;
 
-import escena.Escena;
-import java.io.PrintStream;
+import arbol.Arbol;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
+import niveles.Apuntador;
 import niveles.GeneradorNiveles;
 import niveles.Nivel;
 
@@ -18,12 +19,17 @@ public class DialogoFrame extends javax.swing.JFrame {
     /**
      * Creates new form Escenario
      */
+    Arbol arbol = Arbol.getInstancia();
+    Apuntador ap = Apuntador.getInstancia();
     public static String Nivel;
     public static Nivel nivel_static;
     public static boolean continuarAcertijo = false;
 
     public DialogoFrame() {
         initComponents();
+
+        GeneradorNiveles.generarArbolNiveles();
+        ap.setNodo(arbol.getRaiz());
     }
 
     /**
@@ -51,7 +57,7 @@ public class DialogoFrame extends javax.swing.JFrame {
 
         TextArea1.setEditable(false);
         TextArea1.setColumns(20);
-        TextArea1.setFont(new java.awt.Font("Times New Roman", 0, 19)); // NOI18N
+        TextArea1.setFont(new java.awt.Font("Blackadder ITC", 0, 30)); // NOI18N
         TextArea1.setRows(5);
         jScrollPane1.setViewportView(TextArea1);
 
@@ -78,8 +84,8 @@ public class DialogoFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(Button1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 244, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -112,7 +118,7 @@ public class DialogoFrame extends javax.swing.JFrame {
         if (continuarAcertijo) {
             AcertijoFrame x = new AcertijoFrame();
             x.setVisible(true);
-            x.mostrarAcertijo(nivel_static);
+            x.mostrarAcertijo(ap.getUbicacion());
         }
     }//GEN-LAST:event_Button1ActionPerformed
 
@@ -154,18 +160,12 @@ public class DialogoFrame extends javax.swing.JFrame {
 
     public void mostrarHistoria(String level) throws UnsupportedEncodingException {
         try {
-            System.setOut(new PrintStream(System.out, true, "utf-8"));
             TextArea1.setText("");
-            Nivel nivel = new Nivel();
-            nivel = GeneradorNiveles.crearNivel(level);
-            nivel_static = nivel;
-            TextArea1.append("                                               " + nivel.getTitulo());
+            TextArea1.append("                                               " + ap.getUbicacion().getTitulo());
             TextArea1.append("\n");
 
-            Escena escena = new Escena();
-
             // Ejecutar el audio en un hilo separado
-            escribirDialogo(nivel.getHistoria());
+            escribirDialogo(ap.getUbicacion().getHistoria());
 
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -174,54 +174,97 @@ public class DialogoFrame extends javax.swing.JFrame {
     }
 
     public void escribirDialogo(String dialogo) {
-        // Usar un SwingWorker para manejar la ejecución en segundo plano
-        SwingWorker<Void, String> worker;
-        worker = new SwingWorker<>() {
-            @Override
-            protected Void doInBackground() {
-                String[] palabras = dialogo.split("\\s+");
-                int longitud = 0;
+        // Crear un hilo para manejar la ejecución en segundo plano
+        Thread thread = new Thread(() -> {
+            char[] caracteres = dialogo.toCharArray();  // Convertir el diálogo a un array de caracteres
+            int longitud = 0;
 
-                for (String palabra : palabras) {
-                    publish(palabra);
-                    longitud += palabra.length() + 1;
+            for (char c : caracteres) {
+                final char caracterActual = c;  // Necesario para acceder al carácter dentro de invokeLater
 
-                    if (longitud >= 65) {
-                        publish("\n");
-                        longitud = 0;
-                    }
+                // Publicar el carácter en el JTextArea (esto debe hacerse en el Event Dispatch Thread)
+                SwingUtilities.invokeLater(() -> TextArea1.append(String.valueOf(caracterActual)));
 
-                    try {
-                        if (palabra.endsWith("Dr.")) {
-                            Thread.sleep(250);
-                        } else {
-                            if (palabra.endsWith(".")) {
-                                Thread.sleep(800);  // Pausa más larga después de un punto
-                                publish("\n");  // Saltar línea después de un punto
-                                longitud = 0;
-                            } else {
-                                Thread.sleep(250);  // Pausa corta entre palabras
-                            }
-                        }
+                longitud++;
 
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                    }
+                if (longitud >= 65 && caracterActual == ' ') {
+                    SwingUtilities.invokeLater(() -> TextArea1.append("\n"));
+                    longitud = 0;
                 }
 
-                return null;
-            }
-
-            @Override
-            protected void process(java.util.List<String> chunks) {
-                for (String palabra : chunks) {
-                    TextArea1.append(palabra + " ");  // Mostrar la palabra en el JTextArea
+                try {
+                    // Añadir pausas dependiendo del carácter
+                    switch (caracterActual) {
+                        case '.':
+                            Thread.sleep(500);  // Pausa más larga después de un punto
+                            SwingUtilities.invokeLater(() -> TextArea1.append("\n"));  // Saltar línea después de un punto
+                            longitud = 0;
+                            break;
+                        case ',':
+                            Thread.sleep(200);  // Pausa corta entre palabras (después de un espacio)
+                            break;
+                        default:
+                            Thread.sleep(50);  // Pausa corta entre caracteres
+                            break;
+                    }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
                 }
             }
-        };
+        });
 
-        worker.execute();  // Iniciar el SwingWorker
+        thread.start();  // Iniciar el hilo
     }
+
+//    public void escribirDialogo(String dialogo) {
+//        // Usar un SwingWorker para manejar la ejecución en segundo plano
+//        SwingWorker<Void, String> worker;
+//        worker = new SwingWorker<>() {
+//            @Override
+//            protected Void doInBackground() {
+//                String[] palabras = dialogo.split("\\s+");
+//                int longitud = 0;
+//
+//                for (String palabra : palabras) {
+//                    publish(palabra);
+//                    longitud += palabra.length() + 1;
+//
+//                    if (longitud >= 65) {
+//                        publish("\n");
+//                        longitud = 0;
+//                    }
+//
+//                    try {
+//                        if (palabra.endsWith("Dr.")) {
+//                            Thread.sleep(250);
+//                        } else {
+//                            if (palabra.endsWith(".")) {
+//                                Thread.sleep(800);  // Pausa más larga después de un punto
+//                                publish("\n");  // Saltar línea después de un punto
+//                                longitud = 0;
+//                            } else {
+//                                Thread.sleep(250);  // Pausa corta entre palabras
+//                            }
+//                        }
+//
+//                    } catch (InterruptedException e) {
+//                        Thread.currentThread().interrupt();
+//                    }
+//                }
+//
+//                return null;
+//            }
+//
+//            @Override
+//            protected void process(java.util.List<String> chunks) {
+//                for (String palabra : chunks) {
+//                    TextArea1.append(palabra + " ");  // Mostrar la palabra en el JTextArea
+//                }
+//            }
+//        };
+//
+//        worker.execute();  // Iniciar el SwingWorker
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Button1;

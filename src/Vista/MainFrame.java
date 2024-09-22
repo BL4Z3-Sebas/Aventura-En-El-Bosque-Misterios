@@ -1,11 +1,18 @@
 package Vista;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import Sonido.Audio;
+import arbol.Arbol;
+import javax.swing.SwingUtilities;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
+import niveles.Apuntador;
+import niveles.GeneradorNiveles;
 
 /**
  *
@@ -14,12 +21,17 @@ import Sonido.Audio;
 public class MainFrame extends javax.swing.JFrame {
 
     Audio bgAudio = new Audio("src/archivos/sonidos/Escape.wav", 50);
+    Arbol arbol = Arbol.getInstancia();
+    Apuntador apu = Apuntador.getInstancia();
 
     public MainFrame() {
         bgAudio.loopSound();
         initComponents();
         cargarArbol();
         mostrarMenu();
+        GeneradorNiveles.generarArbolNiveles();
+        apu.setNodo(arbol.getRaiz());
+
     }
 
     /**
@@ -38,7 +50,12 @@ public class MainFrame extends javax.swing.JFrame {
         lblSalir = new javax.swing.JLabel();
         pnlArbol = new javax.swing.JPanel();
         pnlJuego = new javax.swing.JPanel();
-        lblBackground = new javax.swing.JLabel();
+        lblIzquierda = new javax.swing.JLabel();
+        lblDerecha = new javax.swing.JLabel();
+        lblNivel = new javax.swing.JLabel();
+        lblEscena = new javax.swing.JLabel();
+        spnDialogo = new javax.swing.JScrollPane();
+        txtdialogo = new javax.swing.JTextArea();
 
         pnlMenu.setBackground(new java.awt.Color(0, 0, 0));
         pnlMenu.setPreferredSize(new java.awt.Dimension(700, 1080));
@@ -126,10 +143,68 @@ public class MainFrame extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        pnlJuego.setBackground(new java.awt.Color(0, 0, 0));
         pnlJuego.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/archivos/imagenes/Lab2R.jpeg"))); // NOI18N
-        pnlJuego.add(lblBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1920, 1080));
+        lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 0, 200)); // NOI18N
+        lblIzquierda.setForeground(new java.awt.Color(150, 150, 150));
+        lblIzquierda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIzquierda.setText("<");
+        lblIzquierda.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblIzquierdaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblIzquierdaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblIzquierdaMouseExited(evt);
+            }
+        });
+        pnlJuego.add(lblIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 900));
+
+        lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 0, 200)); // NOI18N
+        lblDerecha.setForeground(new java.awt.Color(150, 150, 150));
+        lblDerecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDerecha.setText(">");
+        lblDerecha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDerechaMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblDerechaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblDerechaMouseExited(evt);
+            }
+        });
+        pnlJuego.add(lblDerecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(1760, 0, 160, 900));
+
+        lblNivel.setFont(new java.awt.Font("Blackadder ITC", 0, 40)); // NOI18N
+        lblNivel.setForeground(new java.awt.Color(255, 255, 255));
+        lblNivel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblNivel.setText("Laboratorio del Dr Stomps");
+        pnlJuego.add(lblNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 900, 1800, 50));
+
+        lblEscena.setIcon(new javax.swing.ImageIcon(getClass().getResource("/archivos/imagenes/Lab2R.jpeg"))); // NOI18N
+        pnlJuego.add(lblEscena, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 1600, 900));
+
+        spnDialogo.setBackground(new java.awt.Color(0, 0, 0));
+        spnDialogo.setBorder(null);
+        spnDialogo.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        spnDialogo.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        txtdialogo.setEditable(false);
+        txtdialogo.setBackground(new java.awt.Color(0, 0, 0));
+        txtdialogo.setColumns(20);
+        txtdialogo.setFont(new java.awt.Font("Blackadder ITC", 0, 36)); // NOI18N
+        txtdialogo.setForeground(new java.awt.Color(255, 255, 255));
+        txtdialogo.setRows(5);
+        txtdialogo.setBorder(null);
+        txtdialogo.setFocusable(false);
+        spnDialogo.setViewportView(txtdialogo);
+
+        pnlJuego.add(spnDialogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 950, 1720, 130));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -179,8 +254,10 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void lblJugarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJugarMouseClicked
         // TODO add your handling code here:
-        this.getParent().removeAll();
+//        this.getParent().removeAll();
 //        MainFrame.cargarJuego();
+        mostrarJuego();
+        escribirDialogo(apu.getUbicacion().getHistoria());
     }//GEN-LAST:event_lblJugarMouseClicked
 
     private void lblJugarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJugarMouseEntered
@@ -198,12 +275,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_lblJugarMouseExited
 
     private void lblJugarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJugarMouseReleased
-        // TODO add your handling code here:
-//        pnlMenu.setVisible(false);
-//        EscenarioPanel menu = new EscenarioPanel();
-//        menu.setLocation(0, 0);
-//        menu.setSize(1980, 1080);
-        mostrarJuego();
+        if (lblJugar.contains(evt.getX(), evt.getY())) {
+            lblJugarMouseClicked(evt);
+        }
     }//GEN-LAST:event_lblJugarMouseReleased
 
     private void lblAcercaDeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAcercaDeMouseClicked
@@ -254,6 +328,38 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lblSalirMouseReleased
 
+    private void lblIzquierdaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIzquierdaMouseEntered
+        // TODO add your handling code here:
+        lblIzquierda.setForeground(Color.white);
+        lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 1, 210));
+    }//GEN-LAST:event_lblIzquierdaMouseEntered
+
+    private void lblIzquierdaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIzquierdaMouseExited
+        // TODO add your handling code here:
+        lblIzquierda.setForeground(Paleta.GRIS_OSCURO.getColor());
+        lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 0, 200));
+    }//GEN-LAST:event_lblIzquierdaMouseExited
+
+    private void lblIzquierdaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIzquierdaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblIzquierdaMouseClicked
+
+    private void lblDerechaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDerechaMouseEntered
+        // TODO add your handling code here:
+        lblDerecha.setForeground(Color.white);
+        lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 1, 210));
+    }//GEN-LAST:event_lblDerechaMouseEntered
+
+    private void lblDerechaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDerechaMouseExited
+        // TODO add your handling code here:
+        lblDerecha.setForeground(Paleta.GRIS_OSCURO.getColor());
+        lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 0, 200));
+    }//GEN-LAST:event_lblDerechaMouseExited
+
+    private void lblDerechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDerechaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblDerechaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -280,6 +386,9 @@ public class MainFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -291,13 +400,18 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblAcercaDe;
-    private javax.swing.JLabel lblBackground;
+    private javax.swing.JLabel lblDerecha;
+    private javax.swing.JLabel lblEscena;
+    private javax.swing.JLabel lblIzquierda;
     private javax.swing.JLabel lblJugar;
+    private javax.swing.JLabel lblNivel;
     private javax.swing.JLabel lblSalir;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlArbol;
     private javax.swing.JPanel pnlJuego;
     private javax.swing.JPanel pnlMenu;
+    private javax.swing.JScrollPane spnDialogo;
+    private javax.swing.JTextArea txtdialogo;
     // End of variables declaration//GEN-END:variables
 
     public void mostrarMenu() {
@@ -334,4 +448,99 @@ public class MainFrame extends javax.swing.JFrame {
         pnlJuego.setVisible(true);
         this.add(pnlJuego);
     }
+
+    public void escribirDialogo(String dialogo) {
+        // Crear un hilo para manejar la ejecución en segundo plano
+        Thread thread = new Thread(() -> {
+            char[] caracteres = dialogo.toCharArray();  // Convertir el diálogo a un array de caracteres
+            int longitud = 0;
+
+            for (char c : caracteres) {
+                final char caracterActual = c;  // Necesario para acceder al carácter dentro de invokeLater
+
+                // Publicar el carácter en el JTextArea (esto debe hacerse en el Event Dispatch Thread)
+                SwingUtilities.invokeLater(() -> txtdialogo.append(String.valueOf(caracterActual)));
+
+                longitud++;
+
+                if (longitud >= 130 && caracterActual == ' ') {
+                    SwingUtilities.invokeLater(() -> txtdialogo.append("\n"));
+                    longitud = 0;
+                }
+
+                try {
+                    // Añadir pausas dependiendo del carácter
+                    switch (caracterActual) {
+                        case '.':
+                            Thread.sleep(500);  // Pausa más larga después de un punto
+                            SwingUtilities.invokeLater(() -> txtdialogo.append("\n"));  // Saltar línea después de un punto
+                            longitud = 0;
+                            break;
+                        case ',':
+                            Thread.sleep(200);  // Pausa corta entre palabras (después de un espacio)
+                            break;
+                        default:
+                            Thread.sleep(50);  // Pausa corta entre caracteres
+                            break;
+                    }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        });
+
+        thread.start();  // Iniciar el hilo
+    }
+
+//    public void escribirDialogoCentrado(String dialogo) {
+//        // Obtener el StyledDocument para el JTextPane
+//        StyledDocument doc = txtDialogo.getStyledDocument();
+//
+//        // Crear un conjunto de atributos para centrar el texto
+//        SimpleAttributeSet center = new SimpleAttributeSet();
+//        StyleConstants.setAlignment(center, StyleConstants.ALIGN_LEFT);
+//
+//        // Aplicar los atributos al documento
+//        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+//
+//        // Escribir el texto carácter por carácter
+//        Thread thread = new Thread(() -> {
+//            char[] caracteres = dialogo.toCharArray();
+//
+//            for (char c : caracteres) {
+//                final String caracterActual = String.valueOf(c);
+//                SwingUtilities.invokeLater(() -> {
+//                    try {
+//                        doc.insertString(doc.getLength(), caracterActual, null);  // Añadir cada carácter
+//                    } catch (BadLocationException e) {
+//                        e.printStackTrace();
+//                    }
+//                    try {
+//                        // Añadir pausas dependiendo del carácter
+//                        switch (c) {
+//                            case '.':
+//                                Thread.sleep(500);  // Pausa más larga después de un punto
+//                                break;
+//                            case ',':
+//                                Thread.sleep(200);  // Pausa corta entre palabras (después de un espacio)
+//                                break;
+//                            default:
+//                                Thread.sleep(50);  // Pausa corta entre caracteres
+//                                break;
+//                        }
+//                    } catch (InterruptedException e) {
+//                        Thread.currentThread().interrupt();
+//                    }
+//                });
+//
+//                try {
+//                    Thread.sleep(50);  // Pausa entre caracteres
+//                } catch (InterruptedException e) {
+//                    Thread.currentThread().interrupt();
+//                }
+//            }
+//        });
+//
+//        thread.start();
+//    }
 }

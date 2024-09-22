@@ -1,43 +1,53 @@
 package arbol;
 
-import escena.Escena;
+//import escena.Escena;
+import niveles.Nivel;
 
 public class Nodo {
 
-    private Nodo izq;
-    private Nodo der;
-    private Escena esc;
+    private Nodo left;
+    private Nodo right;
+    private Nivel nivel;
+//    private Escena esc;
 
     public Nodo() {
     }
 
-    public Nodo(Escena escena) {
-        this.esc = escena;
-        this.izq = null;
-        this.der = null;
+    public Nodo(Nivel nivel) {
+        this.nivel = nivel;
+        this.left = null;
+        this.right = null;
+    }
+    
+    public Nodo(int id){
+        Nivel n = new Nivel();
+        n.setId(id);
+        this.nivel = n;
+        this.left = null;
+        this.right = null;
     }
 
-    public Nodo getIzq() {
-        return izq;
+    public Nodo getLeft() {
+        return left;
     }
 
-    public void setIzq(Nodo izq) {
-        this.izq = izq;
+    public void setLeft(Nodo left) {
+        this.left = left;
     }
 
-    public Nodo getDer() {
-        return der;
+    public Nodo getRight() {
+        return right;
     }
 
-    public void setDer(Nodo der) {
-        this.der = der;
+    public void setRight(Nodo right) {
+        this.right = right;
     }
 
-    public Escena getEsc() {
-        return esc;
+    public Nivel getNivel() {
+        return nivel;
     }
 
-    public void setEsc(Escena esc) {
-        this.esc = esc;
+    public void setNivel(Nivel nivel) {
+        this.nivel = nivel;
     }
 }

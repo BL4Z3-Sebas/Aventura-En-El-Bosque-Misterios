@@ -1,7 +1,9 @@
 package Vista;
 
+import arbol.Arbol;
 import java.util.Arrays;
 import java.util.Collections;
+import niveles.Apuntador;
 import niveles.GeneradorNiveles;
 import niveles.Nivel;
 
@@ -11,8 +13,14 @@ import niveles.Nivel;
  */
 public class AcertijoFrame extends javax.swing.JFrame {
 
+    Apuntador ap = Apuntador.getInstancia();
+    Arbol arbol = Arbol.getInstancia();
+
     public AcertijoFrame() {
         initComponents();
+
+        GeneradorNiveles.generarArbolNiveles();
+        ap.setNodo(arbol.getRaiz());
     }
 
     /**
@@ -125,10 +133,7 @@ public class AcertijoFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button1ActionPerformed
-        Nivel nivel = new Nivel();
-        nivel = GeneradorNiveles.crearNivel(DialogoFrame.Nivel);
-
-        if (nivel.getSolucion().equals(Button1.getText())) {
+        if (ap.getUbicacion().getSolucion().equals(Button1.getText())) {
             RespuestaLabel.setText("Correcto");
         } else {
             RespuestaLabel.setText("Incorrecto");
@@ -136,10 +141,7 @@ public class AcertijoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_Button1ActionPerformed
 
     private void Button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button2ActionPerformed
-        Nivel nivel = new Nivel();
-        nivel = GeneradorNiveles.crearNivel(DialogoFrame.Nivel);
-
-        if (nivel.getSolucion() == Button2.getText()) {
+        if (ap.getUbicacion().getSolucion() == Button2.getText()) {
             RespuestaLabel.setText("Correcto");
         } else {
             RespuestaLabel.setText("Incorrecto");
@@ -147,10 +149,7 @@ public class AcertijoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_Button2ActionPerformed
 
     private void Button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button3ActionPerformed
-        Nivel nivel = new Nivel();
-        nivel = GeneradorNiveles.crearNivel(DialogoFrame.Nivel);
-
-        if (nivel.getSolucion().equals(Button3.getText())) {
+        if (ap.getUbicacion().getSolucion().equals(Button3.getText())) {
             RespuestaLabel.setText("Correcto");
         } else {
             RespuestaLabel.setText("Incorrecto");
@@ -158,10 +157,7 @@ public class AcertijoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_Button3ActionPerformed
 
     private void Button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Button4ActionPerformed
-        Nivel nivel = new Nivel();
-        nivel = GeneradorNiveles.crearNivel(DialogoFrame.Nivel);
-
-        if (nivel.getSolucion().equals(Button4.getText())) {
+        if (ap.getUbicacion().getSolucion().equals(Button4.getText())) {
             RespuestaLabel.setText("Correcto");
         } else {
             RespuestaLabel.setText("Incorrecto");

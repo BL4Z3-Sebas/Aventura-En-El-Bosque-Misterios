@@ -1,5 +1,7 @@
 package niveles;
 
+import arbol.Arbol;
+import arbol.Nodo;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,9 +9,11 @@ import java.io.IOException;
 
 public class GeneradorNiveles {
 
-    public static Nivel crearNivel(String nivel) {
-        String dir = "src/archivos/" + nivel;
-        Nivel lvl = new Nivel();
+//    int[] id_niveles = {8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15};
+    static int[] id_niveles_temp = {8, 4, 12};
+
+    public static Nivel crearNivel(Nivel lvl, int nivel) {
+        String dir = "src/archivos/nivel_" + String.valueOf(nivel);
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(dir + "/historia.txt"));
@@ -34,5 +38,17 @@ public class GeneradorNiveles {
         }
 
         return lvl;
+    }
+
+    public static void generarArbolNiveles() {
+        Arbol a = Arbol.getInstancia();
+        for (int id : id_niveles_temp) {
+            Nivel nivel = new Nivel();
+            nivel.setId(id);
+            a.agregar(nivel);
+            nivel.setNum_nivel(a.alturaNivel(id));
+            nivel = crearNivel(nivel, nivel.getNum_nivel());
+//            a.actualizarNodo(nivel, nivel);
+        }
     }
 }
