@@ -39,10 +39,7 @@ public class Audio {
             volumen = 0;
         }
         this.volumenControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        float min = volumenControl.getMinimum();
-        float max = volumenControl.getMaximum();
-        float nuevoVolumen = min + (volumen / 100.0f) * (max - min);
-        this.volumenControl.setValue(nuevoVolumen);
+        this.volumenControl.setValue(volumen * 86f / 100 - 80.0f);
     }
 
     private void setReproductor() {
@@ -51,16 +48,20 @@ public class Audio {
                 this.clip.loop(Clip.LOOP_CONTINUOUSLY);
                 while (!Thread.currentThread().isInterrupted()) {
                     float volumenActual = this.volumenControl.getValue();
-                    if (volumenActual >= 6.0f) {
+                    if (volumenActual > 5f) {
                         break;
                     }
-                    this.volumenControl.setValue(volumenActual + 5f);
+                    this.volumenControl.setValue(volumenActual + 1f);
                     Thread.sleep(100);
                 }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();  // Asegurarse de que el hilo se interrumpa correctamente
             }
         });
+    }
+
+    public void ajustarVolumen(int volumen) {
+        this.volumenControl.setValue(volumen * 86f / 100 - 80.0f);
     }
 
     public void playSound() {

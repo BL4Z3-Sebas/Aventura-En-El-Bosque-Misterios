@@ -1,15 +1,15 @@
 package Main;
 
 import Vista.MainFrame;
-import escena.Escena;
 import imagen.Imagen;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collections;
 import Sonido.Audio;
+import arbol.Arbol;
+import niveles.Apuntador;
 import niveles.GeneradorNiveles;
-import niveles.Nivel;
 
 public class Main {
 
@@ -74,30 +74,33 @@ public class Main {
             }
         });
 
-        Nivel nivel = GeneradorNiveles.crearNivel("nivel_1");
-        System.out.println(nivel.getTitulo());
+//        Nivel nivel = GeneradorNiveles.crearNivel(1);
+        Arbol arbol = Arbol.getInstancia();
+        GeneradorNiveles.generarArbolNiveles();
+        Apuntador apuntador = Apuntador.getInstancia();
+        apuntador.setNodo(arbol.getRaiz());
+
+        System.out.println(apuntador.getUbicacion().getTitulo());
         System.out.println("");
-        Escena escena = new Escena();
 
         // Ejecutar el audio en un hilo separado
 //        Thread audioThread = new Thread(new AudioRunnable(escena, "Escape.wav"));
 //        audioThread.start();
-        Audio bgAudio = new Audio("src/musica/Escape.wav", 5);
+        Audio bgAudio = new Audio("src/archivos/sonidos/Escape.wav", 5);
         bgAudio.loopSound();
 
-//        Escena.escribirDialogo(nivel.getHistoria());
-//
-//        System.out.println("");
-//
-//        Escena.escribirAcertijo(nivel.getAcertijo());
+//        Escena.escribirDialogo(apuntador.getUbicacion().getHistoria());
+        System.out.println("");
+
+//        Escena.escribirAcertijo(apuntador.getUbicacion().getAcertijo());
         //System.out.println(nivel.getAcertijo().replace("\t", "\n"));
         System.out.println("");
 
-        Collections.shuffle(Arrays.asList(nivel.getRespuetas()));
-        System.out.println("Opciones: " + Arrays.toString(nivel.getRespuetas()));
+        Collections.shuffle(Arrays.asList(apuntador.getUbicacion().getRespuetas()));
+        System.out.println("Opciones: " + Arrays.toString(apuntador.getUbicacion().getRespuetas()));
         System.out.println("");
 
-        System.out.println("Solucion: " + nivel.getSolucion());
+        System.out.println("Solucion: " + apuntador.getUbicacion().getSolucion());
 
         //Juego juego = new Juego();      
         //juego.ejecutar();
