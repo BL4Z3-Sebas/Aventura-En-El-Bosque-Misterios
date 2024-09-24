@@ -53,7 +53,7 @@ public final class Escena {
                 dormirPorCaracter(caracterActual);
             }
         });
-        escritor.start();
+               escritor.start();
     }
 
     private void dormirPorCaracter(char caracter) {
