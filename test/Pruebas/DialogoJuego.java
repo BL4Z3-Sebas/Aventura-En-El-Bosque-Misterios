@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DialogoJuego {
+
     private int indiceParte = 0;  // Índice de la parte actual del diálogo
     private String[] partesDialogo;  // Partes en las que se dividirá el diálogo
     private JTextArea area;
@@ -27,7 +28,7 @@ public class DialogoJuego {
     // Método para mostrar la parte actual del diálogo
     private void mostrarParte(boolean esRetroceso) {
         area.setText("");  // Limpiar el área de texto
-        
+
         if (esRetroceso) {
             // Si es retroceso, mostrar directamente el texto completo de esa parte
             area.setText(partesDialogo[indiceParte]);
@@ -35,7 +36,7 @@ public class DialogoJuego {
             // Si es avance, escribirlo carácter por carácter
             escribirDialogo(partesDialogo[indiceParte]);
         }
-        
+
         actualizarBotones();
     }
 
@@ -133,13 +134,13 @@ public class DialogoJuego {
             JButton btnSiguiente = new JButton("Siguiente");
             JButton btnAnterior = new JButton("Anterior");
             JPanel panelDecisiones = new JPanel();
-            
+
             DialogoJuego dialogoJuego = new DialogoJuego(areaTexto, btnSiguiente, btnAnterior, panelDecisiones);
 
             // Dividir y mostrar el diálogo
-            dialogoJuego.dividirDialogo("Este es el diálogo inicial de prueba que se mostrará en partes. " +
-                                        "Cada parte tiene una longitud limitada de 140 caracteres. " +
-                                        "Cuando termines de leer esta parte, se mostrará otra parte. Aquí puede continuar el diálogo.");
+            dialogoJuego.dividirDialogo("Este es el diálogo inicial de prueba que se mostrará en partes. "
+                    + "Cada parte tiene una longitud limitada de 140 caracteres. "
+                    + "Cuando termines de leer esta parte, se mostrará otra parte. Aquí puede continuar el diálogo.");
 
             dialogoJuego.configurarBotones();
 
@@ -163,5 +164,3 @@ public class DialogoJuego {
         });
     }
 }
-
-

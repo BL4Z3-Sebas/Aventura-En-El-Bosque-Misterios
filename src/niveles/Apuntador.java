@@ -11,7 +11,7 @@ public class Apuntador {
     private Nivel ubicacion;
     private Nodo nodo;
     private static Apuntador instancia;
-    
+
     private Apuntador() {
 
     }
