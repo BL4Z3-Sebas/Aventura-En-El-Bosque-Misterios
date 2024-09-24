@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import java.awt.Color;
+
 /**
  *
  * @author Alfonso
@@ -26,21 +28,147 @@ public class AcercaDeFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        pnlBackground = new javax.swing.JPanel();
+        lblTeam = new javax.swing.JLabel();
+        lblIntro = new javax.swing.JLabel();
+        lblAndres = new javax.swing.JLabel();
+        lblDavid = new javax.swing.JLabel();
+        lblDiseño = new javax.swing.JLabel();
+        lblAlfonso = new javax.swing.JLabel();
+        lblSebastian = new javax.swing.JLabel();
+        lblGerente = new javax.swing.JLabel();
+        lblUI = new javax.swing.JLabel();
+        lblCreaativo = new javax.swing.JLabel();
+        lblCerrar = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+                formWindowLostFocus(evt);
+            }
+        });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        pnlBackground.setBackground(new java.awt.Color(0, 0, 0));
+        pnlBackground.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        pnlBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblTeam.setFont(new java.awt.Font("Papyrus", 0, 20)); // NOI18N
+        lblTeam.setForeground(new java.awt.Color(204, 204, 204));
+        lblTeam.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTeam.setText("Time Treep Team");
+        pnlBackground.add(lblTeam, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 165, 440, 30));
+
+        lblIntro.setBackground(new java.awt.Color(255, 255, 255));
+        lblIntro.setFont(new java.awt.Font("Blackadder ITC", 0, 60)); // NOI18N
+        lblIntro.setForeground(new java.awt.Color(204, 204, 204));
+        lblIntro.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblIntro.setText("FRACTALUM");
+        pnlBackground.add(lblIntro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 460, 80));
+
+        lblAndres.setFont(new java.awt.Font("Papyrus", 1, 18)); // NOI18N
+        lblAndres.setForeground(new java.awt.Color(204, 204, 204));
+        lblAndres.setText("Andres Forero");
+        pnlBackground.add(lblAndres, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 200, 30));
+
+        lblDavid.setFont(new java.awt.Font("Papyrus", 1, 18)); // NOI18N
+        lblDavid.setForeground(new java.awt.Color(204, 204, 204));
+        lblDavid.setText("David Gutierrez");
+        pnlBackground.add(lblDavid, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, 200, 30));
+
+        lblDiseño.setFont(new java.awt.Font("Papyrus", 0, 18)); // NOI18N
+        lblDiseño.setForeground(new java.awt.Color(204, 204, 204));
+        lblDiseño.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblDiseño.setText("Director de Diseño");
+        pnlBackground.add(lblDiseño, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 200, 30));
+
+        lblAlfonso.setFont(new java.awt.Font("Papyrus", 1, 18)); // NOI18N
+        lblAlfonso.setForeground(new java.awt.Color(204, 204, 204));
+        lblAlfonso.setText("Alfonso Cohen");
+        pnlBackground.add(lblAlfonso, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, 200, 30));
+
+        lblSebastian.setFont(new java.awt.Font("Papyrus", 1, 18)); // NOI18N
+        lblSebastian.setForeground(new java.awt.Color(204, 204, 204));
+        lblSebastian.setText("Sebastian Cotes");
+        pnlBackground.add(lblSebastian, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 200, 30));
+
+        lblGerente.setFont(new java.awt.Font("Papyrus", 0, 18)); // NOI18N
+        lblGerente.setForeground(new java.awt.Color(204, 204, 204));
+        lblGerente.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblGerente.setText("Gerente del Proyecto");
+        pnlBackground.add(lblGerente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 200, 30));
+
+        lblUI.setFont(new java.awt.Font("Papyrus", 0, 18)); // NOI18N
+        lblUI.setForeground(new java.awt.Color(204, 204, 204));
+        lblUI.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUI.setText("Director UI/UX");
+        pnlBackground.add(lblUI, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 200, 30));
+
+        lblCreaativo.setFont(new java.awt.Font("Papyrus", 0, 18)); // NOI18N
+        lblCreaativo.setForeground(new java.awt.Color(204, 204, 204));
+        lblCreaativo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCreaativo.setText("Director Creativo");
+        pnlBackground.add(lblCreaativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 200, 30));
+
+        lblCerrar.setBackground(new java.awt.Color(102, 0, 0));
+        lblCerrar.setFont(new java.awt.Font("Papyrus", 0, 36)); // NOI18N
+        lblCerrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCerrar.setText("×");
+        lblCerrar.setOpaque(true);
+        lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseReleased(evt);
+            }
+        });
+        pnlBackground.add(lblCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(678, 2, 40, 25));
+
+        getContentPane().add(pnlBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void lblCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseEntered
+        // TODO add your handling code here:
+        lblCerrar.setBackground(new Color(204, 0, 0));
+        lblCerrar.setForeground(new Color(204, 204, 204));
+    }//GEN-LAST:event_lblCerrarMouseEntered
+
+    private void lblCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseExited
+        // TODO add your handling code here:
+
+        lblCerrar.setBackground(new Color(102, 0, 0));
+        lblCerrar.setForeground(Color.black);
+    }//GEN-LAST:event_lblCerrarMouseExited
+
+    private void lblCerrarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseReleased
+        // TODO add your handling code here:
+        if (lblCerrar.contains(evt.getX(), evt.getY())) {
+            lblCerrarMouseClicked(evt);
+        }
+    }//GEN-LAST:event_lblCerrarMouseReleased
+
+    private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
+        // TODO add your handling code here:
+                this.dispose();
+    }//GEN-LAST:event_formWindowLostFocus
 
     /**
      * @param args the command line arguments
@@ -78,5 +206,17 @@ public class AcercaDeFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblAlfonso;
+    private javax.swing.JLabel lblAndres;
+    private javax.swing.JLabel lblCerrar;
+    private javax.swing.JLabel lblCreaativo;
+    private javax.swing.JLabel lblDavid;
+    private javax.swing.JLabel lblDiseño;
+    private javax.swing.JLabel lblGerente;
+    private javax.swing.JLabel lblIntro;
+    private javax.swing.JLabel lblSebastian;
+    private javax.swing.JLabel lblTeam;
+    private javax.swing.JLabel lblUI;
+    private javax.swing.JPanel pnlBackground;
     // End of variables declaration//GEN-END:variables
 }
