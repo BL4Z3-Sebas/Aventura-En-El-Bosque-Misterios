@@ -14,6 +14,7 @@ public class Nivel {
     private String solucion;
     private boolean visitado;
     private Audio audio;
+    private String rutaImagen;
 
     public Nivel() {
         this.visitado = false;
@@ -99,4 +100,13 @@ public class Nivel {
     public void setSolucion(String solucion) {
         this.solucion = solucion;
     }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
+
+    public String getRutaImagen() {
+        return rutaImagen;
+    }
+
 }

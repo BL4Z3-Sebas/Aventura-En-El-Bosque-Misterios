@@ -25,8 +25,6 @@ public final class MainFrame extends javax.swing.JFrame {
     Apuntador apu = Apuntador.getInstancia();
     Escena escena = new Escena();
     Escena e = new Escena();
-    boolean intro = false;
-
     ;
 
     public MainFrame() {
@@ -41,6 +39,8 @@ public final class MainFrame extends javax.swing.JFrame {
         escena.agregarDialogo(apu.getUbicacion().getHistoria());
         escena.agregarDialogo(apu.getUbicacion().getAcertijo());
         lblNivel.setText(apu.getUbicacion().getTitulo());
+        cambiarImagenNivel("/archivos/imagenes/Laboratorio del Dr. Stomps.jpeg");
+        //"/archivos/imagenes/Lab2R.jpeg"
     }
 
     /**
@@ -64,7 +64,7 @@ public final class MainFrame extends javax.swing.JFrame {
         lblIzquierda = new javax.swing.JLabel();
         lblDerecha = new javax.swing.JLabel();
         lblNivel = new javax.swing.JLabel();
-        lblEscena = new javax.swing.JLabel();
+        lblNivelImage = new javax.swing.JLabel();
         spnDialogo = new javax.swing.JScrollPane();
         txtdialogo = new javax.swing.JTextArea();
         pnlIntro = new javax.swing.JPanel();
@@ -244,9 +244,7 @@ public final class MainFrame extends javax.swing.JFrame {
         lblNivel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblNivel.setText("Laboratorio del Dr Stomps");
         pnlJuego.add(lblNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 850, 1800, 50));
-
-        lblEscena.setIcon(new javax.swing.ImageIcon(getClass().getResource("/archivos/imagenes/Lab2R.jpeg"))); // NOI18N
-        pnlJuego.add(lblEscena, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 1600, 850));
+        pnlJuego.add(lblNivelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 1600, 850));
 
         spnDialogo.setBackground(new java.awt.Color(0, 0, 0));
         spnDialogo.setBorder(null);
@@ -377,7 +375,7 @@ public final class MainFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(sldVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 1060, Short.MAX_VALUE))
+                .addGap(0, 1164, Short.MAX_VALUE))
         );
 
         pack();
@@ -673,11 +671,11 @@ public final class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblContinuar;
     private javax.swing.JLabel lblDerecha;
-    private javax.swing.JLabel lblEscena;
     private javax.swing.JLabel lblIntro;
     private javax.swing.JLabel lblIzquierda;
     private javax.swing.JLabel lblJugar;
     private javax.swing.JLabel lblNivel;
+    private javax.swing.JLabel lblNivelImage;
     private javax.swing.JLabel lblPost;
     private javax.swing.JLabel lblPrev;
     private javax.swing.JLabel lblSalir;
@@ -720,7 +718,6 @@ public final class MainFrame extends javax.swing.JFrame {
     private void mostrarJuego() {
         pnlArbol.setVisible(false);
         pnlMenu.setVisible(false);
-
         pnlJuego.setSize(1920, 1080);
         pnlJuego.setLocation(0, 0);
         pnlJuego.setVisible(true);
@@ -733,8 +730,14 @@ public final class MainFrame extends javax.swing.JFrame {
         escena.agregarDialogo(apu.getUbicacion().getAcertijo());
         escena.mostrarParte(false);
         lblNivel.setText(apu.getUbicacion().getTitulo());
+        cambiarImagenNivel(apu.getUbicacion().getRutaImagen());
+        //"/archivos/imagenes/Lab2R.jpeg"
         pnlJuego.revalidate();
         pnlJuego.repaint();
+    }
+
+    private void cambiarImagenNivel(String ruta) {
+        lblNivelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
     }
 
     int yPosition = 200;

@@ -1,8 +1,6 @@
 package arbol;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 import niveles.Nivel;
 
 public class Arbol {

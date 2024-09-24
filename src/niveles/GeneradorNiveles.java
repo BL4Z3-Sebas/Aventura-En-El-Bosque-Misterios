@@ -48,6 +48,7 @@ public class GeneradorNiveles {
                 nivel.setTitulo(datosHistorias[0]);
                 nivel.setHistoria(datosHistorias[1]);
                 nivel.setAcertijo(datosAcertijos[0]);
+                nivel.setRutaImagen("src/archivos/imagenes/" + datosHistorias[0] + ".png");
 
                 String[] respuestas = datosAcertijos[1].split("/");
                 nivel.setSolucion(respuestas[0]);
