@@ -2,77 +2,78 @@ package niveles;
 
 import arbol.Arbol;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 public class GeneradorNiveles {
 
-    private static final int[] id_niveles = {8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15};
-    private static final Arbol arbol = Arbol.getInstancia();
-
-    public static void crearNivel(int altura) {
-        String dir = "src/archivos/nivel_" + String.valueOf(altura);
-
-        try {
-            ArrayList<String> historias = new ArrayList<>();
-            ArrayList<Nivel> niveles = arbol.obtenerNodosDeNivel(altura);
-            ArrayList<String> acertijos = new ArrayList<>();
-
-            BufferedReader br = new BufferedReader(new FileReader(dir + "/historia.txt"));
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                historias.add(linea);
-            }
-            br.close();
-
-            BufferedReader br2 = new BufferedReader(new FileReader(dir + "/acertijos.txt"));
-            String linea2;
-            while ((linea2 = br2.readLine()) != null) {
-                acertijos.add(linea2);
-            }
-            br.close();
-
-            Collections.shuffle(historias);
-            Collections.shuffle(acertijos);
-            Collections.shuffle(niveles);
-
-            for (int i = 0; i < niveles.size(); i++) {
-                Nivel nivel = niveles.get(i);
-                String[] datosHistorias = historias.get(i).split(";");
-                String[] datosAcertijos = acertijos.get(i).split(";");
-
-                nivel.setTitulo(datosHistorias[0]);
-                nivel.setHistoria(datosHistorias[1]);
-                nivel.setAcertijo(datosAcertijos[0]);
-                nivel.setRutaImagen("src/archivos/imagenes/" + datosHistorias[0] + ".png");
-
-                String[] respuestas = datosAcertijos[1].split("/");
-                nivel.setSolucion(respuestas[0]);
-                Collections.shuffle(Arrays.asList(respuestas));
-                nivel.setRespuetas(respuestas);
-            }
-
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-    }
+    private static final int[] ID_NIVELES = {8, 4, 2, 1, 3, 6, 5, 7, 12, 10, 9, 11, 14, 13, 15};
+    private static final Arbol ARBOL = Arbol.getInstancia();
+    private static final String BASE_DIR = "src/archivos/";
 
     public static void generarArbolNiveles() {
-        for (int id : id_niveles) {
+        for (int id : ID_NIVELES) {
             Nivel nivel = new Nivel();
             nivel.setId(id);
-            arbol.agregar(nivel);
-            nivel.setNum_nivel(arbol.alturaNivel(id));
-
+            ARBOL.agregar(nivel);
+            nivel.setNumNivel(ARBOL.alturaNivel(id));
         }
+
         for (int i = 1; i < 5; i++) {
             crearNivel(i);
         }
+    }
+
+    private static void crearNivel(int altura) {
+        List<String> historias = leerArchivo(BASE_DIR + "nivel_" + altura + "/historia.txt");
+        List<String> acertijos = leerArchivo(BASE_DIR + "nivel_" + altura + "/acertijos.txt");
+        List<Nivel> niveles = ARBOL.obtenerNodosDeNivel(altura);
+
+        if (historias.isEmpty() || acertijos.isEmpty()) {
+            System.err.println("Error: Archivos de historias o acertijos vacíos para el nivel " + altura);
+            return;
+        }
+
+        // Mezclar los elementos para aleatoriedad
+        Collections.shuffle(historias);
+        Collections.shuffle(acertijos);
+        Collections.shuffle(niveles);
+
+        // Asignar datos a los niveles
+        for (int i = 0; i < niveles.size(); i++) {
+            asignarDatosANivel(niveles.get(i), historias.get(i), acertijos.get(i));
+        }
+    }
+
+    private static List<String> leerArchivo(String ruta) {
+        List<String> lineas = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                lineas.add(linea);
+            }
+        } catch (IOException e) {
+            System.err.println("Error al leer archivo: " + ruta + " - " + e.getMessage());
+        }
+        return lineas;
+    }
+
+    private static void asignarDatosANivel(Nivel nivel, String historia, String acertijo) {
+        String[] datosHistoria = historia.split(";");
+        String[] datosAcertijo = acertijo.split(";");
+
+        nivel.setTitulo(datosHistoria[0]);
+        nivel.setHistoria(datosHistoria[1]);
+        nivel.setAcertijo(datosAcertijo[0]);
+        nivel.setRutaImagen(BASE_DIR + "imagenes/" + datosHistoria[0] + ".png");
+
+        String[] respuestas = datosAcertijo[1].split("/");
+        nivel.setSolucion(respuestas[0]);
+        Collections.shuffle(Arrays.asList(respuestas));
+        nivel.setRespuestas(respuestas);
     }
 }

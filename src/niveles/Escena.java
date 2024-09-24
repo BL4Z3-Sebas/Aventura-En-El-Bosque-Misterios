@@ -1,68 +1,77 @@
 package niveles;
 
+import javax.swing.*;
+import java.util.List;
 import java.util.ArrayList;
-import javax.swing.JTextArea;
-import javax.swing.SwingUtilities;
 
 public final class Escena {
-//    private static Escena instancia;
 
     private Thread escritor;
-    private ArrayList<String> dialogos = new ArrayList<>();
+    private List<String> dialogos = new ArrayList<>();
     private int indiceParte = 0;
     private JTextArea area;
+    private boolean dialogoCompleto = false; // Variable para rastrear si el diálogo completo se ha mostrado
 
     public Escena() {
     }
 
     public void mostrarParte(boolean esRetroceso) {
-        area.setText("");
-
         if (esRetroceso) {
             area.setText(dialogos.get(indiceParte));
+            dialogoCompleto = true; // Cuando retrocedes, se muestra el diálogo completo
         } else {
-            escribirDialogo(dialogos.get(indiceParte));
+            if (dialogoCompleto) {
+                // Si el diálogo ya se mostró completamente, solo lo mostramos sin reescribirlo
+                area.setText(dialogos.get(indiceParte));
+            } else {
+                area.setText(""); // Limpia el área antes de escribir
+                escribirDialogo(dialogos.get(indiceParte));
+            }
         }
     }
 
     public void parteSiguiente() {
-        if (indiceParte < dialogos.size() - 1) {
+        if (hayPosterior()) {
             indiceParte++;
             mostrarParte(false);
+            dialogoCompleto = true; // Marcar el diálogo como completo al avanzar
         }
     }
 
-    public void parteAnterior() throws InterruptedException {
-        if (indiceParte > 0 && !escritor.isAlive()) {
+    public void parteAnterior() {
+        if (hayPrevio() && !escritor.isAlive()) {
             indiceParte--;
             mostrarParte(true);
+            dialogoCompleto = true; // Al retroceder, se muestra el diálogo completo
         }
     }
 
-    public void escribirDialogo(String dialogo) {
+    private void escribirDialogo(String dialogo) {
         escritor = new Thread(() -> {
-            char[] caracteres = dialogo.toCharArray();
-            for (char c : caracteres) {
-                final char caracterActual = c;
+            for (char caracterActual : dialogo.toCharArray()) {
                 SwingUtilities.invokeLater(() -> area.append(String.valueOf(caracterActual)));
-                try {
-                    switch (caracterActual) {
-                        case '.':
-                            Thread.sleep(500);
-                            break;
-                        case ',':
-                            Thread.sleep(200);
-                            break;
-                        default:
-                            Thread.sleep(50);
-                            break;
-                    }
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
+                dormirPorCaracter(caracterActual);
             }
         });
         escritor.start();
+    }
+
+    private void dormirPorCaracter(char caracter) {
+        try {
+            switch (caracter) {
+                case '.':
+                    Thread.sleep(500);
+                    break;
+                case ',':
+                    Thread.sleep(200);
+                    break;
+                default:
+                    Thread.sleep(50);
+                    break;
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     public Thread getEscritor() {
@@ -94,7 +103,8 @@ public final class Escena {
     }
 
     public void reset() {
-        this.dialogos.clear();
-        this.indiceParte = 0;
+        dialogos.clear();
+        indiceParte = 0;
+        dialogoCompleto = false; // Reiniciar el estado del diálogo al restablecer
     }
 }

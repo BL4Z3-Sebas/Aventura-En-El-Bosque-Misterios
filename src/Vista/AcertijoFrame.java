@@ -204,8 +204,8 @@ public class AcertijoFrame extends javax.swing.JFrame {
 
         TextArea1.append(nivel.getAcertijo().replace("+", "\n"));
 
-        Collections.shuffle(Arrays.asList(nivel.getRespuetas()));
-        String Respuesta[] = nivel.getRespuetas();
+        Collections.shuffle(Arrays.asList(nivel.getRespuestas()));
+        String Respuesta[] = nivel.getRespuestas();
         Button1.setText(Respuesta[0]);
         Button2.setText(Respuesta[1]);
         Button3.setText(Respuesta[2]);

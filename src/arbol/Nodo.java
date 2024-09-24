@@ -1,6 +1,5 @@
 package arbol;
 
-//import escena.Escena;
 import niveles.Nivel;
 
 public class Nodo {
@@ -8,9 +7,9 @@ public class Nodo {
     private Nodo left;
     private Nodo right;
     private Nivel nivel;
-//    private Escena esc;
 
     public Nodo() {
+        this(null); // Llama al constructor que recibe un Nivel
     }
 
     public Nodo(Nivel nivel) {
@@ -20,9 +19,8 @@ public class Nodo {
     }
 
     public Nodo(int id) {
-        Nivel n = new Nivel();
-        n.setId(id);
-        this.nivel = n;
+        this.nivel = new Nivel();
+        this.nivel.setId(id);
         this.left = null;
         this.right = null;
     }
@@ -49,5 +47,14 @@ public class Nodo {
 
     public void setNivel(Nivel nivel) {
         this.nivel = nivel;
+    }
+
+    @Override
+    public String toString() {
+        return "Nodo{"
+                + "nivel=" + (nivel != null ? nivel.getId() : "null")
+                + ", left=" + (left != null ? left.nivel.getId() : "null")
+                + ", right=" + (right != null ? right.nivel.getId() : "null")
+                + '}';
     }
 }

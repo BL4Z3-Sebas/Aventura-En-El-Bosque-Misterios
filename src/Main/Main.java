@@ -39,8 +39,8 @@ public class Main {
         //System.out.println(nivel.getAcertijo().replace("\t", "\n"));
         System.out.println("");
 
-        Collections.shuffle(Arrays.asList(apuntador.getUbicacion().getRespuetas()));
-        System.out.println("Opciones: " + Arrays.toString(apuntador.getUbicacion().getRespuetas()));
+        Collections.shuffle(Arrays.asList(apuntador.getUbicacion().getRespuestas()));
+        System.out.println("Opciones: " + Arrays.toString(apuntador.getUbicacion().getRespuestas()));
         System.out.println("");
 
         System.out.println("Solucion: " + apuntador.getUbicacion().getSolucion());

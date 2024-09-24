@@ -3,15 +3,12 @@ package Vista;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
-import javax.swing.JOptionPane;
 import Sonido.Audio;
 import arbol.Arbol;
 import archivos.Intro;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import niveles.Apuntador;
 import niveles.Escena;
@@ -23,29 +20,18 @@ import niveles.GeneradorNiveles;
  */
 public final class MainFrame extends javax.swing.JFrame {
 
-    private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    private final int screenWidth = (int) getWidth();
-    private final int screenHeight = (int) getHeight();
-
-    //factorWidth y factorHeight
-    /**
-     *
-     */
-    public float fw = screenWidth / 1920;
-    public float fh = screenHeight / 1080;
-
     Audio bgAudio = new Audio("src/archivos/sonidos/Escape.wav", 50);
     Arbol arbol = Arbol.getInstancia();
     Apuntador apu = Apuntador.getInstancia();
     Escena escena = new Escena();
     Escena e = new Escena();
+
     ;
 
     public MainFrame() {
         initComponents();
         bgAudio.loopSound();
         cargarArbol();
-        mostarIntro();
 //        mostrarMenu();
         GeneradorNiveles.generarArbolNiveles();
         apu.setNodo(arbol.getRaiz());
@@ -54,6 +40,7 @@ public final class MainFrame extends javax.swing.JFrame {
         lblNivel.setText(apu.getUbicacion().getTitulo());
         cambiarImagenNivel("/archivos/imagenes/Laboratorio del Dr. Stomps.jpeg");
         //"/archivos/imagenes/Lab2R.jpeg"
+        mostrarIntro();
     }
 
     /**
@@ -64,7 +51,6 @@ public final class MainFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         pnlMenu = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
@@ -83,6 +69,7 @@ public final class MainFrame extends javax.swing.JFrame {
         txtdialogo = new javax.swing.JTextArea();
         pnlIntro = new javax.swing.JPanel();
         lblContinuar = new javax.swing.JLabel();
+        lblTeam = new javax.swing.JLabel();
         lblIntro = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtIntro = new javax.swing.JTextArea();
@@ -90,9 +77,14 @@ public final class MainFrame extends javax.swing.JFrame {
         lblCerrar = new javax.swing.JLabel();
 
         pnlMenu.setBackground(new java.awt.Color(0, 0, 0));
-        pnlMenu.setPreferredSize(new java.awt.Dimension((int) (700 * fw), (int) (1080)));
+        pnlMenu.setPreferredSize(new java.awt.Dimension(700, 1080));
+        pnlMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlMenuMouseClicked(evt);
+            }
+        });
 
-        lblTitulo.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (150 * fw)));
+        lblTitulo.setFont(new java.awt.Font("Blackadder ITC", 0, 150));
         lblTitulo.setForeground(new java.awt.Color(150, 150, 150));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Fractalum");
@@ -100,7 +92,7 @@ public final class MainFrame extends javax.swing.JFrame {
         lblTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblTitulo.setIconTextGap(0);
 
-        lblJugar.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (48 * fw)));
+        lblJugar.setFont(new java.awt.Font("Blackadder ITC", 0, 48));
         lblJugar.setForeground(new java.awt.Color(150, 150, 150));
         lblJugar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblJugar.setText("Jugar");
@@ -120,7 +112,7 @@ public final class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (48 * fw)));
+        lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 0, 48));
         lblAcercaDe.setForeground(new java.awt.Color(150, 150, 150));
         lblAcercaDe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAcercaDe.setText("Acerca de");
@@ -140,7 +132,7 @@ public final class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        lblSalir.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (48 * fw)));
+        lblSalir.setFont(new java.awt.Font("Blackadder ITC", 0, 48));
         lblSalir.setForeground(new java.awt.Color(150, 150, 150));
         lblSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSalir.setText("Salir");
@@ -203,7 +195,7 @@ public final class MainFrame extends javax.swing.JFrame {
         pnlJuego.setBackground(new java.awt.Color(0, 0, 0));
         pnlJuego.setLayout(null);
 
-        lblPost.setFont(new java.awt.Font("Chiller", 0, (int) (60 * fw)));
+        lblPost.setFont(new java.awt.Font("Chiller", 0, 60)); // NOI18N
         lblPost.setForeground(new java.awt.Color(153, 153, 153));
         lblPost.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblPost.setText(" >");
@@ -221,7 +213,7 @@ public final class MainFrame extends javax.swing.JFrame {
         pnlJuego.add(lblPost);
         lblPost.setBounds(1820, 900, 100, 180);
 
-        lblPrev.setFont(new java.awt.Font("Chiller", 0, (int) (60 * fw)));
+        lblPrev.setFont(new java.awt.Font("Chiller", 0, 60)); // NOI18N
         lblPrev.setForeground(new java.awt.Color(153, 153, 153));
         lblPrev.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPrev.setText("< ");
@@ -242,7 +234,7 @@ public final class MainFrame extends javax.swing.JFrame {
         lblPrev.setBounds(0, 900, 100, 180);
 
         lblIzquierda.setBackground(new java.awt.Color(0, 0, 0));
-        lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (200 * fw)));
+        lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 0, 200)); // NOI18N
         lblIzquierda.setForeground(new java.awt.Color(150, 150, 150));
         lblIzquierda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIzquierda.setText("<");
@@ -262,7 +254,7 @@ public final class MainFrame extends javax.swing.JFrame {
         lblIzquierda.setBounds(0, 25, 160, 800);
 
         lblDerecha.setBackground(new java.awt.Color(0, 0, 0));
-        lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (200 * fw)));
+        lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 0, 200)); // NOI18N
         lblDerecha.setForeground(new java.awt.Color(150, 150, 150));
         lblDerecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDerecha.setText(">");
@@ -281,12 +273,13 @@ public final class MainFrame extends javax.swing.JFrame {
         pnlJuego.add(lblDerecha);
         lblDerecha.setBounds(1760, 25, 160, 800);
 
-        lblNivel.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (40 * fw)));
+        lblNivel.setFont(new java.awt.Font("Blackadder ITC", 0, 40));
         lblNivel.setForeground(new java.awt.Color(255, 255, 255));
         lblNivel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblNivel.setText("Laboratorio del Dr Stomps");
-        pnlJuego.add(lblNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 850, 1800, 50));
-        pnlJuego.add(lblNivelImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 1600, 850));
+        pnlJuego.add(lblNivel);
+        lblNivel.setBounds(60, 850, 1800, 50);
+        pnlJuego.add(lblNivelImage);
+        lblNivelImage.setBounds(160, 0, 1600, 850);
 
         spnDialogo.setBackground(new java.awt.Color(0, 0, 0));
         spnDialogo.setBorder(null);
@@ -296,7 +289,7 @@ public final class MainFrame extends javax.swing.JFrame {
         txtdialogo.setEditable(false);
         txtdialogo.setBackground(new java.awt.Color(0, 0, 0));
         txtdialogo.setColumns(150);
-        txtdialogo.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (36 * fw)));
+        txtdialogo.setFont(new java.awt.Font("Blackadder ITC", 0, 36));
         txtdialogo.setForeground(new java.awt.Color(255, 255, 255));
         txtdialogo.setLineWrap(true);
         txtdialogo.setRows(3);
@@ -309,10 +302,8 @@ public final class MainFrame extends javax.swing.JFrame {
         spnDialogo.setBounds(100, 900, 1720, 180);
 
         pnlIntro.setBackground(new java.awt.Color(0, 0, 0));
-        pnlIntro.setPreferredSize(new java.awt.Dimension((int) (1920 * fw), (int) (1080 * fh)));
-        pnlIntro.setLayout(new java.awt.GridBagLayout());
+        pnlIntro.setLayout(null);
 
-        lblContinuar.setText("jLabel1");
         lblContinuar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 lblContinuarMouseDragged(evt);
@@ -323,30 +314,22 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblContinuarMouseClicked(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 1883;
-        gridBagConstraints.ipady = 1064;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        pnlIntro.add(lblContinuar, gridBagConstraints);
+        pnlIntro.add(lblContinuar);
+        lblContinuar.setBounds(0, 0, 1920, 1080);
+
+        lblTeam.setFont(new java.awt.Font("Papyrus", 0, 120)); // NOI18N
+        lblTeam.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTeam.setText("Time Treep Team");
+        pnlIntro.add(lblTeam);
+        lblTeam.setBounds(420, 440, 1100, 200);
 
         lblIntro.setBackground(new java.awt.Color(255, 255, 255));
-        lblIntro.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (150 * fw)));
-        lblIntro.setForeground(new java.awt.Color(255, 255, 255));
+        lblIntro.setFont(new java.awt.Font("Blackadder ITC", 0, 150)); // NOI18N
+        lblIntro.setForeground(new java.awt.Color(204, 204, 204));
         lblIntro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIntro.setText("FRACTALUM");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 3;
-        gridBagConstraints.ipadx = 1132;
-        gridBagConstraints.ipady = 174;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(965, 360, 0, 0);
-        pnlIntro.add(lblIntro, gridBagConstraints);
+        pnlIntro.add(lblIntro);
+        lblIntro.setBounds(360, 445, 1200, 190);
 
         jScrollPane1.setBackground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setBorder(null);
@@ -357,28 +340,19 @@ public final class MainFrame extends javax.swing.JFrame {
         txtIntro.setEditable(false);
         txtIntro.setBackground(new java.awt.Color(0, 0, 0));
         txtIntro.setColumns(20);
-        txtIntro.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (36 * fw)));
-        txtIntro.setForeground(new java.awt.Color(255, 255, 255));
+        txtIntro.setFont(new java.awt.Font("Blackadder ITC", 0, 36)); // NOI18N
+        txtIntro.setForeground(new java.awt.Color(204, 204, 204));
         txtIntro.setLineWrap(true);
         txtIntro.setRows(5);
+        txtIntro.setTabSize(2);
         txtIntro.setWrapStyleWord(true);
         txtIntro.setBorder(null);
         txtIntro.setFocusable(false);
         txtIntro.setOpaque(false);
         jScrollPane1.setViewportView(txtIntro);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 1696;
-        gridBagConstraints.ipady = 761;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(265, 110, 0, 0);
-        pnlIntro.add(jScrollPane1, gridBagConstraints);
+        pnlIntro.add(jScrollPane1);
+        jScrollPane1.setBounds(60, 265, 1810, 890);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -452,18 +426,6 @@ public final class MainFrame extends javax.swing.JFrame {
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
-//        if (evt.getKeyChar() == KeyEvent.VK_ESCAPE) {
-//            int sw = JOptionPane.showConfirmDialog(null,
-//                    "¿Deseas salir del juego?",
-//                    "Aviso",
-//                    JOptionPane.YES_NO_OPTION,
-//                    JOptionPane.WARNING_MESSAGE);
-//            if (sw == 0) {
-//                System.exit(0);
-//            }
-//            return;
-//        }
-        System.exit(0);
         if (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE) {
             if (pnlJuego.isVisible()) {
                 pnlJuego.setVisible(false);
@@ -485,14 +447,14 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         lblJugar.setBorder(BorderFactory.createLineBorder(Color.white, 2));
         lblJugar.setForeground(Color.white);
-        lblJugar.setFont(new java.awt.Font("Blackadder ITC", 1, (int) (54 * fw)));
+        lblJugar.setFont(new java.awt.Font("Blackadder ITC", 1, 54));
     }//GEN-LAST:event_lblJugarMouseEntered
 
     private void lblJugarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJugarMouseExited
         // TODO add your handling code here:
         lblJugar.setBorder(null);
         lblJugar.setForeground(Paleta.GRIS_OSCURO.getColor());
-        lblJugar.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (48 * fw)));
+        lblJugar.setFont(new java.awt.Font("Blackadder ITC", 0, 48));
     }//GEN-LAST:event_lblJugarMouseExited
 
     private void lblJugarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJugarMouseReleased
@@ -509,14 +471,14 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         lblAcercaDe.setBorder(BorderFactory.createLineBorder(Color.white, 2));
         lblAcercaDe.setForeground(Color.white);
-        lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 1, (int) (54 * fw)));
+        lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 1, 54));
     }//GEN-LAST:event_lblAcercaDeMouseEntered
 
     private void lblAcercaDeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAcercaDeMouseExited
         // TODO add your handling code here:
         lblAcercaDe.setBorder(null);
         lblAcercaDe.setForeground(Paleta.GRIS_OSCURO.getColor());
-        lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (48 * fw)));
+        lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 0, 48));
     }//GEN-LAST:event_lblAcercaDeMouseExited
 
     private void lblAcercaDeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAcercaDeMouseReleased
@@ -532,14 +494,14 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         lblSalir.setBorder(BorderFactory.createLineBorder(Color.white, 2));
         lblSalir.setForeground(Color.white);
-        lblSalir.setFont(new java.awt.Font("Blackadder ITC", 1, (int) (54 * fw)));
+        lblSalir.setFont(new java.awt.Font("Blackadder ITC", 1, 54));
     }//GEN-LAST:event_lblSalirMouseEntered
 
     private void lblSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseExited
         // TODO add your handling code here:
         lblSalir.setBorder(null);
         lblSalir.setForeground(Paleta.GRIS_OSCURO.getColor());
-        lblSalir.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (48 * fw)));
+        lblSalir.setFont(new java.awt.Font("Blackadder ITC", 0, 48));
     }//GEN-LAST:event_lblSalirMouseExited
 
     private void lblSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseReleased
@@ -553,7 +515,7 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!escena.getEscritor().isAlive()) {
             lblIzquierda.setForeground(Color.white);
-            lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 1, (int) (210 * fw)));
+            lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 1, 210));
             lblIzquierda.setBackground(new Color(20, 20, 20));
         }
     }//GEN-LAST:event_lblIzquierdaMouseEntered
@@ -561,7 +523,7 @@ public final class MainFrame extends javax.swing.JFrame {
     private void lblIzquierdaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIzquierdaMouseExited
         // TODO add your handling code here:
         lblIzquierda.setForeground(Paleta.GRIS_OSCURO.getColor());
-        lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (200 * fw)));
+        lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 0, 200));
         lblIzquierda.setBackground(Color.black);
     }//GEN-LAST:event_lblIzquierdaMouseExited
 
@@ -577,7 +539,7 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!escena.getEscritor().isAlive()) {
             lblDerecha.setForeground(Color.white);
-            lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 1, (int) (210 * fw)));
+            lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 1, 210));
             lblDerecha.setBackground(new Color(20, 20, 20));
         }
 
@@ -586,7 +548,7 @@ public final class MainFrame extends javax.swing.JFrame {
     private void lblDerechaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDerechaMouseExited
         // TODO add your handling code here:
         lblDerecha.setForeground(Paleta.GRIS_OSCURO.getColor());
-        lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (200 * fw)));
+        lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 0, 200));
         lblDerecha.setBackground(Color.black);
     }//GEN-LAST:event_lblDerechaMouseExited
 
@@ -602,14 +564,14 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (escena.hayPosterior()) {
             lblPost.setForeground(Color.white);
-            lblPost.setFont(new java.awt.Font("Chiller", 1, (int) (70 * fw)));
+            lblPost.setFont(new java.awt.Font("Chiller", 1, 70));
         }
     }//GEN-LAST:event_lblPostMouseEntered
 
     private void lblPostMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPostMouseExited
         // TODO add your handling code here:
         lblPost.setForeground(Paleta.GRIS_OSCURO.getColor());
-        lblPost.setFont(new java.awt.Font("Chiller", 0, (int) (60 * fw)));
+        lblPost.setFont(new java.awt.Font("Chiller", 0, 60));
     }//GEN-LAST:event_lblPostMouseExited
 
     private void lblPostMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPostMouseClicked
@@ -622,18 +584,14 @@ public final class MainFrame extends javax.swing.JFrame {
     private void lblPrevMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPrevMouseClicked
         // TODO add your handling code here:
         if (escena.hayPrevio()) {
-            try {
-                escena.parteAnterior();
-            } catch (InterruptedException ex) {
-                System.out.println(ex);
-            }
+            escena.parteAnterior();
         }
     }//GEN-LAST:event_lblPrevMouseClicked
 
     private void lblPrevMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPrevMouseExited
         // TODO add your handling code here:
         lblPrev.setForeground(Paleta.GRIS_OSCURO.getColor());
-        lblPrev.setFont(new java.awt.Font("Chiller", 0, (int) (60 * fw)));
+        lblPrev.setFont(new java.awt.Font("Chiller", 0, 60));
 
     }//GEN-LAST:event_lblPrevMouseExited
 
@@ -641,7 +599,7 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (escena.hayPrevio()) {
             lblPrev.setForeground(Color.white);
-            lblPrev.setFont(new java.awt.Font("Chiller", 1, (int) (70 * fw)));
+            lblPrev.setFont(new java.awt.Font("Chiller", 1, 70));
         }
     }//GEN-LAST:event_lblPrevMouseMoved
 
@@ -660,16 +618,19 @@ public final class MainFrame extends javax.swing.JFrame {
     private void lblContinuarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblContinuarMouseClicked
         // TODO add your handling code here:
         if (e.getEscritor() != null) {
-            e.getEscritor().interrupt();
+            if (e.getEscritor().isAlive()) {
+                e.getEscritor().interrupt();
+            } else {
+                this.remove(pnlIntro);
+                lblIntro.setVisible(false);
+                mostrarMenu();
+            }
         }
-        this.remove(pnlIntro);
-        lblIntro.setVisible(false);
-        mostrarMenu();
     }//GEN-LAST:event_lblContinuarMouseClicked
 
     private void lblContinuarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblContinuarMouseDragged
         // TODO add your handling code here:
-        lblContinuarMouseClicked(evt);
+//        lblContinuarMouseClicked(evt);
     }//GEN-LAST:event_lblContinuarMouseDragged
 
     private void lblCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseEntered
@@ -693,6 +654,10 @@ public final class MainFrame extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_lblCerrarMouseDragged
+
+    private void pnlMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlMenuMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pnlMenuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -746,6 +711,7 @@ public final class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblPost;
     private javax.swing.JLabel lblPrev;
     private javax.swing.JLabel lblSalir;
+    private javax.swing.JLabel lblTeam;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlArbol;
     private javax.swing.JPanel pnlIntro;
@@ -759,11 +725,12 @@ public final class MainFrame extends javax.swing.JFrame {
 
     public void mostrarMenu() {
         pnlMenu.setLocation(0, 0);
-        pnlMenu.setSize((int) (700 * fw), (int) (1080 * fh));
+        pnlMenu.setSize(700, 1080);
         this.add(pnlMenu);
 
         pnlArbol.setLocation(0, 0);
         pnlArbol.setSize(getWidth(), getHeight());
+
         this.add(pnlArbol);
 
         this.revalidate();
@@ -773,8 +740,8 @@ public final class MainFrame extends javax.swing.JFrame {
     private void cargarArbol() {
         RecursiveTree treePanel = new RecursiveTree();
 
-        treePanel.setLocation((int) (700 * fw), 0);
-        treePanel.setSize((int) (1280 * fw), (int) (1080 * fh));
+        treePanel.setLocation(700, 0);
+        treePanel.setSize(1280, 1080);
 
         pnlArbol.add(treePanel);
 
@@ -807,64 +774,81 @@ public final class MainFrame extends javax.swing.JFrame {
         lblNivelImage.setIcon(new javax.swing.ImageIcon(getClass().getResource(ruta)));
     }
 
-    int yPosition = 200;
-    Color color = new Color(80, 80, 80);
+    //========================================================================//
+    //         Codigo para mostrar los creditos iniciales y la intro          //
+    //========================================================================//
+    int yPosition = 445;
+    Color color = new Color(0, 0, 0);
+    Color color_final = new Color(204, 204, 204);
 
-    public void mostarIntro() {
+    public void mostrarIntro() {
         pnlIntro.setLocation(0, 0);
         pnlIntro.setSize(getWidth(), getHeight());
         pnlIntro.setVisible(true);
-        lblIntro.setForeground(new Color(80, 80, 80));
+        lblIntro.setForeground(color);
 
         this.add(pnlIntro);
 
         this.revalidate();
         this.repaint();
 
-        Thread inthread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    while (yPosition > 50 || !color.equals(Color.WHITE)) {
-                        if (yPosition > 50) {
-                            yPosition -= 2;
-                        }
+        iniciarAnimacion();
+    }
 
-                        if (color.getRed() < 255) { // Cambiar color a blanco
-                            int red = Math.min(255, color.getRed() + 2);
-                            int green = Math.min(255, color.getGreen() + 2);
-                            int blue = Math.min(255, color.getBlue() + 2);
-                            color = new Color(red, green, blue);
-                        }
-
-                        // Actualizar la posición y el color en el EDT
-                        SwingUtilities.invokeLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                lblIntro.setBounds(360, yPosition, 1200, 190);
-                                lblIntro.setForeground(color);
-                            }
-                        });
-
-                        Thread.sleep(30); // Pausar brevemente entre cada actualización
-                    }
-
-                    // Después de la animación, escribir el texto carácter por carácter
-                    e = new Escena();
-                    e.escribirDialogo(Intro.HISTORIA.getText());
-                    e.setArea(txtIntro);
-
-                    if (!e.getEscritor().isAlive()) {
-                        mostrarMenu();
-                    }
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+    private Thread iniciarAnimacion() {
+        Thread introThread = new Thread(() -> {
+            try {
+                animarColor(lblTeam, color, color_final, 18);
+                animarColor(lblTeam, color, Color.black, 18);
+                pnlIntro.remove(lblTeam);
+                Thread.sleep(200);
+                animarColor(lblIntro, color, color_final, 16);
+                Thread.sleep(500);
+                moverTexto(lblIntro, 5, 16);
+                escribirHistoria();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         });
-
-        inthread.start(); // Iniciar el hilo de la animación
-
+        introThread.start();
+        return introThread;
     }
+
+    private void animarColor(JLabel label, Color inicio, Color fin, int delay) throws InterruptedException {
+        while (!inicio.equals(fin)) {
+            int red = Math.min(255, inicio.getRed() + 3);
+            int green = Math.min(255, inicio.getGreen() + 3);
+            int blue = Math.min(255, inicio.getBlue() + 3);
+            inicio = new Color(red, green, blue);
+
+            final Color tempColor = inicio;
+            SwingUtilities.invokeLater(() -> label.setForeground(tempColor));
+
+            Thread.sleep(delay);
+        }
+    }
+
+    private void moverTexto(JLabel label, int step, int delay) throws InterruptedException {
+        while (yPosition > 50) {
+            yPosition -= step;
+            SwingUtilities.invokeLater(() -> label.setBounds(360, yPosition, 1200, 190));
+            Thread.sleep(delay);
+        }
+    }
+
+    private void escribirHistoria() throws InterruptedException {
+        e = new Escena();
+        e.setArea(txtIntro); // Configura el área de texto primero
+        e.agregarDialogo(Intro.HISTORIA.getText()); // Agrega el texto al diálogo
+        e.mostrarParte(false); // Muestra el diálogo en el área de texto
+
+        // Verifica si el hilo no está vivo después de mostrar el diálogo
+        e.getEscritor().join(); // Espera a que el hilo termine si es necesario
+
+        if (!e.getEscritor().isAlive()) {
+            mostrarMenu(); // Muestra el menú solo después de que el diálogo haya terminado
+        }
+    }
+
+    //========================================================================//
 }

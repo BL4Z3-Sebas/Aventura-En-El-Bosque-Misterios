@@ -6,18 +6,14 @@ import niveles.Nivel;
 public class Arbol {
 
     private Nodo raiz;
-
-    private static Arbol instancia;
+    private static final Arbol INSTANCIA = new Arbol();
 
     private Arbol() {
         this.raiz = null;
     }
 
     public static Arbol getInstancia() {
-        if (instancia == null) {
-            instancia = new Arbol();
-        }
-        return instancia;
+        return INSTANCIA;
     }
 
     public Nodo getRaiz() {
@@ -29,14 +25,12 @@ public class Arbol {
     }
 
     public void agregar(Nivel nivel) {
-        Nodo nodo = new Nodo(nivel);
-
+        Nodo nuevoNodo = new Nodo(nivel);
         if (raiz == null) {
-            this.raiz = nodo;
-            return;
+            raiz = nuevoNodo;
+        } else {
+            agregarRecursivo(raiz, nuevoNodo);
         }
-
-        agregarRecursivo(raiz, nodo);
     }
 
     public int alturaNivel(int id_nivel) {
@@ -64,86 +58,95 @@ public class Arbol {
         return niveles;
     }
 
-    public void mostrarHistorias(Nodo nodo) {
-        if (nodo == null) {
-            return;
-        }
-        System.out.println(nodo.getNivel().getTitulo() + "\t");
-        mostrarHistorias(nodo.getLeft());
-        mostrarHistorias(nodo.getRight());
+    public void mostrarHistorias() {
+        mostrarHistoriasRecursivo(raiz);
     }
 
-//========================================================================//
-//                         Metodos recursivos                             //
-//========================================================================//
-    private void agregarRecursivo(Nodo nodo, Nodo nuevo_nodo) {
-        if (nuevo_nodo.getNivel().getId() < nodo.getNivel().getId()) {
-            if (nodo.getLeft() == null) {
-                nodo.setLeft(nuevo_nodo);
+    //========================================================================//
+    //                         Metodos recursivos                             //
+    //========================================================================//
+    
+    private void agregarRecursivo(Nodo actual, Nodo nuevoNodo) {
+        if (nuevoNodo.getNivel().getId() < actual.getNivel().getId()) {
+            if (actual.getLeft() == null) {
+                actual.setLeft(nuevoNodo);
             } else {
-                agregarRecursivo(nodo.getLeft(), nuevo_nodo);
+                agregarRecursivo(actual.getLeft(), nuevoNodo);
             }
         } else {
-            if (nodo.getRight() == null) {
-                nodo.setRight(nuevo_nodo);
+            if (actual.getRight() == null) {
+                actual.setRight(nuevoNodo);
             } else {
-                agregarRecursivo(nodo.getRight(), nuevo_nodo);
+                agregarRecursivo(actual.getRight(), nuevoNodo);
             }
         }
     }
 
-    private int alturaNivelRecursivo(Nodo nodo, int id, int nivel) {
-        if (nodo == null) {
-            return -1; // no se encontró el nodo
+    private int alturaNivelRecursivo(Nodo actual, int id, int nivel) {
+        if (actual == null) {
+            return -1; // nodo no encontrado
         }
 
-        if (id < nodo.getNivel().getId()) {
-            return alturaNivelRecursivo(nodo.getLeft(), id, nivel + 1);
-
-        } else if (id > nodo.getNivel().getId()) {
-            return alturaNivelRecursivo(nodo.getRight(), id, nivel + 1);
+        if (id == actual.getNivel().getId()) {
+            return nivel; // nodo encontrado
         }
 
-        return nivel; // se encontró el nodo
+        if (id < actual.getNivel().getId()) {
+            return alturaNivelRecursivo(actual.getLeft(), id, nivel + 1);
+        } else {
+            return alturaNivelRecursivo(actual.getRight(), id, nivel + 1);
+        }
     }
 
-    private boolean buscarHistoriaRecursivo(Nodo nodo, String titulo) {
-        if (nodo == null) {
+    private boolean buscarHistoriaRecursivo(Nodo actual, String titulo) {
+        if (actual == null) {
             return false;
         }
 
-        if (titulo.equals(nodo.getNivel().getTitulo())) {
+        if (titulo.equals(actual.getNivel().getTitulo())) {
             return true;
         }
-        return buscarHistoriaRecursivo(nodo.getLeft(), titulo)
-                || buscarHistoriaRecursivo(nodo.getRight(), titulo);
+
+        return buscarHistoriaRecursivo(actual.getLeft(), titulo) 
+                || buscarHistoriaRecursivo(actual.getRight(), titulo);
     }
 
-    private Nodo buscarNodoRecursivo(Nodo nodo, Nivel nivel) {
-        if (nodo == null) {
+    private Nodo buscarNodoRecursivo(Nodo actual, Nivel nivel) {
+        if (actual == null) {
             return null;
         }
 
-        if (nivel.getId() < nodo.getNivel().getId()) {
-            return buscarNodoRecursivo(nodo.getLeft(), nivel);
-        } else if (nivel.getId() > nodo.getNivel().getId()) {
-            return buscarNodoRecursivo(nodo.getRight(), nivel);
+        if (nivel.getId() == actual.getNivel().getId()) {
+            return actual;
         }
 
-        return nodo;
+        if (nivel.getId() < actual.getNivel().getId()) {
+            return buscarNodoRecursivo(actual.getLeft(), nivel);
+        } else {
+            return buscarNodoRecursivo(actual.getRight(), nivel);
+        }
     }
 
-    private void obtenerNodosDeNivelRecursivo(Nodo nodo, int nivel, int nivelActual, ArrayList<Nivel> niveles) {
-        if (nodo == null) {
+    private void obtenerNodosDeNivelRecursivo(Nodo actual, int nivelDeseado, int nivelActual, ArrayList<Nivel> niveles) {
+        if (actual == null) {
             return;
         }
 
-        if (nivelActual == nivel) {
-            niveles.add(nodo.getNivel());
+        if (nivelActual == nivelDeseado) {
+            niveles.add(actual.getNivel());
         }
 
-        obtenerNodosDeNivelRecursivo(nodo.getLeft(), nivel, nivelActual + 1, niveles);
-        obtenerNodosDeNivelRecursivo(nodo.getRight(), nivel, nivelActual + 1, niveles);
+        obtenerNodosDeNivelRecursivo(actual.getLeft(), nivelDeseado, nivelActual + 1, niveles);
+        obtenerNodosDeNivelRecursivo(actual.getRight(), nivelDeseado, nivelActual + 1, niveles);
     }
 
+    private void mostrarHistoriasRecursivo(Nodo actual) {
+        if (actual == null) {
+            return;
+        }
+
+        System.out.println(actual.getNivel().getTitulo());
+        mostrarHistoriasRecursivo(actual.getLeft());
+        mostrarHistoriasRecursivo(actual.getRight());
+    }
 }

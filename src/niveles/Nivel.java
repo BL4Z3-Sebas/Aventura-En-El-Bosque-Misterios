@@ -5,22 +5,35 @@ import Sonido.Audio;
 public class Nivel {
 
     private int id;
-    private int num_nivel;
+    private int numNivel;
     private String previa;
     private String titulo;
     private String historia;
     private String acertijo;
-    private String[] respuetas;
+    private String[] respuestas;
     private String solucion;
     private boolean visitado;
     private Audio audio;
     private String rutaImagen;
 
+    // Constructor predeterminado, con valores iniciales
     public Nivel() {
         this.visitado = false;
-
     }
 
+    // Constructor sobrecargado para facilitar la creación de niveles con datos básicos
+    public Nivel(int id, String titulo, String historia, String acertijo, String[] respuestas, String solucion, String rutaImagen) {
+        this.id = id;
+        this.titulo = titulo;
+        this.historia = historia;
+        this.acertijo = acertijo;
+        this.respuestas = respuestas;
+        this.solucion = solucion;
+        this.rutaImagen = rutaImagen;
+        this.visitado = false;
+    }
+
+    // Getters y Setters simplificados
     public int getId() {
         return id;
     }
@@ -45,12 +58,12 @@ public class Nivel {
         this.audio = audio;
     }
 
-    public int getNum_nivel() {
-        return num_nivel;
+    public int getNumNivel() {
+        return numNivel;
     }
 
-    public void setNum_nivel(int num_nivel) {
-        this.num_nivel = num_nivel;
+    public void setNumNivel(int numNivel) {
+        this.numNivel = numNivel;
     }
 
     public String getPrevia() {
@@ -77,20 +90,21 @@ public class Nivel {
         this.historia = historia;
     }
 
+    // Reemplazo de "+" por nueva línea al obtener el acertijo
     public String getAcertijo() {
-        return acertijo.replace('+', '\n');
+        return acertijo != null ? acertijo.replace('+', '\n') : "";
     }
 
     public void setAcertijo(String acertijo) {
         this.acertijo = acertijo;
     }
 
-    public String[] getRespuetas() {
-        return respuetas;
+    public String[] getRespuestas() {
+        return respuestas;
     }
 
-    public void setRespuetas(String[] respuetas) {
-        this.respuetas = respuetas;
+    public void setRespuestas(String[] respuestas) {
+        this.respuestas = respuestas;
     }
 
     public String getSolucion() {
@@ -101,12 +115,26 @@ public class Nivel {
         this.solucion = solucion;
     }
 
-    public void setRutaImagen(String rutaImagen) {
-        this.rutaImagen = rutaImagen;
-    }
-
     public String getRutaImagen() {
         return rutaImagen;
     }
 
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
+
+    // Método auxiliar para imprimir detalles del nivel
+    @Override
+    public String toString() {
+        return "Nivel{"
+                + "id=" + id
+                + ", titulo='" + titulo + '\''
+                + ", historia='" + historia + '\''
+                + ", acertijo='" + acertijo + '\''
+                + ", respuestas=" + String.join(", ", respuestas)
+                + ", solucion='" + solucion + '\''
+                + ", rutaImagen='" + rutaImagen + '\''
+                + ", visitado=" + visitado
+                + '}';
+    }
 }
