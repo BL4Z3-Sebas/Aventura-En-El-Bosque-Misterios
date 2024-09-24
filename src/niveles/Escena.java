@@ -62,9 +62,11 @@ public final class Escena {
                 }
             }
         });
-        escritor.start();
+               escritor.start();
     }
-
+    
+    
+    
     public Thread getEscritor() {
         return escritor;
     }

@@ -7,12 +7,15 @@ import javax.swing.JOptionPane;
 import Sonido.Audio;
 import arbol.Arbol;
 import archivos.Intro;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 import niveles.Apuntador;
 import niveles.Escena;
 import niveles.GeneradorNiveles;
+import niveles.Nivel;
 
 /**
  *
@@ -26,6 +29,8 @@ public final class MainFrame extends javax.swing.JFrame {
     Escena escena = new Escena();
     Escena e = new Escena();
     boolean intro = false;
+    static boolean continuarNivel = false;
+    Thread visualBoton;
 
     ;
 
@@ -59,14 +64,18 @@ public final class MainFrame extends javax.swing.JFrame {
         lblSalir = new javax.swing.JLabel();
         pnlArbol = new javax.swing.JPanel();
         pnlJuego = new javax.swing.JPanel();
+        botonLabel1 = new javax.swing.JLabel();
+        botonLabel2 = new javax.swing.JLabel();
+        botonLabel3 = new javax.swing.JLabel();
+        botonLabel4 = new javax.swing.JLabel();
         lblPost = new javax.swing.JLabel();
         lblPrev = new javax.swing.JLabel();
         lblIzquierda = new javax.swing.JLabel();
         lblDerecha = new javax.swing.JLabel();
         lblNivel = new javax.swing.JLabel();
-        lblEscena = new javax.swing.JLabel();
         spnDialogo = new javax.swing.JScrollPane();
         txtdialogo = new javax.swing.JTextArea();
+        lblEscena = new javax.swing.JLabel();
         pnlIntro = new javax.swing.JPanel();
         lblContinuar = new javax.swing.JLabel();
         lblIntro = new javax.swing.JLabel();
@@ -77,7 +86,7 @@ public final class MainFrame extends javax.swing.JFrame {
 
         pnlMenu.setBackground(new java.awt.Color(0, 0, 0));
         pnlMenu.setPreferredSize(new java.awt.Dimension(700, 1080));
-        pnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlMenu.setLayout(null);
 
         lblTitulo.setFont(new java.awt.Font("Blackadder ITC", 0, 150)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(150, 150, 150));
@@ -86,7 +95,8 @@ public final class MainFrame extends javax.swing.JFrame {
         lblTitulo.setAlignmentY(0.0F);
         lblTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblTitulo.setIconTextGap(0);
-        pnlMenu.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 550, -1));
+        pnlMenu.add(lblTitulo);
+        lblTitulo.setBounds(0, 0, 0, 0);
 
         lblJugar.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
         lblJugar.setForeground(new java.awt.Color(150, 150, 150));
@@ -107,7 +117,8 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblJugarMouseReleased(evt);
             }
         });
-        pnlMenu.add(lblJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 530, 300, 80));
+        pnlMenu.add(lblJugar);
+        lblJugar.setBounds(280, 420, 170, 60);
 
         lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
         lblAcercaDe.setForeground(new java.awt.Color(150, 150, 150));
@@ -128,7 +139,8 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblAcercaDeMouseReleased(evt);
             }
         });
-        pnlMenu.add(lblAcercaDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 630, 300, 80));
+        pnlMenu.add(lblAcercaDe);
+        lblAcercaDe.setBounds(190, 490, 330, 110);
 
         lblSalir.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
         lblSalir.setForeground(new java.awt.Color(150, 150, 150));
@@ -148,7 +160,8 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblSalirMouseReleased(evt);
             }
         });
-        pnlMenu.add(lblSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 730, 300, 80));
+        pnlMenu.add(lblSalir);
+        lblSalir.setBounds(0, 0, 0, 0);
 
         javax.swing.GroupLayout pnlArbolLayout = new javax.swing.GroupLayout(pnlArbol);
         pnlArbol.setLayout(pnlArbolLayout);
@@ -162,7 +175,95 @@ public final class MainFrame extends javax.swing.JFrame {
         );
 
         pnlJuego.setBackground(new java.awt.Color(0, 0, 0));
-        pnlJuego.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlJuego.setLayout(null);
+
+        botonLabel1.setFont(new java.awt.Font("Blackadder ITC", 0, 36)); // NOI18N
+        botonLabel1.setForeground(new java.awt.Color(150, 150, 150));
+        botonLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        botonLabel1.setText("boton1");
+        botonLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonLabel1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonLabel1MouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                botonLabel1MouseReleased(evt);
+            }
+        });
+        pnlJuego.add(botonLabel1);
+        botonLabel1.setBounds(830, 590, 220, 60);
+
+        botonLabel2.setFont(new java.awt.Font("Blackadder ITC", 0, 36)); // NOI18N
+        botonLabel2.setForeground(new java.awt.Color(150, 150, 150));
+        botonLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        botonLabel2.setText("boton2");
+        botonLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonLabel2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonLabel2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonLabel2MouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                botonLabel2MouseReleased(evt);
+            }
+        });
+        pnlJuego.add(botonLabel2);
+        botonLabel2.setBounds(1060, 590, 220, 60);
+
+        botonLabel3.setFont(new java.awt.Font("Blackadder ITC", 0, 36)); // NOI18N
+        botonLabel3.setForeground(new java.awt.Color(150, 150, 150));
+        botonLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        botonLabel3.setText("boton3");
+        botonLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonLabel3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonLabel3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonLabel3MouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                botonLabel3MouseReleased(evt);
+            }
+        });
+        pnlJuego.add(botonLabel3);
+        botonLabel3.setBounds(830, 660, 220, 60);
+
+        botonLabel4.setFont(new java.awt.Font("Blackadder ITC", 0, 36)); // NOI18N
+        botonLabel4.setForeground(new java.awt.Color(150, 150, 150));
+        botonLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        botonLabel4.setText("boton4");
+        botonLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonLabel4MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonLabel4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonLabel4MouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                botonLabel4MouseReleased(evt);
+            }
+        });
+        pnlJuego.add(botonLabel4);
+        botonLabel4.setBounds(1060, 660, 220, 60);
 
         lblPost.setFont(new java.awt.Font("Chiller", 0, 60)); // NOI18N
         lblPost.setForeground(new java.awt.Color(153, 153, 153));
@@ -179,7 +280,8 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblPostMouseExited(evt);
             }
         });
-        pnlJuego.add(lblPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(1820, 900, 100, 180));
+        pnlJuego.add(lblPost);
+        lblPost.setBounds(1220, 500, 60, 80);
         lblPost.getAccessibleContext().setAccessibleName("");
 
         lblPrev.setFont(new java.awt.Font("Chiller", 0, 60)); // NOI18N
@@ -199,7 +301,8 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblPrevMouseExited(evt);
             }
         });
-        pnlJuego.add(lblPrev, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 900, 100, 180));
+        pnlJuego.add(lblPrev);
+        lblPrev.setBounds(0, 520, 70, 70);
 
         lblIzquierda.setBackground(new java.awt.Color(0, 0, 0));
         lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 0, 200)); // NOI18N
@@ -218,7 +321,8 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblIzquierdaMouseExited(evt);
             }
         });
-        pnlJuego.add(lblIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 25, 160, 800));
+        pnlJuego.add(lblIzquierda);
+        lblIzquierda.setBounds(0, 0, 70, 530);
 
         lblDerecha.setBackground(new java.awt.Color(0, 0, 0));
         lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 0, 200)); // NOI18N
@@ -237,21 +341,25 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblDerechaMouseExited(evt);
             }
         });
-        pnlJuego.add(lblDerecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(1760, 25, 160, 800));
+        pnlJuego.add(lblDerecha);
+        lblDerecha.setBounds(1219, 20, 60, 480);
 
         lblNivel.setFont(new java.awt.Font("Blackadder ITC", 0, 40)); // NOI18N
         lblNivel.setForeground(new java.awt.Color(255, 255, 255));
         lblNivel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblNivel.setText("Laboratorio del Dr Stomps");
-        pnlJuego.add(lblNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 850, 1800, 50));
-
-        lblEscena.setIcon(new javax.swing.ImageIcon(getClass().getResource("/archivos/imagenes/Lab2R.jpeg"))); // NOI18N
-        pnlJuego.add(lblEscena, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 1600, 850));
+        pnlJuego.add(lblNivel);
+        lblNivel.setBounds(80, 530, 530, 50);
 
         spnDialogo.setBackground(new java.awt.Color(0, 0, 0));
         spnDialogo.setBorder(null);
         spnDialogo.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         spnDialogo.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        spnDialogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                spnDialogoMouseClicked(evt);
+            }
+        });
 
         txtdialogo.setEditable(false);
         txtdialogo.setBackground(new java.awt.Color(0, 0, 0));
@@ -263,9 +371,25 @@ public final class MainFrame extends javax.swing.JFrame {
         txtdialogo.setWrapStyleWord(true);
         txtdialogo.setBorder(null);
         txtdialogo.setFocusable(false);
+        txtdialogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtdialogoMouseClicked(evt);
+            }
+        });
         spnDialogo.setViewportView(txtdialogo);
 
-        pnlJuego.add(spnDialogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 900, 1720, 180));
+        pnlJuego.add(spnDialogo);
+        spnDialogo.setBounds(0, 590, 1280, 140);
+
+        lblEscena.setIcon(new javax.swing.ImageIcon(getClass().getResource("/archivos/imagenes/Lab2R.jpeg"))); // NOI18N
+        lblEscena.setPreferredSize(new java.awt.Dimension(1280, 720));
+        lblEscena.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblEscenaMouseClicked(evt);
+            }
+        });
+        pnlJuego.add(lblEscena);
+        lblEscena.setBounds(0, 20, 1930, 720);
 
         pnlIntro.setBackground(new java.awt.Color(0, 0, 0));
         pnlIntro.setLayout(null);
@@ -316,6 +440,7 @@ public final class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1280, 720));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -411,6 +536,11 @@ public final class MainFrame extends javax.swing.JFrame {
         mostrarJuego();
         escena.setArea(txtdialogo);
         escena.mostrarParte(false);
+        botonLabel1.setVisible(false);
+        botonLabel2.setVisible(false);
+        botonLabel3.setVisible(false);
+        botonLabel4.setVisible(false);
+
 //        escena.
 //        escribirDialogo(apu.getUbicacion().getHistoria(), null);
     }//GEN-LAST:event_lblJugarMouseClicked
@@ -502,8 +632,13 @@ public final class MainFrame extends javax.swing.JFrame {
 
     private void lblIzquierdaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIzquierdaMouseClicked
         // TODO add your handling code here:
-        if (!escena.getEscritor().isAlive()) {
+        if (!escena.getEscritor().isAlive() && continuarNivel) {
+            botonLabel1.setVisible(false);
+            botonLabel2.setVisible(false);
+            botonLabel3.setVisible(false);
+            botonLabel4.setVisible(false);
             apu.avanzar("izquierda");
+            continuarNivel = !continuarNivel;
             siguienteNivel();
         }
     }//GEN-LAST:event_lblIzquierdaMouseClicked
@@ -527,8 +662,14 @@ public final class MainFrame extends javax.swing.JFrame {
 
     private void lblDerechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDerechaMouseClicked
         // TODO add your handling code here:
-        if (!escena.getEscritor().isAlive()) {
+
+        if (!escena.getEscritor().isAlive() && continuarNivel) {
+            botonLabel1.setVisible(false);
+            botonLabel2.setVisible(false);
+            botonLabel3.setVisible(false);
+            botonLabel4.setVisible(false);
             apu.avanzar("derecha");
+            continuarNivel = !continuarNivel;
             siguienteNivel();
         }
     }//GEN-LAST:event_lblDerechaMouseClicked
@@ -550,7 +691,17 @@ public final class MainFrame extends javax.swing.JFrame {
     private void lblPostMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPostMouseClicked
         // TODO add your handling code here:
         if (escena.hayPosterior()) {
-            escena.parteSiguiente();
+            Runnable run = () -> mostrarBotones(apu.getUbicacion());
+            visualBoton = new Thread(() -> {
+                escena.parteSiguiente();
+                botonLabel1.setVisible(false);
+                botonLabel2.setVisible(false);
+                botonLabel3.setVisible(false);
+                botonLabel4.setVisible(false);
+
+                SwingUtilities.invokeLater(run);
+            });
+            visualBoton.start();
         }
     }//GEN-LAST:event_lblPostMouseClicked
 
@@ -558,7 +709,12 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (escena.hayPrevio()) {
             try {
+                botonLabel1.setVisible(false);
+                botonLabel2.setVisible(false);
+                botonLabel3.setVisible(false);
+                botonLabel4.setVisible(false);
                 escena.parteAnterior();
+
             } catch (InterruptedException ex) {
                 System.out.println(ex);
             }
@@ -629,6 +785,126 @@ public final class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lblCerrarMouseDragged
 
+    private void botonLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel1MouseClicked
+        if (botonLabel1.getText().equals(apu.getUbicacion().getSolucion())) {
+            continuarNivel = true;
+            botonLabel1.setForeground(Color.GREEN);
+        } else {
+            botonLabel1.setForeground(Color.RED);
+            continuarNivel = false;
+        }
+    }//GEN-LAST:event_botonLabel1MouseClicked
+
+    private void botonLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel1MouseExited
+        botonLabel1.setBorder(null);
+        botonLabel1.setForeground(Paleta.GRIS_OSCURO.getColor());
+        botonLabel1.setFont(new java.awt.Font("Blackadder ITC", 0, 36));
+    }//GEN-LAST:event_botonLabel1MouseExited
+
+    private void botonLabel1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel1MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonLabel1MouseReleased
+
+    private void botonLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel2MouseClicked
+        if (botonLabel2.getText().equals(apu.getUbicacion().getSolucion())) {
+            continuarNivel = true;
+            botonLabel2.setForeground(Color.GREEN);
+        } else {
+            botonLabel2.setForeground(Color.RED);
+            continuarNivel = false;
+        }
+     }//GEN-LAST:event_botonLabel2MouseClicked
+
+    private void botonLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel2MouseExited
+        botonLabel2.setBorder(null);
+        botonLabel2.setForeground(Paleta.GRIS_OSCURO.getColor());
+        botonLabel2.setFont(new java.awt.Font("Blackadder ITC", 0, 36));
+    }//GEN-LAST:event_botonLabel2MouseExited
+
+    private void botonLabel2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel2MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonLabel2MouseReleased
+
+    private void botonLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel3MouseClicked
+        if (botonLabel3.getText().equals(apu.getUbicacion().getSolucion())) {
+            continuarNivel = true;
+            botonLabel3.setForeground(Color.GREEN);
+        } else {
+            botonLabel3.setForeground(Color.RED);
+            continuarNivel = false;
+        }
+
+    }//GEN-LAST:event_botonLabel3MouseClicked
+
+    private void botonLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel3MouseEntered
+        botonLabel3.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+        botonLabel3.setForeground(Color.white);
+        botonLabel3.setFont(new java.awt.Font("Blackadder ITC", 1, 40));
+    }//GEN-LAST:event_botonLabel3MouseEntered
+
+    private void botonLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel3MouseExited
+        botonLabel3.setBorder(null);
+        botonLabel3.setForeground(Paleta.GRIS_OSCURO.getColor());
+        botonLabel3.setFont(new java.awt.Font("Blackadder ITC", 0, 36));
+    }//GEN-LAST:event_botonLabel3MouseExited
+
+    private void botonLabel3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel3MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonLabel3MouseReleased
+
+    private void botonLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel4MouseClicked
+        if (botonLabel4.getText().equals(apu.getUbicacion().getSolucion())) {
+            continuarNivel = true;
+            botonLabel4.setForeground(Color.GREEN);
+        } else {
+            botonLabel4.setForeground(Color.RED);
+            continuarNivel = false;
+        }
+    }//GEN-LAST:event_botonLabel4MouseClicked
+
+    private void botonLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel4MouseEntered
+        botonLabel4.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+        botonLabel4.setForeground(Color.white);
+        botonLabel4.setFont(new java.awt.Font("Blackadder ITC", 1, 40));
+    }//GEN-LAST:event_botonLabel4MouseEntered
+
+    private void botonLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel4MouseExited
+        botonLabel4.setBorder(null);
+        botonLabel4.setForeground(Paleta.GRIS_OSCURO.getColor());
+        botonLabel4.setFont(new java.awt.Font("Blackadder ITC", 0, 36));
+    }//GEN-LAST:event_botonLabel4MouseExited
+
+    private void botonLabel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel4MouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonLabel4MouseReleased
+
+    private void lblEscenaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEscenaMouseClicked
+
+    }//GEN-LAST:event_lblEscenaMouseClicked
+
+    private void spnDialogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spnDialogoMouseClicked
+        //System.out.println("Hola");
+    }//GEN-LAST:event_spnDialogoMouseClicked
+
+    private void txtdialogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtdialogoMouseClicked
+        if (escena.getEscritor() != null) {
+            escena.getEscritor().interrupt();
+        }
+
+    }//GEN-LAST:event_txtdialogoMouseClicked
+
+    private void botonLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel2MouseEntered
+        botonLabel2.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+        botonLabel2.setForeground(Color.white);
+        botonLabel2.setFont(new java.awt.Font("Blackadder ITC", 1, 40));
+    }//GEN-LAST:event_botonLabel2MouseEntered
+
+    private void botonLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel1MouseEntered
+        botonLabel1.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+        botonLabel1.setForeground(Color.white);
+        botonLabel1.setFont(new java.awt.Font("Blackadder ITC", 1, 40));
+    }//GEN-LAST:event_botonLabel1MouseEntered
+
     /**
      * @param args the command line arguments
      */
@@ -668,6 +944,10 @@ public final class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel botonLabel1;
+    private javax.swing.JLabel botonLabel2;
+    private javax.swing.JLabel botonLabel3;
+    private javax.swing.JLabel botonLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAcercaDe;
     private javax.swing.JLabel lblCerrar;
@@ -796,6 +1076,21 @@ public final class MainFrame extends javax.swing.JFrame {
 
         inthread.start(); // Iniciar el hilo de la animación
 
+    }
+
+    private void mostrarBotones(Nivel nivel) {
+
+        Collections.shuffle(Arrays.asList(nivel.getRespuetas()));
+        String Respuesta[] = nivel.getRespuetas();
+        botonLabel1.setText(Respuesta[0]);
+        botonLabel2.setText(Respuesta[1]);
+        botonLabel3.setText(Respuesta[2]);
+        botonLabel4.setText(Respuesta[3]);
+
+        botonLabel1.setVisible(true);
+        botonLabel2.setVisible(true);
+        botonLabel3.setVisible(true);
+        botonLabel4.setVisible(true);
     }
 
 }
