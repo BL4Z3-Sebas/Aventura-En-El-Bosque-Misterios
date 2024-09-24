@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vista;
 
 import java.awt.Color;
@@ -43,6 +39,7 @@ public class AcercaDeFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(720, 480));
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
             }
@@ -50,68 +47,78 @@ public class AcercaDeFrame extends javax.swing.JFrame {
                 formWindowLostFocus(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(null);
 
         pnlBackground.setBackground(new java.awt.Color(0, 0, 0));
         pnlBackground.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
-        pnlBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlBackground.setLayout(null);
 
         lblTeam.setFont(new java.awt.Font("Papyrus", 0, 20)); // NOI18N
         lblTeam.setForeground(new java.awt.Color(204, 204, 204));
         lblTeam.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTeam.setText("Time Treep Team");
-        pnlBackground.add(lblTeam, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 165, 440, 30));
+        pnlBackground.add(lblTeam);
+        lblTeam.setBounds(130, 165, 440, 30);
 
         lblIntro.setBackground(new java.awt.Color(255, 255, 255));
         lblIntro.setFont(new java.awt.Font("Blackadder ITC", 0, 60)); // NOI18N
         lblIntro.setForeground(new java.awt.Color(204, 204, 204));
         lblIntro.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblIntro.setText("FRACTALUM");
-        pnlBackground.add(lblIntro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 460, 80));
+        pnlBackground.add(lblIntro);
+        lblIntro.setBounds(130, 110, 460, 80);
 
         lblAndres.setFont(new java.awt.Font("Papyrus", 1, 18)); // NOI18N
         lblAndres.setForeground(new java.awt.Color(204, 204, 204));
         lblAndres.setText("Andres Forero");
-        pnlBackground.add(lblAndres, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, 200, 30));
+        pnlBackground.add(lblAndres);
+        lblAndres.setBounds(370, 340, 200, 30);
 
         lblDavid.setFont(new java.awt.Font("Papyrus", 1, 18)); // NOI18N
         lblDavid.setForeground(new java.awt.Color(204, 204, 204));
         lblDavid.setText("David Gutierrez");
-        pnlBackground.add(lblDavid, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, 200, 30));
+        pnlBackground.add(lblDavid);
+        lblDavid.setBounds(370, 300, 200, 30);
 
         lblDiseño.setFont(new java.awt.Font("Papyrus", 0, 18)); // NOI18N
         lblDiseño.setForeground(new java.awt.Color(204, 204, 204));
         lblDiseño.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDiseño.setText("Director de Diseño");
-        pnlBackground.add(lblDiseño, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 200, 30));
+        pnlBackground.add(lblDiseño);
+        lblDiseño.setBounds(150, 340, 200, 30);
 
         lblAlfonso.setFont(new java.awt.Font("Papyrus", 1, 18)); // NOI18N
         lblAlfonso.setForeground(new java.awt.Color(204, 204, 204));
         lblAlfonso.setText("Alfonso Cohen");
-        pnlBackground.add(lblAlfonso, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, 200, 30));
+        pnlBackground.add(lblAlfonso);
+        lblAlfonso.setBounds(370, 220, 200, 30);
 
         lblSebastian.setFont(new java.awt.Font("Papyrus", 1, 18)); // NOI18N
         lblSebastian.setForeground(new java.awt.Color(204, 204, 204));
         lblSebastian.setText("Sebastian Cotes");
-        pnlBackground.add(lblSebastian, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 200, 30));
+        pnlBackground.add(lblSebastian);
+        lblSebastian.setBounds(370, 260, 200, 30);
 
         lblGerente.setFont(new java.awt.Font("Papyrus", 0, 18)); // NOI18N
         lblGerente.setForeground(new java.awt.Color(204, 204, 204));
         lblGerente.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblGerente.setText("Gerente del Proyecto");
-        pnlBackground.add(lblGerente, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 200, 30));
+        pnlBackground.add(lblGerente);
+        lblGerente.setBounds(150, 220, 200, 30);
 
         lblUI.setFont(new java.awt.Font("Papyrus", 0, 18)); // NOI18N
         lblUI.setForeground(new java.awt.Color(204, 204, 204));
         lblUI.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblUI.setText("Director UI/UX");
-        pnlBackground.add(lblUI, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 200, 30));
+        pnlBackground.add(lblUI);
+        lblUI.setBounds(150, 260, 200, 30);
 
         lblCreaativo.setFont(new java.awt.Font("Papyrus", 0, 18)); // NOI18N
         lblCreaativo.setForeground(new java.awt.Color(204, 204, 204));
         lblCreaativo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCreaativo.setText("Director Creativo");
-        pnlBackground.add(lblCreaativo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, 200, 30));
+        pnlBackground.add(lblCreaativo);
+        lblCreaativo.setBounds(150, 300, 200, 30);
 
         lblCerrar.setBackground(new java.awt.Color(102, 0, 0));
         lblCerrar.setFont(new java.awt.Font("Papyrus", 0, 36)); // NOI18N
@@ -132,9 +139,11 @@ public class AcercaDeFrame extends javax.swing.JFrame {
                 lblCerrarMouseReleased(evt);
             }
         });
-        pnlBackground.add(lblCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(678, 2, 40, 25));
+        pnlBackground.add(lblCerrar);
+        lblCerrar.setBounds(678, 2, 40, 25);
 
-        getContentPane().add(pnlBackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 480));
+        getContentPane().add(pnlBackground);
+        pnlBackground.setBounds(0, 0, 720, 480);
 
         pack();
         setLocationRelativeTo(null);

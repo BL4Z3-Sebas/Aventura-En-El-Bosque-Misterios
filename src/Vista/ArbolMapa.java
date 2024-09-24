@@ -10,7 +10,8 @@ public class ArbolMapa extends JPanel {
 
     private final Arbol arbol;
     private final Apuntador apuntador;
-    private final Color colorCyanOscuro = new Color(204, 204, 204);
+    private final Color gris = new Color(204, 204, 204);
+    private final Color grisOscuro = new Color(102, 102, 102);
 
     public ArbolMapa(Arbol arbol) {
         this.arbol = arbol;
@@ -27,14 +28,14 @@ public class ArbolMapa extends JPanel {
         g2d.setStroke(new BasicStroke(3)); // Grosor de las líneas
 
         // Configurar la fuente
-        g2d.setFont(new Font("Blackadder ITC", Font.PLAIN, 36));
-        g2d.setColor(colorCyanOscuro);
+        g2d.setFont(new Font("Blackadder ITC", Font.PLAIN, 18));
+        g2d.setColor(gris);
 
         if (arbol.getRaiz() != null) {
             // Iniciar el dibujo desde el centro del panel
             int panelWidth = getWidth();
             int startX = panelWidth / 2; // Posición X central del panel
-            int startY = 30; // Posición Y inicial
+            int startY = 15; // Posición Y inicial
             int horizontalOffset = panelWidth / 4; // Desplazamiento horizontal inicial
             dibujarNodo(g2d, arbol.getRaiz(), startX, startY, horizontalOffset, 1);
         }
@@ -47,27 +48,38 @@ public class ArbolMapa extends JPanel {
 
         // Dibujar conexiones (líneas) hacia los hijos
         if (nodo.getLeft() != null) {
-            g.drawLine(x, y, x - offsetX, y + 60); // Conexión a la izquierda
-            dibujarNodo(g, nodo.getLeft(), x - offsetX, y + 60, offsetX / 2, nivel + 1);
+            g.drawLine(x, y, x - offsetX, y + 30); // Conexión a la izquierda
+            dibujarNodo(g, nodo.getLeft(), x - offsetX, y + 30, offsetX / 2, nivel + 1);
         }
         if (nodo.getRight() != null) {
-            g.drawLine(x, y, x + offsetX, y + 60); // Conexión a la derecha
-            dibujarNodo(g, nodo.getRight(), x + offsetX, y + 60, offsetX / 2, nivel + 1);
+            g.drawLine(x, y, x + offsetX, y + 30); // Conexión a la derecha
+            dibujarNodo(g, nodo.getRight(), x + offsetX, y + 30, offsetX / 2, nivel + 1);
         }
 
         // Dibujar el nodo como un círculo
-        g.fillOval(x - 20, y - 20, 40, 40);
-
+        if (!nodo.getNivel().isVisitado()) {
+            g.fillOval(x - 10, y - 10, 20, 20);
+        } else {
+            g.setColor(grisOscuro);
+            g.fillOval(x - 10, y - 10, 20, 20);
+            g.setColor(gris);
+        }
         // Dibujar el ID del nodo dentro del círculo
         g.setColor(Color.BLACK); // Texto negro sobre fondo cian
         g.drawString(" ", x - 10, y + 10);
-        g.setColor(colorCyanOscuro); // Restaurar el color cian oscuro
+        g.setColor(gris); // Restaurar el color cian oscuro
 
         // Resaltar la ubicación del jugador
         if (nodo == apuntador.getNodo()) {
             g.setColor(Color.RED); // Resaltar el nodo del jugador en rojo
-            g.drawOval(x - 25, y - 25, 50, 50); // Borde más grande
-            g.setColor(colorCyanOscuro); // Restaurar el color original para otros nodos
+            g.drawOval(x - 12, y - 12, 25, 25); // Borde más grande
+            g.setColor(gris); // Restaurar el color original para otros nodos
+        }
+
+        if (nodo.getNivel().isFinalBueno()) {
+            g.setColor(Color.green); // Resaltar el nodo de llegada en verda
+            g.drawOval(x - 12, y - 12, 25, 25); // Borde más grande
+            g.setColor(gris); // Restaurar el color original para otros nodos
         }
     }
 }

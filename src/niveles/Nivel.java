@@ -12,13 +12,15 @@ public class Nivel {
     private String acertijo;
     private String[] respuestas;
     private String solucion;
-    private boolean visitado;
     private Audio audio;
     private String rutaImagen;
+    private boolean visitado;
+    private boolean finalBueno;
 
     // Constructor predeterminado, con valores iniciales
     public Nivel() {
         this.visitado = false;
+        this.finalBueno = false;
     }
 
     // Constructor sobrecargado para facilitar la creación de niveles con datos básicos
@@ -121,6 +123,14 @@ public class Nivel {
 
     public void setRutaImagen(String rutaImagen) {
         this.rutaImagen = rutaImagen;
+    }
+
+    public boolean isFinalBueno() {
+        return finalBueno;
+    }
+
+    public void setFinalBueno(boolean finalBueno) {
+        this.finalBueno = finalBueno;
     }
 
     // Método auxiliar para imprimir detalles del nivel

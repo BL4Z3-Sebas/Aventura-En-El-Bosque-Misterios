@@ -12,6 +12,8 @@ public class MapaFrame extends javax.swing.JFrame {
     /**
      * Creates new form MapaFrame
      */
+    static ArbolMapa mapa;
+    
     public MapaFrame() {
         initComponents();
         cargarMapa();
@@ -26,10 +28,13 @@ public class MapaFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblArbol = new javax.swing.JPanel();
+        pnlArbol = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(0, 0, 0));
         setUndecorated(true);
+        setOpacity(0.5F);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
             }
@@ -38,18 +43,18 @@ public class MapaFrame extends javax.swing.JFrame {
             }
         });
 
-        lblArbol.setBackground(new java.awt.Color(0, 0, 0));
-        lblArbol.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
-        lblArbol.setOpaque(false);
+        pnlArbol.setBackground(new java.awt.Color(0, 0, 0));
+        pnlArbol.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
+        pnlArbol.setOpaque(false);
 
-        javax.swing.GroupLayout lblArbolLayout = new javax.swing.GroupLayout(lblArbol);
-        lblArbol.setLayout(lblArbolLayout);
-        lblArbolLayout.setHorizontalGroup(
-            lblArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlArbolLayout = new javax.swing.GroupLayout(pnlArbol);
+        pnlArbol.setLayout(pnlArbolLayout);
+        pnlArbolLayout.setHorizontalGroup(
+            pnlArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 496, Short.MAX_VALUE)
         );
-        lblArbolLayout.setVerticalGroup(
-            lblArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlArbolLayout.setVerticalGroup(
+            pnlArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 246, Short.MAX_VALUE)
         );
 
@@ -57,15 +62,14 @@ public class MapaFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblArbol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlArbol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblArbol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlArbol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowLostFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowLostFocus
@@ -109,12 +113,12 @@ public class MapaFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel lblArbol;
+    private static javax.swing.JPanel pnlArbol;
     // End of variables declaration//GEN-END:variables
     private void cargarMapa() {
-        ArbolMapa mapa = new ArbolMapa(Arbol.getInstancia());
+        mapa = new ArbolMapa(Arbol.getInstancia());
         mapa.setLocation(0, 0);
-        mapa.setSize(500, 500);
-        add(mapa);
+        mapa.setSize(250, 125);
+        pnlArbol.add(mapa);
     }
 }

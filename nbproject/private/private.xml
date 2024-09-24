@@ -4,11 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Alfonso/Documents/EDD_II/Aventura-En-El-Bosque-Misterios/src/Vista/MainFrame.java</file>
+            <file>file:/C:/Users/Alfonso/Documents/EDD_II/Aventura-En-El-Bosque-Misterios/src/Vista/MapaFrame.java</file>
             <file>file:/C:/Users/Alfonso/Documents/EDD_II/Aventura-En-El-Bosque-Misterios/src/Vista/AcercaDeFrame.java</file>
-            <file>file:/C:/Users/Alfonso/Documents/EDD_II/Aventura-En-El-Bosque-Misterios/src/Vista/RecursiveTree.java</file>
-            <file>file:/C:/Users/Alfonso/Documents/EDD_II/Aventura-En-El-Bosque-Misterios/src/arbol/Arbol.java</file>
-            <file>file:/C:/Users/Alfonso/Documents/EDD_II/Aventura-En-El-Bosque-Misterios/src/Vista/AcertijoFrame.java</file>
-            <file>file:/C:/Users/Alfonso/Documents/EDD_II/Aventura-En-El-Bosque-Misterios/src/niveles/GeneradorNiveles.java</file>
+            <file>file:/C:/Users/Alfonso/Documents/EDD_II/Aventura-En-El-Bosque-Misterios/src/niveles/Nivel.java</file>
+            <file>file:/C:/Users/Alfonso/Documents/EDD_II/Aventura-En-El-Bosque-Misterios/src/Vista/ArbolMapa.java</file>
         </group>
     </open-files>
 </project-private>

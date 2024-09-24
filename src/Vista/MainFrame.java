@@ -25,6 +25,7 @@ public final class MainFrame extends javax.swing.JFrame {
     Escena escena = new Escena();
     Escena e = new Escena();
     boolean continuarNivel;
+    MapaFrame mapa = new MapaFrame();
 
     ;
 
@@ -59,10 +60,10 @@ public final class MainFrame extends javax.swing.JFrame {
         lblSalir = new javax.swing.JLabel();
         pnlArbol = new javax.swing.JPanel();
         pnlJuego = new javax.swing.JPanel();
-        botonLabel1 = new javax.swing.JLabel();
-        botonLabel2 = new javax.swing.JLabel();
-        botonLabel3 = new javax.swing.JLabel();
-        botonLabel4 = new javax.swing.JLabel();
+        lblOpcion1 = new javax.swing.JLabel();
+        lblOpcion2 = new javax.swing.JLabel();
+        lblOpcion3 = new javax.swing.JLabel();
+        lblOpcion4 = new javax.swing.JLabel();
         lblPost = new javax.swing.JLabel();
         lblPrev = new javax.swing.JLabel();
         lblIzquierda = new javax.swing.JLabel();
@@ -182,6 +183,8 @@ public final class MainFrame extends javax.swing.JFrame {
                 .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        pnlArbol.setBackground(new java.awt.Color(0, 0, 0));
+
         javax.swing.GroupLayout pnlArbolLayout = new javax.swing.GroupLayout(pnlArbol);
         pnlArbol.setLayout(pnlArbolLayout);
         pnlArbolLayout.setHorizontalGroup(
@@ -196,93 +199,93 @@ public final class MainFrame extends javax.swing.JFrame {
         pnlJuego.setBackground(new java.awt.Color(0, 0, 0));
         pnlJuego.setLayout(null);
 
-        botonLabel1.setFont(new java.awt.Font("Blackadder ITC", 0, 36)); // NOI18N
-        botonLabel1.setForeground(new java.awt.Color(150, 150, 150));
-        botonLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        botonLabel1.setText("boton1");
-        botonLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblOpcion1.setFont(new java.awt.Font("Blackadder ITC", 0, 36)); // NOI18N
+        lblOpcion1.setForeground(new java.awt.Color(150, 150, 150));
+        lblOpcion1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOpcion1.setText("boton1");
+        lblOpcion1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblOpcion1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonLabel1MouseClicked(evt);
+                lblOpcion1MouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonLabel1MouseEntered(evt);
+                lblOpcion1MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                botonLabel1MouseExited(evt);
+                lblOpcion1MouseExited(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                botonLabel1MouseReleased(evt);
+                lblOpcion1MouseReleased(evt);
             }
         });
-        pnlJuego.add(botonLabel1);
-        botonLabel1.setBounds(830, 590, 220, 60);
+        pnlJuego.add(lblOpcion1);
+        lblOpcion1.setBounds(1200, 920, 220, 60);
 
-        botonLabel2.setFont(new java.awt.Font("Blackadder ITC", 0, 36)); // NOI18N
-        botonLabel2.setForeground(new java.awt.Color(150, 150, 150));
-        botonLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        botonLabel2.setText("boton2");
-        botonLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblOpcion2.setFont(new java.awt.Font("Blackadder ITC", 0, 36)); // NOI18N
+        lblOpcion2.setForeground(new java.awt.Color(150, 150, 150));
+        lblOpcion2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOpcion2.setText("boton2");
+        lblOpcion2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblOpcion2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonLabel2MouseClicked(evt);
+                lblOpcion2MouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonLabel2MouseEntered(evt);
+                lblOpcion2MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                botonLabel2MouseExited(evt);
+                lblOpcion2MouseExited(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                botonLabel2MouseReleased(evt);
+                lblOpcion2MouseReleased(evt);
             }
         });
-        pnlJuego.add(botonLabel2);
-        botonLabel2.setBounds(1060, 590, 220, 60);
+        pnlJuego.add(lblOpcion2);
+        lblOpcion2.setBounds(1430, 920, 220, 60);
 
-        botonLabel3.setFont(new java.awt.Font("Blackadder ITC", 0, 36)); // NOI18N
-        botonLabel3.setForeground(new java.awt.Color(150, 150, 150));
-        botonLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        botonLabel3.setText("boton3");
-        botonLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblOpcion3.setFont(new java.awt.Font("Blackadder ITC", 0, 36)); // NOI18N
+        lblOpcion3.setForeground(new java.awt.Color(150, 150, 150));
+        lblOpcion3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOpcion3.setText("boton3");
+        lblOpcion3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblOpcion3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonLabel3MouseClicked(evt);
+                lblOpcion3MouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonLabel3MouseEntered(evt);
+                lblOpcion3MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                botonLabel3MouseExited(evt);
+                lblOpcion3MouseExited(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                botonLabel3MouseReleased(evt);
+                lblOpcion3MouseReleased(evt);
             }
         });
-        pnlJuego.add(botonLabel3);
-        botonLabel3.setBounds(830, 660, 220, 60);
+        pnlJuego.add(lblOpcion3);
+        lblOpcion3.setBounds(1200, 990, 220, 60);
 
-        botonLabel4.setFont(new java.awt.Font("Blackadder ITC", 0, 36)); // NOI18N
-        botonLabel4.setForeground(new java.awt.Color(150, 150, 150));
-        botonLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        botonLabel4.setText("boton4");
-        botonLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        botonLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblOpcion4.setFont(new java.awt.Font("Blackadder ITC", 0, 36)); // NOI18N
+        lblOpcion4.setForeground(new java.awt.Color(150, 150, 150));
+        lblOpcion4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblOpcion4.setText("boton4");
+        lblOpcion4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblOpcion4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                botonLabel4MouseClicked(evt);
+                lblOpcion4MouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                botonLabel4MouseEntered(evt);
+                lblOpcion4MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                botonLabel4MouseExited(evt);
+                lblOpcion4MouseExited(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                botonLabel4MouseReleased(evt);
+                lblOpcion4MouseReleased(evt);
             }
         });
-        pnlJuego.add(botonLabel4);
-        botonLabel4.setBounds(1060, 660, 220, 60);
+        pnlJuego.add(lblOpcion4);
+        lblOpcion4.setBounds(1430, 990, 220, 60);
 
         lblPost.setFont(new java.awt.Font("Chiller", 0, 60)); // NOI18N
         lblPost.setForeground(new java.awt.Color(153, 153, 153));
@@ -300,7 +303,7 @@ public final class MainFrame extends javax.swing.JFrame {
             }
         });
         pnlJuego.add(lblPost);
-        lblPost.setBounds(1220, 500, 60, 80);
+        lblPost.setBounds(1820, 900, 100, 180);
 
         lblPrev.setFont(new java.awt.Font("Chiller", 0, 60)); // NOI18N
         lblPrev.setForeground(new java.awt.Color(153, 153, 153));
@@ -320,7 +323,7 @@ public final class MainFrame extends javax.swing.JFrame {
             }
         });
         pnlJuego.add(lblPrev);
-        lblPrev.setBounds(0, 520, 70, 70);
+        lblPrev.setBounds(0, 900, 100, 180);
 
         lblIzquierda.setBackground(new java.awt.Color(0, 0, 0));
         lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 0, 200)); // NOI18N
@@ -340,7 +343,7 @@ public final class MainFrame extends javax.swing.JFrame {
             }
         });
         pnlJuego.add(lblIzquierda);
-        lblIzquierda.setBounds(0, 0, 70, 530);
+        lblIzquierda.setBounds(0, 25, 160, 825);
 
         lblDerecha.setBackground(new java.awt.Color(0, 0, 0));
         lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 0, 200)); // NOI18N
@@ -360,7 +363,7 @@ public final class MainFrame extends javax.swing.JFrame {
             }
         });
         pnlJuego.add(lblDerecha);
-        lblDerecha.setBounds(1219, 20, 60, 480);
+        lblDerecha.setBounds(1760, 25, 160, 825);
 
         lblNivel.setFont(new java.awt.Font("Blackadder ITC", 0, 40)); // NOI18N
         lblNivel.setForeground(new java.awt.Color(255, 255, 255));
@@ -410,7 +413,7 @@ public final class MainFrame extends javax.swing.JFrame {
         spnDialogo.setViewportView(txtdialogo);
 
         pnlJuego.add(spnDialogo);
-        spnDialogo.setBounds(0, 590, 1280, 140);
+        spnDialogo.setBounds(100, 900, 1720, 180);
 
         lblEscena.setPreferredSize(new java.awt.Dimension(1280, 720));
         lblEscena.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -475,8 +478,8 @@ public final class MainFrame extends javax.swing.JFrame {
         jScrollPane1.setBounds(60, 265, 1810, 890);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Fractalum");
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -486,7 +489,7 @@ public final class MainFrame extends javax.swing.JFrame {
         sldVolumen.setBackground(new java.awt.Color(0, 0, 0));
         sldVolumen.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         sldVolumen.setForeground(new java.awt.Color(255, 255, 255));
-        sldVolumen.setValue(100);
+        sldVolumen.setValue(60);
         sldVolumen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         sldVolumen.setOpaque(true);
         sldVolumen.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -501,10 +504,10 @@ public final class MainFrame extends javax.swing.JFrame {
         });
 
         lblCerrar.setBackground(new java.awt.Color(51, 0, 0));
-        lblCerrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblCerrar.setFont(new java.awt.Font("Papyrus", 0, 36)); // NOI18N
         lblCerrar.setForeground(new java.awt.Color(255, 255, 255));
         lblCerrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCerrar.setText("X");
+        lblCerrar.setText("×");
         lblCerrar.setOpaque(true);
         lblCerrar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -529,16 +532,16 @@ public final class MainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(sldVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1725, Short.MAX_VALUE)
-                .addComponent(lblCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1720, Short.MAX_VALUE)
+                .addComponent(lblCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sldVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 1164, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sldVolumen, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 1109, Short.MAX_VALUE))
         );
 
         pack();
@@ -560,10 +563,10 @@ public final class MainFrame extends javax.swing.JFrame {
         mostrarJuego();
         escena.setArea(txtdialogo);
         escena.mostrarParte(false);
-        botonLabel1.setVisible(false);
-        botonLabel2.setVisible(false);
-        botonLabel3.setVisible(false);
-        botonLabel4.setVisible(false);
+        lblOpcion1.setVisible(false);
+        lblOpcion2.setVisible(false);
+        lblOpcion3.setVisible(false);
+        lblOpcion4.setVisible(false);
 
 //        escena.
 //        escribirDialogo(apu.getUbicacion().getHistoria(), null);
@@ -660,10 +663,11 @@ public final class MainFrame extends javax.swing.JFrame {
     private void lblIzquierdaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIzquierdaMouseClicked
         // TODO add your handling code here:
         if (!escena.getEscritor().isAlive() && continuarNivel) {
-            botonLabel1.setVisible(false);
-            botonLabel2.setVisible(false);
-            botonLabel3.setVisible(false);
-            botonLabel4.setVisible(false);
+            apu.getUbicacion().setVisitado(true);
+            lblOpcion1.setVisible(false);
+            lblOpcion2.setVisible(false);
+            lblOpcion3.setVisible(false);
+            lblOpcion4.setVisible(false);
             apu.avanzar("izquierda");
             continuarNivel = !continuarNivel;
             siguienteNivel();
@@ -691,10 +695,11 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         if (!escena.getEscritor().isAlive() && continuarNivel) {
-            botonLabel1.setVisible(false);
-            botonLabel2.setVisible(false);
-            botonLabel3.setVisible(false);
-            botonLabel4.setVisible(false);
+            apu.getUbicacion().setVisitado(true);
+            lblOpcion1.setVisible(false);
+            lblOpcion2.setVisible(false);
+            lblOpcion3.setVisible(false);
+            lblOpcion4.setVisible(false);
             apu.avanzar("derecha");
             continuarNivel = !continuarNivel;
             siguienteNivel();
@@ -721,10 +726,10 @@ public final class MainFrame extends javax.swing.JFrame {
             Runnable run = () -> mostrarBotones(apu.getUbicacion());
             Thread visualBoton = new Thread(() -> {
                 escena.parteSiguiente();
-                botonLabel1.setVisible(false);
-                botonLabel2.setVisible(false);
-                botonLabel3.setVisible(false);
-                botonLabel4.setVisible(false);
+                lblOpcion1.setVisible(false);
+                lblOpcion2.setVisible(false);
+                lblOpcion3.setVisible(false);
+                lblOpcion4.setVisible(false);
 
                 SwingUtilities.invokeLater(run);
             });
@@ -735,10 +740,10 @@ public final class MainFrame extends javax.swing.JFrame {
     private void lblPrevMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPrevMouseClicked
         // TODO add your handling code here:
         if (escena.hayPrevio()) {
-            botonLabel1.setVisible(false);
-            botonLabel2.setVisible(false);
-            botonLabel3.setVisible(false);
-            botonLabel4.setVisible(false);
+            lblOpcion1.setVisible(false);
+            lblOpcion2.setVisible(false);
+            lblOpcion3.setVisible(false);
+            lblOpcion4.setVisible(false);
             escena.parteAnterior();
         }
     }//GEN-LAST:event_lblPrevMouseClicked
@@ -790,12 +795,12 @@ public final class MainFrame extends javax.swing.JFrame {
 
     private void lblCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseEntered
         // TODO add your handling code here:
-        lblCerrar.setBackground(new Color(102, 0, 0));
+        lblCerrar.setBackground(new Color(204, 0, 0));
     }//GEN-LAST:event_lblCerrarMouseEntered
 
     private void lblCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseExited
         // TODO add your handling code here:
-        lblCerrar.setBackground(new Color(21, 0, 0));
+        lblCerrar.setBackground(new Color(102, 0, 0));
     }//GEN-LAST:event_lblCerrarMouseExited
 
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
@@ -810,98 +815,98 @@ public final class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lblCerrarMouseDragged
 
-    private void botonLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel1MouseClicked
-        if (botonLabel1.getText().equals(apu.getUbicacion().getSolucion())) {
+    private void lblOpcion1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcion1MouseClicked
+        if (lblOpcion1.getText().equals(apu.getUbicacion().getSolucion())) {
             continuarNivel = true;
-            botonLabel1.setForeground(Color.GREEN);
+            lblOpcion1.setForeground(Color.GREEN);
         } else {
-            botonLabel1.setForeground(Color.RED);
+            lblOpcion1.setForeground(Color.RED);
             continuarNivel = false;
         }
-    }//GEN-LAST:event_botonLabel1MouseClicked
+    }//GEN-LAST:event_lblOpcion1MouseClicked
 
-    private void botonLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel1MouseExited
-        botonLabel1.setBorder(null);
-        botonLabel1.setForeground(Paleta.GRIS_OSCURO.getColor());
-        botonLabel1.setFont(new java.awt.Font("Blackadder ITC", 0, 36));
-    }//GEN-LAST:event_botonLabel1MouseExited
+    private void lblOpcion1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcion1MouseExited
+        lblOpcion1.setBorder(null);
+        lblOpcion1.setForeground(Paleta.GRIS_OSCURO.getColor());
+        lblOpcion1.setFont(new java.awt.Font("Blackadder ITC", 0, 36));
+    }//GEN-LAST:event_lblOpcion1MouseExited
 
-    private void botonLabel1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel1MouseReleased
+    private void lblOpcion1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcion1MouseReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonLabel1MouseReleased
+    }//GEN-LAST:event_lblOpcion1MouseReleased
 
-    private void botonLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel2MouseClicked
-        if (botonLabel2.getText().equals(apu.getUbicacion().getSolucion())) {
+    private void lblOpcion2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcion2MouseClicked
+        if (lblOpcion2.getText().equals(apu.getUbicacion().getSolucion())) {
             continuarNivel = true;
-            botonLabel2.setForeground(Color.GREEN);
+            lblOpcion2.setForeground(Color.GREEN);
         } else {
-            botonLabel2.setForeground(Color.RED);
+            lblOpcion2.setForeground(Color.RED);
             continuarNivel = false;
         }
-     }//GEN-LAST:event_botonLabel2MouseClicked
+     }//GEN-LAST:event_lblOpcion2MouseClicked
 
-    private void botonLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel2MouseExited
-        botonLabel2.setBorder(null);
-        botonLabel2.setForeground(Paleta.GRIS_OSCURO.getColor());
-        botonLabel2.setFont(new java.awt.Font("Blackadder ITC", 0, 36));
-    }//GEN-LAST:event_botonLabel2MouseExited
+    private void lblOpcion2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcion2MouseExited
+        lblOpcion2.setBorder(null);
+        lblOpcion2.setForeground(Paleta.GRIS_OSCURO.getColor());
+        lblOpcion2.setFont(new java.awt.Font("Blackadder ITC", 0, 36));
+    }//GEN-LAST:event_lblOpcion2MouseExited
 
-    private void botonLabel2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel2MouseReleased
+    private void lblOpcion2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcion2MouseReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonLabel2MouseReleased
+    }//GEN-LAST:event_lblOpcion2MouseReleased
 
-    private void botonLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel3MouseClicked
-        if (botonLabel3.getText().equals(apu.getUbicacion().getSolucion())) {
+    private void lblOpcion3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcion3MouseClicked
+        if (lblOpcion3.getText().equals(apu.getUbicacion().getSolucion())) {
             continuarNivel = true;
-            botonLabel3.setForeground(Color.GREEN);
+            lblOpcion3.setForeground(Color.GREEN);
         } else {
-            botonLabel3.setForeground(Color.RED);
+            lblOpcion3.setForeground(Color.RED);
             continuarNivel = false;
         }
 
-    }//GEN-LAST:event_botonLabel3MouseClicked
+    }//GEN-LAST:event_lblOpcion3MouseClicked
 
-    private void botonLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel3MouseEntered
-        botonLabel3.setBorder(BorderFactory.createLineBorder(Color.white, 2));
-        botonLabel3.setForeground(Color.white);
-        botonLabel3.setFont(new java.awt.Font("Blackadder ITC", 1, 40));
-    }//GEN-LAST:event_botonLabel3MouseEntered
+    private void lblOpcion3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcion3MouseEntered
+        lblOpcion3.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+        lblOpcion3.setForeground(Color.white);
+        lblOpcion3.setFont(new java.awt.Font("Blackadder ITC", 1, 40));
+    }//GEN-LAST:event_lblOpcion3MouseEntered
 
-    private void botonLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel3MouseExited
-        botonLabel3.setBorder(null);
-        botonLabel3.setForeground(Paleta.GRIS_OSCURO.getColor());
-        botonLabel3.setFont(new java.awt.Font("Blackadder ITC", 0, 36));
-    }//GEN-LAST:event_botonLabel3MouseExited
+    private void lblOpcion3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcion3MouseExited
+        lblOpcion3.setBorder(null);
+        lblOpcion3.setForeground(Paleta.GRIS_OSCURO.getColor());
+        lblOpcion3.setFont(new java.awt.Font("Blackadder ITC", 0, 36));
+    }//GEN-LAST:event_lblOpcion3MouseExited
 
-    private void botonLabel3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel3MouseReleased
+    private void lblOpcion3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcion3MouseReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonLabel3MouseReleased
+    }//GEN-LAST:event_lblOpcion3MouseReleased
 
-    private void botonLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel4MouseClicked
-        if (botonLabel4.getText().equals(apu.getUbicacion().getSolucion())) {
+    private void lblOpcion4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcion4MouseClicked
+        if (lblOpcion4.getText().equals(apu.getUbicacion().getSolucion())) {
             continuarNivel = true;
-            botonLabel4.setForeground(Color.GREEN);
+            lblOpcion4.setForeground(Color.GREEN);
         } else {
-            botonLabel4.setForeground(Color.RED);
+            lblOpcion4.setForeground(Color.RED);
             continuarNivel = false;
         }
-    }//GEN-LAST:event_botonLabel4MouseClicked
+    }//GEN-LAST:event_lblOpcion4MouseClicked
 
-    private void botonLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel4MouseEntered
-        botonLabel4.setBorder(BorderFactory.createLineBorder(Color.white, 2));
-        botonLabel4.setForeground(Color.white);
-        botonLabel4.setFont(new java.awt.Font("Blackadder ITC", 1, 40));
-    }//GEN-LAST:event_botonLabel4MouseEntered
+    private void lblOpcion4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcion4MouseEntered
+        lblOpcion4.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+        lblOpcion4.setForeground(Color.white);
+        lblOpcion4.setFont(new java.awt.Font("Blackadder ITC", 1, 40));
+    }//GEN-LAST:event_lblOpcion4MouseEntered
 
-    private void botonLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel4MouseExited
-        botonLabel4.setBorder(null);
-        botonLabel4.setForeground(Paleta.GRIS_OSCURO.getColor());
-        botonLabel4.setFont(new java.awt.Font("Blackadder ITC", 0, 36));
-    }//GEN-LAST:event_botonLabel4MouseExited
+    private void lblOpcion4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcion4MouseExited
+        lblOpcion4.setBorder(null);
+        lblOpcion4.setForeground(Paleta.GRIS_OSCURO.getColor());
+        lblOpcion4.setFont(new java.awt.Font("Blackadder ITC", 0, 36));
+    }//GEN-LAST:event_lblOpcion4MouseExited
 
-    private void botonLabel4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel4MouseReleased
+    private void lblOpcion4MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcion4MouseReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_botonLabel4MouseReleased
+    }//GEN-LAST:event_lblOpcion4MouseReleased
 
     private void lblEscenaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEscenaMouseClicked
 
@@ -918,21 +923,27 @@ public final class MainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_txtdialogoMouseClicked
 
-    private void botonLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel2MouseEntered
-        botonLabel2.setBorder(BorderFactory.createLineBorder(Color.white, 2));
-        botonLabel2.setForeground(Color.white);
-        botonLabel2.setFont(new java.awt.Font("Blackadder ITC", 1, 40));
-    }//GEN-LAST:event_botonLabel2MouseEntered
+    private void lblOpcion2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcion2MouseEntered
+        lblOpcion2.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+        lblOpcion2.setForeground(Color.white);
+        lblOpcion2.setFont(new java.awt.Font("Blackadder ITC", 1, 40));
+    }//GEN-LAST:event_lblOpcion2MouseEntered
 
-    private void botonLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonLabel1MouseEntered
-        botonLabel1.setBorder(BorderFactory.createLineBorder(Color.white, 2));
-        botonLabel1.setForeground(Color.white);
-        botonLabel1.setFont(new java.awt.Font("Blackadder ITC", 1, 40));
-    }//GEN-LAST:event_botonLabel1MouseEntered
+    private void lblOpcion1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOpcion1MouseEntered
+        lblOpcion1.setBorder(BorderFactory.createLineBorder(Color.white, 2));
+        lblOpcion1.setForeground(Color.white);
+        lblOpcion1.setFont(new java.awt.Font("Blackadder ITC", 1, 40));
+    }//GEN-LAST:event_lblOpcion1MouseEntered
 
     private void lblMapaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMapaMouseClicked
         // TODO add your handling code here:
-        new MapaFrame().setVisible(true);
+        if (mapa.isVisible()) {
+            mapa.setVisible(false);
+        } else {
+            mapa.setBounds(1510, 10, 250, 125);
+            mapa.setVisible(true);
+        }
+
     }//GEN-LAST:event_lblMapaMouseClicked
 
     /**
@@ -974,10 +985,6 @@ public final class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel botonLabel1;
-    private javax.swing.JLabel botonLabel2;
-    private javax.swing.JLabel botonLabel3;
-    private javax.swing.JLabel botonLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAcercaDe;
     private javax.swing.JLabel lblCerrar;
@@ -990,6 +997,10 @@ public final class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lblMapa;
     private javax.swing.JLabel lblNivel;
     private javax.swing.JLabel lblNivelImage;
+    private javax.swing.JLabel lblOpcion1;
+    private javax.swing.JLabel lblOpcion2;
+    private javax.swing.JLabel lblOpcion3;
+    private javax.swing.JLabel lblOpcion4;
     private javax.swing.JLabel lblPost;
     private javax.swing.JLabel lblPrev;
     private javax.swing.JLabel lblSalir;
@@ -1022,8 +1033,8 @@ public final class MainFrame extends javax.swing.JFrame {
     private void cargarArbol() {
         RecursiveTree treePanel = new RecursiveTree();
 
-        treePanel.setLocation(700, 0);
-        treePanel.setSize(1280, 1080);
+        treePanel.setLocation(700, 25);
+        treePanel.setSize(1280, 1030);
 
         pnlArbol.add(treePanel);
 
@@ -1059,15 +1070,15 @@ public final class MainFrame extends javax.swing.JFrame {
     private void mostrarBotones(Nivel nivel) {
 
         String Respuesta[] = nivel.getRespuestas();
-        botonLabel1.setText(Respuesta[0]);
-        botonLabel2.setText(Respuesta[1]);
-        botonLabel3.setText(Respuesta[2]);
-        botonLabel4.setText(Respuesta[3]);
+        lblOpcion1.setText(Respuesta[0]);
+        lblOpcion2.setText(Respuesta[1]);
+        lblOpcion3.setText(Respuesta[2]);
+        lblOpcion4.setText(Respuesta[3]);
 
-        botonLabel1.setVisible(true);
-        botonLabel2.setVisible(true);
-        botonLabel3.setVisible(true);
-        botonLabel4.setVisible(true);
+        lblOpcion1.setVisible(true);
+        lblOpcion2.setVisible(true);
+        lblOpcion3.setVisible(true);
+        lblOpcion4.setVisible(true);
     }
 
     //========================================================================//

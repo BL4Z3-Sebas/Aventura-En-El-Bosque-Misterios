@@ -50,7 +50,11 @@ public class Audio {
     }
 
     public void ajustarVolumen(int volumen) {
-        float nuevoVolumen = Math.max(-80.0f, Math.min(volumen * 86f / 100 - 80.0f, 6.0f));
+        if (volumen == 0) {
+            volumenControl.setValue(-80);
+            return;
+        }
+        float nuevoVolumen = Math.max(-30.0f, Math.min(volumen * 36f / 100 - 30.0f, 6.0f));
         volumenControl.setValue(nuevoVolumen);
     }
 
