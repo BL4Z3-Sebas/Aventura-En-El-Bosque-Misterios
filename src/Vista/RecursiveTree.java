@@ -10,7 +10,10 @@ public class RecursiveTree extends javax.swing.JPanel {
     float a = 0;
     float r = 0;
     Timer timer;
-
+    
+    float fwt = getWidth() / 1920;
+    float fht = getHeight() / 1080;
+    
     float velocidadMaxima = 1.5f; // Velocidad máxima que queremos alcanzar
     float velocidadActual = 0.0001f; // Velocidad inicial lenta
     float aceleracion = 0.001f; // Aceleración que incrementa la velocidad
@@ -53,8 +56,8 @@ public class RecursiveTree extends javax.swing.JPanel {
         g2d.rotate(Math.toRadians(90), getWidth() / 2, getHeight() / 2);
         g2d.translate(getWidth() / 2, getHeight());
 
-        g2d.drawLine(0, 100, 0, -260);
-        g2d.translate(0, -260);
+        g2d.drawLine(0, (int) (100 * fht), 0, (int) (-260 * fht));
+        g2d.translate(0, (int) (-260 * fht));
 
         branch(g2d, getHeight() / 2.5f);
 

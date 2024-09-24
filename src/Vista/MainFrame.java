@@ -7,8 +7,11 @@ import javax.swing.JOptionPane;
 import Sonido.Audio;
 import arbol.Arbol;
 import archivos.Intro;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import niveles.Apuntador;
 import niveles.Escena;
@@ -20,6 +23,17 @@ import niveles.GeneradorNiveles;
  */
 public final class MainFrame extends javax.swing.JFrame {
 
+    private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private final int screenWidth = (int) getWidth();
+    private final int screenHeight = (int) getHeight();
+
+    //factorWidth y factorHeight
+    /**
+     *
+     */
+    public float fw = screenWidth / 1920;
+    public float fh = screenHeight / 1080;
+
     Audio bgAudio = new Audio("src/archivos/sonidos/Escape.wav", 50);
     Arbol arbol = Arbol.getInstancia();
     Apuntador apu = Apuntador.getInstancia();
@@ -28,7 +42,6 @@ public final class MainFrame extends javax.swing.JFrame {
     ;
 
     public MainFrame() {
-
         initComponents();
         bgAudio.loopSound();
         cargarArbol();
@@ -51,6 +64,7 @@ public final class MainFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         pnlMenu = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
@@ -76,19 +90,17 @@ public final class MainFrame extends javax.swing.JFrame {
         lblCerrar = new javax.swing.JLabel();
 
         pnlMenu.setBackground(new java.awt.Color(0, 0, 0));
-        pnlMenu.setPreferredSize(new java.awt.Dimension(700, 1080));
-        pnlMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlMenu.setPreferredSize(new java.awt.Dimension((int) (700 * fw), (int) (1080)));
 
-        lblTitulo.setFont(new java.awt.Font("Blackadder ITC", 0, 150)); // NOI18N
+        lblTitulo.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (150 * fw)));
         lblTitulo.setForeground(new java.awt.Color(150, 150, 150));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Fractalum");
         lblTitulo.setAlignmentY(0.0F);
         lblTitulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblTitulo.setIconTextGap(0);
-        pnlMenu.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 550, -1));
 
-        lblJugar.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
+        lblJugar.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (48 * fw)));
         lblJugar.setForeground(new java.awt.Color(150, 150, 150));
         lblJugar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblJugar.setText("Jugar");
@@ -107,9 +119,8 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblJugarMouseReleased(evt);
             }
         });
-        pnlMenu.add(lblJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 530, 300, 80));
 
-        lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
+        lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (48 * fw)));
         lblAcercaDe.setForeground(new java.awt.Color(150, 150, 150));
         lblAcercaDe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAcercaDe.setText("Acerca de");
@@ -128,9 +139,8 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblAcercaDeMouseReleased(evt);
             }
         });
-        pnlMenu.add(lblAcercaDe, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 630, 300, 80));
 
-        lblSalir.setFont(new java.awt.Font("Blackadder ITC", 0, 48)); // NOI18N
+        lblSalir.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (48 * fw)));
         lblSalir.setForeground(new java.awt.Color(150, 150, 150));
         lblSalir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSalir.setText("Salir");
@@ -148,7 +158,36 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblSalirMouseReleased(evt);
             }
         });
-        pnlMenu.add(lblSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 730, 300, 80));
+
+        javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
+        pnlMenu.setLayout(pnlMenuLayout);
+        pnlMenuLayout.setHorizontalGroup(
+            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMenuLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlMenuLayout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(lblJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlMenuLayout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(lblAcercaDe, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlMenuLayout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pnlMenuLayout.setVerticalGroup(
+            pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMenuLayout.createSequentialGroup()
+                .addGap(330, 330, 330)
+                .addComponent(lblTitulo)
+                .addGap(16, 16, 16)
+                .addComponent(lblJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(lblAcercaDe, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(lblSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout pnlArbolLayout = new javax.swing.GroupLayout(pnlArbol);
         pnlArbol.setLayout(pnlArbolLayout);
@@ -162,9 +201,9 @@ public final class MainFrame extends javax.swing.JFrame {
         );
 
         pnlJuego.setBackground(new java.awt.Color(0, 0, 0));
-        pnlJuego.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        pnlJuego.setLayout(null);
 
-        lblPost.setFont(new java.awt.Font("Chiller", 0, 60)); // NOI18N
+        lblPost.setFont(new java.awt.Font("Chiller", 0, (int) (60 * fw)));
         lblPost.setForeground(new java.awt.Color(153, 153, 153));
         lblPost.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblPost.setText(" >");
@@ -179,10 +218,10 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblPostMouseExited(evt);
             }
         });
-        pnlJuego.add(lblPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(1820, 900, 100, 180));
-        lblPost.getAccessibleContext().setAccessibleName("");
+        pnlJuego.add(lblPost);
+        lblPost.setBounds(1820, 900, 100, 180);
 
-        lblPrev.setFont(new java.awt.Font("Chiller", 0, 60)); // NOI18N
+        lblPrev.setFont(new java.awt.Font("Chiller", 0, (int) (60 * fw)));
         lblPrev.setForeground(new java.awt.Color(153, 153, 153));
         lblPrev.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblPrev.setText("< ");
@@ -199,10 +238,11 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblPrevMouseExited(evt);
             }
         });
-        pnlJuego.add(lblPrev, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 900, 100, 180));
+        pnlJuego.add(lblPrev);
+        lblPrev.setBounds(0, 900, 100, 180);
 
         lblIzquierda.setBackground(new java.awt.Color(0, 0, 0));
-        lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 0, 200)); // NOI18N
+        lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (200 * fw)));
         lblIzquierda.setForeground(new java.awt.Color(150, 150, 150));
         lblIzquierda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIzquierda.setText("<");
@@ -218,10 +258,11 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblIzquierdaMouseExited(evt);
             }
         });
-        pnlJuego.add(lblIzquierda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 25, 160, 800));
+        pnlJuego.add(lblIzquierda);
+        lblIzquierda.setBounds(0, 25, 160, 800);
 
         lblDerecha.setBackground(new java.awt.Color(0, 0, 0));
-        lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 0, 200)); // NOI18N
+        lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (200 * fw)));
         lblDerecha.setForeground(new java.awt.Color(150, 150, 150));
         lblDerecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDerecha.setText(">");
@@ -237,9 +278,10 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblDerechaMouseExited(evt);
             }
         });
-        pnlJuego.add(lblDerecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(1760, 25, 160, 800));
+        pnlJuego.add(lblDerecha);
+        lblDerecha.setBounds(1760, 25, 160, 800);
 
-        lblNivel.setFont(new java.awt.Font("Blackadder ITC", 0, 40)); // NOI18N
+        lblNivel.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (40 * fw)));
         lblNivel.setForeground(new java.awt.Color(255, 255, 255));
         lblNivel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblNivel.setText("Laboratorio del Dr Stomps");
@@ -254,7 +296,7 @@ public final class MainFrame extends javax.swing.JFrame {
         txtdialogo.setEditable(false);
         txtdialogo.setBackground(new java.awt.Color(0, 0, 0));
         txtdialogo.setColumns(150);
-        txtdialogo.setFont(new java.awt.Font("Blackadder ITC", 0, 36)); // NOI18N
+        txtdialogo.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (36 * fw)));
         txtdialogo.setForeground(new java.awt.Color(255, 255, 255));
         txtdialogo.setLineWrap(true);
         txtdialogo.setRows(3);
@@ -263,10 +305,12 @@ public final class MainFrame extends javax.swing.JFrame {
         txtdialogo.setFocusable(false);
         spnDialogo.setViewportView(txtdialogo);
 
-        pnlJuego.add(spnDialogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 900, 1720, 180));
+        pnlJuego.add(spnDialogo);
+        spnDialogo.setBounds(100, 900, 1720, 180);
 
         pnlIntro.setBackground(new java.awt.Color(0, 0, 0));
-        pnlIntro.setLayout(null);
+        pnlIntro.setPreferredSize(new java.awt.Dimension((int) (1920 * fw), (int) (1080 * fh)));
+        pnlIntro.setLayout(new java.awt.GridBagLayout());
 
         lblContinuar.setText("jLabel1");
         lblContinuar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -279,16 +323,30 @@ public final class MainFrame extends javax.swing.JFrame {
                 lblContinuarMouseClicked(evt);
             }
         });
-        pnlIntro.add(lblContinuar);
-        lblContinuar.setBounds(0, 0, 1920, 1080);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 1883;
+        gridBagConstraints.ipady = 1064;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        pnlIntro.add(lblContinuar, gridBagConstraints);
 
         lblIntro.setBackground(new java.awt.Color(255, 255, 255));
-        lblIntro.setFont(new java.awt.Font("Blackadder ITC", 0, 150)); // NOI18N
+        lblIntro.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (150 * fw)));
         lblIntro.setForeground(new java.awt.Color(255, 255, 255));
         lblIntro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblIntro.setText("FRACTALUM");
-        pnlIntro.add(lblIntro);
-        lblIntro.setBounds(360, 965, 1200, 190);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.ipadx = 1132;
+        gridBagConstraints.ipady = 174;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(965, 360, 0, 0);
+        pnlIntro.add(lblIntro, gridBagConstraints);
 
         jScrollPane1.setBackground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setBorder(null);
@@ -299,7 +357,7 @@ public final class MainFrame extends javax.swing.JFrame {
         txtIntro.setEditable(false);
         txtIntro.setBackground(new java.awt.Color(0, 0, 0));
         txtIntro.setColumns(20);
-        txtIntro.setFont(new java.awt.Font("Blackadder ITC", 0, 36)); // NOI18N
+        txtIntro.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (36 * fw)));
         txtIntro.setForeground(new java.awt.Color(255, 255, 255));
         txtIntro.setLineWrap(true);
         txtIntro.setRows(5);
@@ -309,8 +367,18 @@ public final class MainFrame extends javax.swing.JFrame {
         txtIntro.setOpaque(false);
         jScrollPane1.setViewportView(txtIntro);
 
-        pnlIntro.add(jScrollPane1);
-        jScrollPane1.setBounds(110, 265, 1700, 765);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 1696;
+        gridBagConstraints.ipady = 761;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(265, 110, 0, 0);
+        pnlIntro.add(jScrollPane1, gridBagConstraints);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -338,7 +406,7 @@ public final class MainFrame extends javax.swing.JFrame {
         });
 
         lblCerrar.setBackground(new java.awt.Color(51, 0, 0));
-        lblCerrar.setFont(new java.awt.Font("Blackadder ITC", 0, 18)); // NOI18N
+        lblCerrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblCerrar.setForeground(new java.awt.Color(255, 255, 255));
         lblCerrar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblCerrar.setText("X");
@@ -417,14 +485,14 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         lblJugar.setBorder(BorderFactory.createLineBorder(Color.white, 2));
         lblJugar.setForeground(Color.white);
-        lblJugar.setFont(new java.awt.Font("Blackadder ITC", 1, 54));
+        lblJugar.setFont(new java.awt.Font("Blackadder ITC", 1, (int) (54 * fw)));
     }//GEN-LAST:event_lblJugarMouseEntered
 
     private void lblJugarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJugarMouseExited
         // TODO add your handling code here:
         lblJugar.setBorder(null);
         lblJugar.setForeground(Paleta.GRIS_OSCURO.getColor());
-        lblJugar.setFont(new java.awt.Font("Blackadder ITC", 0, 48));
+        lblJugar.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (48 * fw)));
     }//GEN-LAST:event_lblJugarMouseExited
 
     private void lblJugarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJugarMouseReleased
@@ -441,14 +509,14 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         lblAcercaDe.setBorder(BorderFactory.createLineBorder(Color.white, 2));
         lblAcercaDe.setForeground(Color.white);
-        lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 1, 54));
+        lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 1, (int) (54 * fw)));
     }//GEN-LAST:event_lblAcercaDeMouseEntered
 
     private void lblAcercaDeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAcercaDeMouseExited
         // TODO add your handling code here:
         lblAcercaDe.setBorder(null);
         lblAcercaDe.setForeground(Paleta.GRIS_OSCURO.getColor());
-        lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 0, 48));
+        lblAcercaDe.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (48 * fw)));
     }//GEN-LAST:event_lblAcercaDeMouseExited
 
     private void lblAcercaDeMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAcercaDeMouseReleased
@@ -464,14 +532,14 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         lblSalir.setBorder(BorderFactory.createLineBorder(Color.white, 2));
         lblSalir.setForeground(Color.white);
-        lblSalir.setFont(new java.awt.Font("Blackadder ITC", 1, 54));
+        lblSalir.setFont(new java.awt.Font("Blackadder ITC", 1, (int) (54 * fw)));
     }//GEN-LAST:event_lblSalirMouseEntered
 
     private void lblSalirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseExited
         // TODO add your handling code here:
         lblSalir.setBorder(null);
         lblSalir.setForeground(Paleta.GRIS_OSCURO.getColor());
-        lblSalir.setFont(new java.awt.Font("Blackadder ITC", 0, 48));
+        lblSalir.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (48 * fw)));
     }//GEN-LAST:event_lblSalirMouseExited
 
     private void lblSalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblSalirMouseReleased
@@ -485,16 +553,15 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!escena.getEscritor().isAlive()) {
             lblIzquierda.setForeground(Color.white);
-            lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 1, 210));
+            lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 1, (int) (210 * fw)));
             lblIzquierda.setBackground(new Color(20, 20, 20));
         }
-
     }//GEN-LAST:event_lblIzquierdaMouseEntered
 
     private void lblIzquierdaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIzquierdaMouseExited
         // TODO add your handling code here:
         lblIzquierda.setForeground(Paleta.GRIS_OSCURO.getColor());
-        lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 0, 200));
+        lblIzquierda.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (200 * fw)));
         lblIzquierda.setBackground(Color.black);
     }//GEN-LAST:event_lblIzquierdaMouseExited
 
@@ -510,7 +577,7 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!escena.getEscritor().isAlive()) {
             lblDerecha.setForeground(Color.white);
-            lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 1, 210));
+            lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 1, (int) (210 * fw)));
             lblDerecha.setBackground(new Color(20, 20, 20));
         }
 
@@ -519,7 +586,7 @@ public final class MainFrame extends javax.swing.JFrame {
     private void lblDerechaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDerechaMouseExited
         // TODO add your handling code here:
         lblDerecha.setForeground(Paleta.GRIS_OSCURO.getColor());
-        lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 0, 200));
+        lblDerecha.setFont(new java.awt.Font("Blackadder ITC", 0, (int) (200 * fw)));
         lblDerecha.setBackground(Color.black);
     }//GEN-LAST:event_lblDerechaMouseExited
 
@@ -535,14 +602,14 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (escena.hayPosterior()) {
             lblPost.setForeground(Color.white);
-            lblPost.setFont(new java.awt.Font("Chiller", 1, 70));
+            lblPost.setFont(new java.awt.Font("Chiller", 1, (int) (70 * fw)));
         }
     }//GEN-LAST:event_lblPostMouseEntered
 
     private void lblPostMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPostMouseExited
         // TODO add your handling code here:
         lblPost.setForeground(Paleta.GRIS_OSCURO.getColor());
-        lblPost.setFont(new java.awt.Font("Chiller", 0, 60));
+        lblPost.setFont(new java.awt.Font("Chiller", 0, (int) (60 * fw)));
     }//GEN-LAST:event_lblPostMouseExited
 
     private void lblPostMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPostMouseClicked
@@ -566,7 +633,7 @@ public final class MainFrame extends javax.swing.JFrame {
     private void lblPrevMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPrevMouseExited
         // TODO add your handling code here:
         lblPrev.setForeground(Paleta.GRIS_OSCURO.getColor());
-        lblPrev.setFont(new java.awt.Font("Chiller", 0, 60));
+        lblPrev.setFont(new java.awt.Font("Chiller", 0, (int) (60 * fw)));
 
     }//GEN-LAST:event_lblPrevMouseExited
 
@@ -574,7 +641,7 @@ public final class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (escena.hayPrevio()) {
             lblPrev.setForeground(Color.white);
-            lblPrev.setFont(new java.awt.Font("Chiller", 1, 70));
+            lblPrev.setFont(new java.awt.Font("Chiller", 1, (int) (70 * fw)));
         }
     }//GEN-LAST:event_lblPrevMouseMoved
 
@@ -692,11 +759,11 @@ public final class MainFrame extends javax.swing.JFrame {
 
     public void mostrarMenu() {
         pnlMenu.setLocation(0, 0);
-        pnlMenu.setSize(700, 1080);
+        pnlMenu.setSize((int) (700 * fw), (int) (1080 * fh));
         this.add(pnlMenu);
 
         pnlArbol.setLocation(0, 0);
-        pnlArbol.setSize(1920, 1080);
+        pnlArbol.setSize(getWidth(), getHeight());
         this.add(pnlArbol);
 
         this.revalidate();
@@ -706,8 +773,8 @@ public final class MainFrame extends javax.swing.JFrame {
     private void cargarArbol() {
         RecursiveTree treePanel = new RecursiveTree();
 
-        treePanel.setLocation(700, 0);
-        treePanel.setSize(1280, 1080);
+        treePanel.setLocation((int) (700 * fw), 0);
+        treePanel.setSize((int) (1280 * fw), (int) (1080 * fh));
 
         pnlArbol.add(treePanel);
 
@@ -745,7 +812,7 @@ public final class MainFrame extends javax.swing.JFrame {
 
     public void mostarIntro() {
         pnlIntro.setLocation(0, 0);
-        pnlIntro.setSize(1920, 1080);
+        pnlIntro.setSize(getWidth(), getHeight());
         pnlIntro.setVisible(true);
         lblIntro.setForeground(new Color(80, 80, 80));
 
@@ -800,5 +867,4 @@ public final class MainFrame extends javax.swing.JFrame {
         inthread.start(); // Iniciar el hilo de la animación
 
     }
-
 }
